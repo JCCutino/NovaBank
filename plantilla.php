@@ -21,19 +21,20 @@
 
   <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Enable body scrolling</button>
 
-  <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+  <div class="offcanvas offcanvas-start show" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
   <div class="offcanvas-header">
     <img src="img/Logo_NovaBank_Blanco.png" class="logo" alt="Logotipo">
-    <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Colored with scrolling</h5>
-    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    <button type="button" class="btn-close d-lg-none flecha-cerrar" data-bs-dismiss="offcanvas" aria-label="Close"><img src="img/svg/flecha_cerrar.svg"</button>
   </div>
   <div class="offcanvas-body">
-    <p>Try scrolling the rest of the page to see this option in action.</p>
     <!-- Aquí puedes agregar tus enlaces -->
     <div class="enlaces">
-      <a href="#">Enlace 1</a>
-      <a href="#">Enlace 2</a>
-      <a href="#">Enlace 3</a>
+      <a href="#" class="morado">Inicio</a>
+      <a href="#">Pagos</a>
+      <a href="#">Transacciones</a>
+      <a href="#">Préstamos</a>
+      <a href="#">Datos</a>
+      <a href="#">Ajustes</a>
       <!-- Agrega más enlaces según sea necesario -->
     </div>
   </div>
@@ -51,6 +52,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
     integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
   </script>
+  <script src="scripts/scripts_plantilla.js"></script>
 </body>
 
 </html>
