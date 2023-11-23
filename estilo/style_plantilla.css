@@ -37,6 +37,8 @@
   }
 
   .flecha-cerrar{
+    margin-left: -10px;
+    background: transparent url('../img/svg/flecha_cerrar.svg') center/1em auto no-repeat;
     box-sizing: content-box;
     width: 1em;
     height: 1em;
@@ -45,5 +47,23 @@
     border: 0;
     border-radius: 0.375rem;
     opacity: .5;
+    transform: rotate(180deg);
   }
 
+.boton-fijo{
+    position: fixed;
+    top: 25px;
+    right: 0px;
+    left: 25px;
+    z-index: 1025;
+}
+
+.bg-color-morado {
+  background-color: #6f2cb2;
+  border: #5808a8;
+}
+
+.bg-color-morado {
+  background-color: #6f2cb2;
+  border: #5808a8;
+}
