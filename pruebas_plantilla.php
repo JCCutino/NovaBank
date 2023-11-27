@@ -73,6 +73,25 @@
             <img src="img/Campana.png" alt="Notificaciones" class="rounded-circle img-fluid imagen-pequena">
         </div>
     </div>
+    
+    <div class="row justify-content-center align-items-center g-2">
+    <div class="col-lg-12 col-md-6" id="saltoSeccion">
+        <section class="saldo_cuenta_card">
+            <div class="titulo-card">Saldo de Cuenta</div>
+            <div class="saldo-card">$500.00</div>
+            <button class="boton-recargar">Recargar</button>
+        </section>
+    </div>
+
+    <div class="col-lg-12 col-md-6" id="saltoSeccion">
+        <section class="saldo_cuenta_card">
+            <div class="titulo-card">Saldo de Cuenta</div>
+            <div class="saldo-card">$500.00</div>
+            <button class="boton-recargar">Recargar</button>
+        </section>
+    </div>
+</div>
+    
 </div>
     </div>
 

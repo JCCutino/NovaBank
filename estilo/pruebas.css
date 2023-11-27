@@ -111,7 +111,6 @@ body{
 }
 
 .imagen-pequena {
-    margin-right: 20px;
     margin-top: 10px;
     width: 50%; 
     max-width: 300px;
@@ -119,6 +118,66 @@ body{
     height: auto;
 }
   
+.saldo_cuenta_card {
+    margin-top: 40px;
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    background-color: #484848;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 300px;
+    align-items: center;
+    box-shadow: 10px 5px 5px rgb(26, 25, 25);
+}
+
+.titulo-card {
+    color: #ACA6A6;
+    text-align: left;
+    font-size: 1.2rem;
+    font-weight: bold;
+    grid-column: span 2;
+}
+
+.saldo-card {
+    text-align: left;
+    font-size: 1.5rem;
+}
+
+@keyframes neon-border {
+    0% {
+        box-shadow: 0 0 10px 0px rgba(147, 65, 228, 0.8);
+    }
+    50% {
+        box-shadow: 0 0 20px 10px rgba(147, 65, 228, 0.8);
+    }
+    100% {
+        box-shadow: 0 0 10px 0px rgba(147, 65, 228, 0.8);
+    }
+}
+
+.boton-recargar {
+    width: 100%;
+    padding: 10px;
+    background-color: transparent;
+    border: solid 5px;
+    border-color: #9341E4;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    animation: none; 
+    
+}
+
+.boton-recargar:hover {
+    animation: neon-border 1.5s infinite; 
+    box-shadow: 0 0 20px 10px rgba(147, 65, 228, 0.8); 
+}
+
   @media (max-width: 1200px) {
     .sidebar {
       position: static;
@@ -134,6 +193,12 @@ body{
   }
   
   @media (min-width: 1180px) {
+    .elemento-oculto {
+      display: none;
+    }
+  }
+
+  @media (min-width: 1200px) {
     .elemento-oculto {
       display: none;
     }

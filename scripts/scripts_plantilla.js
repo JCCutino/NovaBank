@@ -12,18 +12,41 @@ function abrirOffcanvas() {
     offcanvas.hide();
   }
 
+  function añadirClase() {
+    var elemento = document.getElementById(saltoSeccion);
+
+    if (!elemento) {
+      console.error("Elemento no encontrado con ID: " + saltoSeccion);
+      return;
+  }
+
+    elemento.classList.add(col-lg-12);
+}
+
+function quitarClase() {
+  var elemento = document.getElementById(saltoSeccion);
+
+  if (!elemento) {
+    console.error("Elemento no encontrado con ID: " + saltoSeccion);
+    return;
+}
+
+  elemento.classList.remove(col-lg-12);
+}
+
 window.addEventListener('resize', function() {
     var anchoVentana = window.innerWidth;
 
     if (anchoVentana <= anchoLimite && !accionSuperiorEjecutada) {
         
+      añadirClase();
         cerrarOffcanvas();
         accionSuperiorEjecutada = true;
         accionInferiorEjecutada = false;
     } else if (anchoVentana > anchoLimite && !accionInferiorEjecutada) {
-        
-
-        abrirOffcanvas();
+       
+      quitarClase();
+      abrirOffcanvas();
         accionInferiorEjecutada = true;
         accionSuperiorEjecutada = false;
     }
