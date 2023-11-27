@@ -14,7 +14,7 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 
-    <link rel="stylesheet" href="estilo/style_plantilla.css">
+    <link rel="stylesheet" href="estilo/pruebas.css">
  
 </head>
 
@@ -53,25 +53,27 @@
 </div>
 
 <div class="container-fluid">
-  <div class="row justify-content-center text-center flex-column-reverse flex-md-row">
+  <div class="row justify-content-center text-center">
     
-  <div class="col-md-4 sidebar">
-  <h2>Aside</h2>
-  <p>Este es el contenido del aside en la derecha.</p>
-  
-  <div class="profile-container">
-    <img src="ruta_de_la_imagen1.jpg" alt="Imagen 1">
-    <div class="profile-info">
-      <p>Nombre</p>
-      <img src="ruta_de_la_imagen2.jpg" alt="Imagen 2">
-    </div>
-  </div>
-</div>
-
-  
-    <div class="col-md-8 main-content">
+    <div class="col-md-8 main-content order-2">
       <h1>Contenido Principal</h1>
       <p>Este es el contenido principal de la página.</p>
+    </div>
+  
+    <div class="col-md-4 sidebar order-1">
+    <div class="container mt-3">
+    <div class="row">
+        <div class="col-2">
+            <img src="img/foto_perfil.webp" alt="Imagen de perfil" class="rounded-circle img-fluid border imagen-perfil">
+        </div>
+        <div class="col-8 d-flex align-items-center">
+            <h4 class="nombre-usuario">Nombre</h4>
+        </div>
+        <div class="col-2">
+            <img src="img/Campana.png" alt="Notificaciones" class="rounded-circle img-fluid imagen-pequena">
+        </div>
+    </div>
+</div>
     </div>
 
   </div>

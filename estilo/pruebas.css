@@ -1,0 +1,140 @@
+body{
+    background-color: #484848;
+    width: 100%;
+  }
+  
+  .enlaces {
+      display: flex;
+      flex-direction: column;
+      align-items: center; 
+      justify-content: center; 
+      height: 100%; 
+    }
+    
+    .enlaces a {
+      text-align: center;
+      text-decoration: none;
+      color: #ffffff; 
+      width: 100%;
+      margin-bottom: 30px; 
+      font-size: 30px;
+    }
+  
+    .enlaces a:hover{
+      color:#b5b5b5 ;
+      background-color: #5808a8;
+    }
+  
+    .logo {
+      margin-top: -60px;
+      max-width: 100%; 
+      height: auto; 
+    }
+  
+    .enlaces{
+      margin-top: -100px;
+    }
+  
+  
+    .offcanvas{
+      background-color: #373737;
+    }
+  
+    .enlaces .morado{
+      color: #A669E3;
+    }
+  
+    .flecha-cerrar{
+      margin-left: -10px;
+      background: transparent url('../img/svg/flecha_cerrar.svg') center/1em auto no-repeat;
+      box-sizing: content-box;
+      width: 1em;
+      height: 1em;
+      padding: 0.25em 0.25em;
+      color: #000;
+      border: 0;
+      border-radius: 0.375rem;
+      opacity: .5;
+      transform: rotate(180deg);
+    }
+  
+  .boton-fijo{
+      position: fixed;
+      top: 25px;
+      right: 0px;
+      left: 25px;
+      z-index: 1025;
+  }
+  
+  .bg-color-morado {
+    background-color: #6f2cb2;
+    border: #5808a8;
+  }
+  
+  .bg-color-morado {
+    background-color: #6f2cb2;
+    border: #5808a8;
+  }
+  
+   .main-content {
+    padding: 20px;
+    min-height: 400px;
+    color: #ffffff;
+  }
+  
+  
+  .sidebar {
+    background-color: #373737;
+    color: #ffffff;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 400px;
+    overflow-y: auto;
+  }
+  
+  .imagen-perfil {
+    border: 5px solid #fff; 
+    min-width: 60px;
+    width: 30%;
+    max-width: 200px;
+    margin-left: -15px;
+    height: auto;
+}
+
+.nombre-usuario {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.imagen-pequena {
+    margin-right: 20px;
+    margin-top: 10px;
+    width: 50%; 
+    max-width: 300px;
+    min-width: 50px;
+    height: auto;
+}
+  
+  @media (max-width: 1200px) {
+    .sidebar {
+      position: static;
+      width: 100%;
+      background-color: #373737;
+      color: #ffffff;
+      padding: 20px;
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
+      overflow-y: auto;
+    }
+  }
+  
+  @media (min-width: 1180px) {
+    .elemento-oculto {
+      display: none;
+    }
+  }
