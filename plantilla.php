@@ -36,7 +36,7 @@
     <button type="button" class="btn-close d-lg-none flecha-cerrar" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body">
-    <!-- Aquí puedes agregar tus enlaces -->
+
     <div class="enlaces">
       <a href="#" class="morado">Inicio</a>
       <a href="#">Pagos</a>
@@ -44,10 +44,26 @@
       <a href="#">Préstamos</a>
       <a href="#">Datos</a>
       <a href="#">Ajustes</a>
-      <!-- Agrega más enlaces según sea necesario -->
+      
     </div>
   </div>
 </div>
+
+ <div class="container-fluid">
+    <div class="row">
+     
+    <div class="col-md-8 offset-md-2 main-content">
+        <h1>Contenido Principal</h1>
+        <p>Este es el contenido principal de la página.</p>
+      </div>
+
+    
+      <div class="col-md-4 sidebar">
+        <h2>Aside</h2>
+        <p>Este es el contenido del aside en la derecha.</p>
+      </div>
+    </div>
+  </div>
 
   </main>
   <footer>
