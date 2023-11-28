@@ -13,25 +13,31 @@ function abrirOffcanvas() {
   }
 
   function añadirClase() {
-    var elemento = document.getElementById(saltoSeccion);
-
+    var elemento = document.getElementById("saltoSeccion1");
+    var elemento2 = document.getElementById("saltoSeccion2");
     if (!elemento) {
-      console.error("Elemento no encontrado con ID: " + saltoSeccion);
+      console.error("Elemento no encontrado con ID: " + "saltoSeccion1");
       return;
   }
-
-    elemento.classList.add(col-lg-12);
+    elemento.classList.remove("col-lg-6");
+    elemento2.classList.remove("col-lg-6");
+    elemento.classList.add("col-lg-12");
+    elemento2.classList.add("col-lg-12");
+    
 }
 
 function quitarClase() {
-  var elemento = document.getElementById(saltoSeccion);
+  var elemento = document.getElementById("saltoSeccion1");
+  var elemento2 = document.getElementById("saltoSeccion2");
 
   if (!elemento) {
-    console.error("Elemento no encontrado con ID: " + saltoSeccion);
+    console.error("Elemento no encontrado con ID: " + "saltoSeccion1");
     return;
 }
-
-  elemento.classList.remove(col-lg-12);
+  elemento.classList.remove("col-lg-12");
+  elemento2.classList.remove("col-lg-12");
+  elemento.classList.add("col-lg-6");
+  elemento2.classList.add("col-lg-6");
 }
 
 window.addEventListener('resize', function() {
@@ -39,13 +45,13 @@ window.addEventListener('resize', function() {
 
     if (anchoVentana <= anchoLimite && !accionSuperiorEjecutada) {
         
-      añadirClase();
+        quitarClase();
         cerrarOffcanvas();
         accionSuperiorEjecutada = true;
         accionInferiorEjecutada = false;
     } else if (anchoVentana > anchoLimite && !accionInferiorEjecutada) {
        
-      quitarClase();
+      añadirClase();
       abrirOffcanvas();
         accionInferiorEjecutada = true;
         accionSuperiorEjecutada = false;
