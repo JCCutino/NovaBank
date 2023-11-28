@@ -129,6 +129,7 @@ body{
     padding: 20px;
     width: 100%;
     max-width: 300px;
+    max-height: 150px;
     align-items: center;
     box-shadow: 10px 5px 5px rgb(26, 25, 25);
 }
@@ -186,8 +187,6 @@ body{
       background-color: #373737;
       color: #ffffff;
       padding: 20px;
-      position: -webkit-sticky;
-      position: sticky;
       top: 0;
       overflow-y: auto;
     }
@@ -204,3 +203,22 @@ body{
       display: none;
     }
   }
+
+  .rotating-card {
+    margin-top: 40px;
+    perspective: 1000px;
+    max-width: 450px;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+    cursor: pointer;
+}
+
+.rotating-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.rotating-card.is-flipped {
+    transform: rotateY(360deg);
+}

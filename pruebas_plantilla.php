@@ -73,8 +73,8 @@
               </div>
             </div>
 
-            <div class="row justify-content-center g-2 d-flex">
-              <div class="col-lg-12 col-md-6 offset-lg-0 offset-md-3 mx-auto justify-content-center d-flex" id="saltoSeccion1">
+            <div class="row justify-content-center g-2 d-flex align-content-center align-items-center">
+              <div class="col-lg-12 col-md-6 offset-lg-0 offset-md-3 mx-auto justify-content-center align-items-center d-flex" id="saltoSeccion1">
                 <section class="saldo_cuenta_card">
                   <div class="titulo-card">Saldo de Cuenta</div>
                   <div class="saldo-card">$500.00</div>
@@ -82,12 +82,12 @@
                 </section>
               </div>
 
-              <div class="col-lg-12 col-md-6 offset-lg-0 offset-md-3 mx-auto justify-content-center d-flex" id="saltoSeccion2">
-                <section class="saldo_cuenta_card">
-                  <div class="titulo-card">Saldo de Cuenta</div>
-                  <div class="saldo-card">$500.00</div>
-                  <button class="boton-recargar">Recargar</button>
-                </section>
+              <div class="col-lg-12 col-md-6 offset-lg-0 offset-md-3 mx-auto justify-content-center d-flex mt-3" id="saltoSeccion2">
+              
+              <div class="rotating-card" onclick="rotateCard(this)">
+                <img id="cardImage" src="img/Tarjeta_Anverso.PNG" alt="Imagen de la tarjeta" class="img-fluid">
+            </div>
+
               </div>
             </div>
           </div>

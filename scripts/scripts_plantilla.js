@@ -58,3 +58,15 @@ window.addEventListener('resize', function() {
     }
 });
 
+function rotateCard(card) {
+  const cardImage = document.getElementById('cardImage');
+  
+  card.classList.toggle('is-flipped');
+  
+  if (card.classList.contains('is-flipped')) {
+      cardImage.src = 'img/Tarjeta_Reverso.PNG'; 
+  } else {
+      cardImage.src = 'img/Tarjeta_Anverso.PNG';  
+  }
+}
+
