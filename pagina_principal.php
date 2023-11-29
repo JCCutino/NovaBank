@@ -1,3 +1,8 @@
+<?php
+include 'obtenerDatos.php';
+
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -66,7 +71,7 @@
                 <img src="img/foto_perfil.webp" alt="Imagen de perfil" class="rounded-circle img-fluid border imagen-perfil">
               </div>
               <div class="col-8 d-flex align-items-center">
-                <h4 class="nombre-usuario">Nombre</h4>
+                <h4 class="nombre-usuario"><?php echo $nombreCompleto; ?></h4>
               </div>
               <div class="col-2">
                 <img src="img/Campana.png" alt="Notificaciones" class="rounded-circle img-fluid imagen-pequena">
@@ -77,7 +82,7 @@
               <div class="col-lg-12 col-md-6 offset-lg-0 offset-md-3 mx-auto justify-content-center align-items-center d-flex" id="saltoSeccion1">
                 <section class="saldo_cuenta_card">
                   <div class="titulo-card">Saldo de Cuenta</div>
-                  <div class="saldo-card">$500.00</div>
+                  <div class="saldo-card"><?php echo $saldo ?></div>
                   <button class="boton-recargar">Recargar</button>
                 </section>
               </div>

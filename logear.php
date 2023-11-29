@@ -1,6 +1,6 @@
 <?php
 include 'conexion.php';
-
+session_start(); 
 $correoElectronico = $_POST["correo_login"];
 $contrasena = $_POST["contrasena_login"];
 
@@ -13,6 +13,7 @@ if ($result->num_rows > 0) {
   
     if (password_verify($contrasena, $hashedPassword)) {
      header ("location: pagina_principal.php");
+     $_SESSION['correoElectronico'] = $correoElectronico;
     } else {
         header ("location: index.php");
     }
