@@ -12,7 +12,7 @@ if ($result->num_rows > 0) {
     $hashedPassword = $row["Contrasena"];
   
     if (password_verify($contrasena, $hashedPassword)) {
-     header ("location: index.php");
+     header ("location: pagina_principal.php");
     } else {
         header ("location: index.php");
     }
