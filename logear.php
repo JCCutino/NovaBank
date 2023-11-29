@@ -17,7 +17,6 @@ if ($result->num_rows > 0) {
         header ("location: index.php");
     }
 } else {
-   
     echo "Usuario no existe";
 }
 

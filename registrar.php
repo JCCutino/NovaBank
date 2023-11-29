@@ -1,19 +1,49 @@
 <?php
 include 'conexion.php';
 
- $nombre = $_POST["nombre"];
- $apellidos = $_POST["apellidos"];
- $correoElectronico = $_POST["correo_register"];
- $contrasena = password_hash($_POST["contrasena_register"], PASSWORD_DEFAULT); 
+$nombre = $_POST["nombre"];
+$apellidos = $_POST["apellidos"];
+$correoElectronico = $_POST["correo_register"];
+$contrasena = password_hash($_POST["contrasena_register"], PASSWORD_DEFAULT);
 
- $insertUsuario = "INSERT INTO Persona (Nombre, Apellidos, Correo_Electronico, Contrasena, Url_Foto) 
-            VALUES ('$nombre', '$apellidos', '$correoElectronico', '$contrasena', '')";
+
+$consultaCorreo = "SELECT * FROM Persona WHERE Correo_Electronico = '$correoElectronico'";
+$resultadoCorreo = $conn->query($consultaCorreo);
+
+if ($resultadoCorreo->num_rows > 0) {
+  
+    echo "Error: El correo electrónico ya está registrado.";
+} else {
+  
+    $insertUsuario = "INSERT INTO Persona (Nombre, Apellidos, Correo_Electronico, Contrasena, Url_Foto) 
+                VALUES ('$nombre', '$apellidos', '$correoElectronico', '$contrasena', '')";
 
     if ($conn->query($insertUsuario) === TRUE) {
-        echo "Usuario insertado correctamente.";
+        $result = $conn->query("SELECT Id_Persona FROM Persona WHERE Correo_Electronico = '$correoElectronico'");
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $Id_Persona = $row["Id_Persona"];
+            
+            
+            $IBAN = generarIBAN($nombre);
+            $fecha = obtenerFecha();
+            $saldo = 0;
+            $insertCuenta = "INSERT INTO Cuenta (IBAN, Saldo, Fecha_Apertura, Id_Persona) 
+                             VALUES ('$IBAN', '$saldo', '$fecha' , '$Id_Persona')";
+            
+            if ($conn->query($insertCuenta) === TRUE) {
+                header ("location: index.php");
+            } else {
+                header ("location: index.php");
+            }
+        } else {
+            echo "Error: No se pudo encontrar la Id_Persona.";
+        }
     } else {
         echo "Error al insertar usuario: " . $conn->error;
     }
+}
+
 
     function generarIBAN($nombre) {
 
@@ -41,25 +71,6 @@ include 'conexion.php';
         return date('Y-m-d');
     }
 
-    $result = $conn->query("SELECT Id_Persona FROM Persona WHERE Correo_Electronico = '$correoElectronico'");
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        $Id_Persona = $row["Id_Persona"];
-        
-        // Generate IBAN and insert into the Cuenta table
-        $IBAN = generarIBAN($nombre);
-        $fecha = obtenerFecha();
-        $saldo = 0;
-        $insertCuenta = "INSERT INTO Cuenta (IBAN, Saldo, Fecha_Apertura, Id_Persona) 
-                         VALUES ('$IBAN', '$saldo', '$fecha' , '$Id_Persona')";
-        
-        if ($conn->query($insertCuenta) === TRUE) {
-            header ("location: index.php");
-        } else {
-            header ("location: index.php");
-        }
-    } else {
-        echo "Error: No se pudo encontrar la Id_Persona.";
-    }
+   
     $conn->close();
 ?>
