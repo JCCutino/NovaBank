@@ -28,7 +28,7 @@ CREATE TABLE Transaccion (
     Tipo_Transaccion VARCHAR(50),
     Cantidad DECIMAL(15, 2),
     Fecha_Hora DATETIME,
-    IBAN INT,
+    IBAN VARCHAR(255),
     FOREIGN KEY (IBAN) REFERENCES Cuenta(IBAN)
 );
 
@@ -42,7 +42,7 @@ CREATE TABLE Prestamo (
     Fecha_Aprobacion DATE,
     Fecha_Pago DATE,
     ID_Persona INT,
-    IBAN INT,
+    IBAN VARCHAR(255),
     FOREIGN KEY (ID_Persona) REFERENCES Persona(ID_Persona),
     FOREIGN KEY (IBAN) REFERENCES Cuenta(IBAN)
 );
