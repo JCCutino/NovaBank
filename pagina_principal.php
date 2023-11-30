@@ -39,7 +39,7 @@ include 'funcionalidades/obtenerDatos.php';
         <form action="funcionalidades/ingresarDinero.php" method="post">
           <div class="mb-3">
             <label for="cantidadIngreso" class="form-label">Cantidad Monetaria:</label>
-            <input type="number" class="form-control" name="cantidadIngreso" id="cantidadIngreso" placeholder="Ingrese la cantidad" title="Ingrese un número con hasta dos decimales">
+            <input type="number" step="any" class="form-control" name="cantidadIngreso" id="cantidadIngreso" placeholder="Ingrese la cantidad" title="Ingrese un número con hasta dos decimales" required>
             <small id="cantidadHelp" class="form-text text-muted">Ingrese un número con hasta dos decimales.</small>
           </div>
           <div class="modal-footer">
