@@ -15,7 +15,8 @@ if ($result->num_rows > 0) {
      header ("location: ../pagina_principal.php");
      $_SESSION['correoElectronico'] = $correoElectronico;
     } else {
-        header ("location: ../index.php");
+        $_SESSION['contrasenaIncorrecta'] = true;
+        header("location: ../index.php");
     }
 } else {
     echo "Usuario no existe";

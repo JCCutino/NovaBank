@@ -20,6 +20,24 @@
     <!-- place navbar here -->
   </header>
   <main>
+
+  <div class="modal" tabindex="-1" role="dialog" id="errorModal">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Error de inicio de sesión</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Contraseña incorrecta. Inténtalo de nuevo.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+    </div>
+
 <!-- Card de Inicio de Sesión -->
 <div id="loginCard" class="card">
     <img src="img/Logo_NovaBank_Blanco.png" alt="Logo de la empresa" class="logo">
@@ -74,6 +92,21 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
     integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
   </script>
+
+<script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const contrasenaCorrecta = <?php session_start(); 
+             echo json_encode(isset($_SESSION['contrasenaCorrecta']) && $_SESSION['contrasenaCorrecta']); ?>;
+            
+            if (!contrasenaCorrecta) {
+                var myModal = new bootstrap.Modal(document.getElementById('errorModal'));
+                myModal.show();
+            }
+        });
+    </script>
+
+
+
 </body>
 
 </html>
