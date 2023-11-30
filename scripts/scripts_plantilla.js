@@ -1,8 +1,8 @@
-var anchoLimite = 1200; 
-var accionSuperiorEjecutada = false; 
-var accionInferiorEjecutada = false; 
+let anchoLimite = 1200; 
+let accionSuperiorEjecutada = false; 
+let accionInferiorEjecutada = false; 
 
-var offcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasScrolling'));
+let offcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasScrolling'));
 
 function abrirOffcanvas() {
     offcanvas.show();
@@ -13,8 +13,8 @@ function abrirOffcanvas() {
   }
 
   function añadirClase() {
-    var elemento = document.getElementById("saltoSeccion1");
-    var elemento2 = document.getElementById("saltoSeccion2");
+    let elemento = document.getElementById("saltoSeccion1");
+    let elemento2 = document.getElementById("saltoSeccion2");
     if (!elemento) {
       console.error("Elemento no encontrado con ID: " + "saltoSeccion1");
       return;
@@ -27,8 +27,8 @@ function abrirOffcanvas() {
 }
 
 function quitarClase() {
-  var elemento = document.getElementById("saltoSeccion1");
-  var elemento2 = document.getElementById("saltoSeccion2");
+  let elemento = document.getElementById("saltoSeccion1");
+  let elemento2 = document.getElementById("saltoSeccion2");
 
   if (!elemento) {
     console.error("Elemento no encontrado con ID: " + "saltoSeccion1");
@@ -41,7 +41,7 @@ function quitarClase() {
 }
 
 window.addEventListener('resize', function() {
-    var anchoVentana = window.innerWidth;
+    let anchoVentana = window.innerWidth;
 
     if (anchoVentana <= anchoLimite && !accionSuperiorEjecutada) {
         

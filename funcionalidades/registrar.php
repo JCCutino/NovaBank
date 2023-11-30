@@ -32,9 +32,9 @@ if ($resultadoCorreo->num_rows > 0) {
                              VALUES ('$IBAN', '$saldo', '$fecha' , '$Id_Persona')";
             
             if ($conn->query($insertCuenta) === TRUE) {
-                header ("location: index.php");
+                header ("location: ../index.php");
             } else {
-                header ("location: index.php");
+                header ("location: ../index.php");
             }
         } else {
             echo "Error: No se pudo encontrar la Id_Persona.";

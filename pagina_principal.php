@@ -1,5 +1,5 @@
 <?php
-include 'obtenerDatos.php';
+include 'funcionalidades/obtenerDatos.php';
 
 ?>
 
@@ -27,6 +27,31 @@ include 'obtenerDatos.php';
     <!-- place navbar here -->
   </header>
   <main>
+
+  <div class="modal fade" id="modalIngreso" tabindex="-1" aria-labelledby="tituloModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="tituloModal">Ingresar Cantidad Monetaria</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="funcionalidades/ingresarDinero.php" method="post">
+          <div class="mb-3">
+            <label for="cantidadIngreso" class="form-label">Cantidad Monetaria:</label>
+            <input type="number" class="form-control" name="cantidadIngreso" id="cantidadIngreso" placeholder="Ingrese la cantidad" title="Ingrese un número con hasta dos decimales">
+            <small id="cantidadHelp" class="form-text text-muted">Ingrese un número con hasta dos decimales.</small>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-primary">Aceptar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 
     <div class="boton-fijo">
       <button class="btn btn-primary rounded-circle bg-color-morado" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
@@ -83,7 +108,7 @@ include 'obtenerDatos.php';
                 <section class="saldo_cuenta_card">
                   <div class="titulo-card">Saldo de Cuenta</div>
                   <div class="saldo-card"><?php echo $saldo ?></div>
-                  <button class="boton-recargar">Recargar</button>
+                  <button class="boton-recargar" data-bs-toggle="modal" data-bs-target="#modalIngreso">Recargar</button>
                 </section>
               </div>
 

@@ -12,10 +12,10 @@ if ($result->num_rows > 0) {
     $hashedPassword = $row["Contrasena"];
   
     if (password_verify($contrasena, $hashedPassword)) {
-     header ("location: pagina_principal.php");
+     header ("location: ../pagina_principal.php");
      $_SESSION['correoElectronico'] = $correoElectronico;
     } else {
-        header ("location: index.php");
+        header ("location: ../index.php");
     }
 } else {
     echo "Usuario no existe";

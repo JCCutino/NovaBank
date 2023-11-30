@@ -2,9 +2,9 @@
 session_start(); 
 include 'conexion.php';
 function obtenerNombreApellidoUsuario($conn) {
-    
+    $correoElectronico = $_SESSION['correoElectronico'];
     if (isset($_SESSION['correoElectronico'])) {
-        $correoElectronico = $_SESSION['correoElectronico'];
+        
 
        
         $consultaNombreApellido = "SELECT Nombre, Apellidos FROM Persona WHERE Correo_Electronico = '$correoElectronico'";
@@ -40,9 +40,12 @@ function obtenerSaldo($conn) {
             $rowSaldo = $resultadoSaldo->fetch_assoc();
             $saldoCuenta = $rowSaldo["Saldo"];
 
+            $_SESSION['Id_Persona'] = $Id_Persona;
+            $_SESSION['saldoCuenta'] = $saldoCuenta;
+
            return $saldoCuenta;
         } else {
-            return $saldoCuenta; 
+            return null; 
         }
     } else {
         return null; 

@@ -23,7 +23,7 @@
 <!-- Card de Inicio de Sesión -->
 <div id="loginCard" class="card">
     <img src="img/Logo_NovaBank_Blanco.png" alt="Logo de la empresa" class="logo">
-    <form action="logear.php" method="post">
+    <form action="funcionalidades/logear.php" method="post">
     <div class="form-group form-group2">
         <input type="email" id="email" name="correo_login" placeholder=" ">
         <label for="email">Correo electrónico</label>
@@ -40,7 +40,7 @@
 <!-- Card de Registro -->
 <div id="registroCard" class="card">
     <img src="img/Logo_NovaBank_Blanco.png" alt="Logo de la empresa" class="logo">
-    <form action="registrar.php" method="post">
+    <form action="funcionalidades/registrar.php" method="post">
         <div class="form-group">
             <input type="text" name="nombre" placeholder=" "  required>
             <label for="nombre">Nombre</label>
