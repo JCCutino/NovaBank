@@ -21,7 +21,7 @@
   </header>
   <main>
 
-  <div class="modal" tabindex="-1" role="dialog" id="errorModal">
+  <div class="modal" tabindex="-1" role="dialog" id="contrasenaErrorModal">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -95,12 +95,15 @@
 
 <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const contrasenaCorrecta = <?php session_start(); 
-             echo json_encode(isset($_SESSION['contrasenaCorrecta']) && $_SESSION['contrasenaCorrecta']); ?>;
+            const contrasenaIncorrecta = <?php session_start(); 
+             echo json_encode(isset($_SESSION['contrasenaIncorrecta']) && $_SESSION['contrasenaIncorrecta']); ?>;
             
-            if (!contrasenaCorrecta) {
-                var myModal = new bootstrap.Modal(document.getElementById('errorModal'));
-                myModal.show();
+            if (contrasenaIncorrecta) {
+                var errorModal = new bootstrap.Modal(document.getElementById('contrasenaErrorModal'));
+                errorModal.show();
+                <?php 
+                $_SESSION['contrasenaIncorrecta'] = false;
+                ?>
             }
         });
     </script>
