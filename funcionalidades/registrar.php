@@ -1,6 +1,6 @@
 <?php
 include 'conexion.php';
-
+session_start(); 
 $nombre = $_POST["nombre"];
 $apellidos = $_POST["apellidos"];
 $correoElectronico = $_POST["correo_register"];
@@ -11,8 +11,9 @@ $consultaCorreo = "SELECT * FROM Persona WHERE Correo_Electronico = '$correoElec
 $resultadoCorreo = $conn->query($consultaCorreo);
 
 if ($resultadoCorreo->num_rows > 0) {
-  
-    echo "Error: El correo electrónico ya está registrado.";
+
+    $_SESSION['correoExistente'] = true;
+    header ("location: ../index.php");
 } else {
   
     $insertUsuario = "INSERT INTO Persona (Nombre, Apellidos, Correo_Electronico, Contrasena, Url_Foto) 

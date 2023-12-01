@@ -1,4 +1,8 @@
+<?php session_start(); 
+            $errorContrasena = json_encode(isset($_SESSION['contrasenaIncorrecta']) && $_SESSION['contrasenaIncorrecta']); 
 
+            $errorCorreo = json_encode(isset($_SESSION['correoExistente']) && $_SESSION['correoExistente']); 
+            ?>
 <!doctype html>
 <html lang="en">
 
@@ -30,6 +34,23 @@
             </div>
             <div class="modal-body">
                 Contraseña incorrecta. Inténtalo de nuevo.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog" id="correoErrorModal">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Error al registrar</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Correo ya existente, parece que ya tienes una cuenta.
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -95,12 +116,12 @@
 
 <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const contrasenaIncorrecta = <?php session_start(); 
-             echo json_encode(isset($_SESSION['contrasenaIncorrecta']) && $_SESSION['contrasenaIncorrecta']); ?>;
+           
+            const contrasenaIncorrecta = <?php echo $errorContrasena; ?>;
             
             if (contrasenaIncorrecta) {
-                var errorModal = new bootstrap.Modal(document.getElementById('contrasenaErrorModal'));
-                errorModal.show();
+                var contrasenaModal = new bootstrap.Modal(document.getElementById('contrasenaErrorModal'));
+                contrasenaModal.show();
                 <?php 
                 $_SESSION['contrasenaIncorrecta'] = false;
                 ?>
@@ -108,6 +129,20 @@
         });
     </script>
 
+<script>
+        document.addEventListener('DOMContentLoaded', function () {
+           
+            const correoExistente = <?php echo $errorCorreo; ?>;
+            
+            if (correoExistente) {
+                var correoModal = new bootstrap.Modal(document.getElementById('correoErrorModal'));
+                correoModal.show();
+                <?php 
+                $_SESSION['correoExistente'] = false;
+                ?>
+            }
+        });
+    </script>
 
 
 </body>
