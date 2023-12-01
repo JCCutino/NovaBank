@@ -8,6 +8,13 @@ CREATE TABLE Persona (
     ID_Persona INT PRIMARY KEY AUTO_INCREMENT,
     Nombre VARCHAR(255),
     Apellidos VARCHAR(255),
+    DNI VARCHAR(255),
+    Fecha_nacimiento DATE,
+    Direccion VARCHAR(255),
+    CP VARCHAR(255),
+    Ciudad VARCHAR(255),
+    Provincia VARCHAR(255),
+    Pais VARCHAR(255),
     Correo_Electronico VARCHAR(255),
     Contrasena VARCHAR(255),
     Url_Foto VARCHAR(255)

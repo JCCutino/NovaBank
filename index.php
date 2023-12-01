@@ -89,6 +89,14 @@
             <label for="apellidos">Apellidos</label>
         </div>
         <div class="form-group">
+            <input type="text" name="dni" placeholder=" "  required>
+            <label for="dni">DNI</label>
+        </div>
+        <div class="form-group">
+            <input type="text" name="pais" placeholder=" "  required>
+            <label for="pais">Pais</label>
+        </div>
+        <div class="form-group">
             <input type="email" name="correo_register" placeholder=" "required>
             <label for="email">Correo electrónico</label>
 
