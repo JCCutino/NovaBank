@@ -4,6 +4,8 @@ let accionInferiorEjecutada = false;
 
 let offcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasScrolling'));
 
+
+
 function abrirOffcanvas() {
     offcanvas.show();
   }
@@ -40,23 +42,27 @@ function quitarClase() {
   elemento2.classList.add("col-lg-6");
 }
 
-window.addEventListener('resize', function() {
-    let anchoVentana = window.innerWidth;
+function ajustarVentana() {
+  let anchoVentana = window.innerWidth;
 
-    if (anchoVentana <= anchoLimite && !accionSuperiorEjecutada) {
-        
-        quitarClase();
-        cerrarOffcanvas();
-        accionSuperiorEjecutada = true;
-        accionInferiorEjecutada = false;
-    } else if (anchoVentana > anchoLimite && !accionInferiorEjecutada) {
-       
+  if (anchoVentana <= anchoLimite && !accionSuperiorEjecutada) {
+      quitarClase();
+      cerrarOffcanvas();
+      accionSuperiorEjecutada = true;
+      accionInferiorEjecutada = false;
+  } else if (anchoVentana > anchoLimite && !accionInferiorEjecutada) {
       añadirClase();
       abrirOffcanvas();
-        accionInferiorEjecutada = true;
-        accionSuperiorEjecutada = false;
-    }
-});
+      accionInferiorEjecutada = true;
+      accionSuperiorEjecutada = false;
+  }
+}
+
+
+window.addEventListener('resize', ajustarVentana);
+
+
+document.addEventListener('DOMContentLoaded', ajustarVentana);
 
 function rotateCard(card) {
   const cardImage = document.getElementById('cardImage');
