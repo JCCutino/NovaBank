@@ -34,7 +34,7 @@ CREATE TABLE Transaccion (
     ID_Transaccion INT PRIMARY KEY AUTO_INCREMENT,
     Tipo_Transaccion VARCHAR(50),
     Cantidad DECIMAL(15, 2),
-    Fecha_Hora DATETIME,
+    Fecha_Hora VARCHAR(50),
     IBAN VARCHAR(255),
     FOREIGN KEY (IBAN) REFERENCES Cuenta(IBAN)
 );

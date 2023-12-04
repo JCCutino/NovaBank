@@ -64,7 +64,6 @@ function obtenerDatosFiltradosPorMes(mes) {
             ultimoDia = 30;
             break;
         case 'Febrero':
-            // Asumimos que no es un año bisiesto para simplificar
             ultimoDia = 28;
             break;
         default:
@@ -75,7 +74,6 @@ function obtenerDatosFiltradosPorMes(mes) {
     // Generar etiquetas para cada día del mes
     var labels = Array.from({ length: ultimoDia }, (_, i) => `${i + 1} ${mes}`);
 
-    // Puedes reemplazar esto con tus propios datos filtrados
     var data = Array.from({ length: ultimoDia }, () => Math.floor(Math.random() * 2000) + 1000);
 
     return { labels: labels, data: data };
