@@ -28,29 +28,29 @@ include 'funcionalidades/obtenerDatos.php';
   </header>
   <main>
 
-  <div class="modal fade" id="modalIngreso" tabindex="-1" aria-labelledby="tituloModal" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="tituloModal">Ingresar Cantidad Monetaria</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form action="funcionalidades/ingresarDinero.php" method="post">
-          <div class="mb-3">
-            <label for="cantidadIngreso" class="form-label">Cantidad Monetaria:</label>
-            <input type="number" step="any" class="form-control" name="cantidadIngreso" id="cantidadIngreso" placeholder="Ingrese la cantidad" title="Ingrese un número con hasta dos decimales" required>
-            <small id="cantidadHelp" class="form-text text-muted">Ingrese un número con hasta dos decimales.</small>
+    <div class="modal fade" id="modalIngreso" tabindex="-1" aria-labelledby="tituloModal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="tituloModal">Ingresar Cantidad Monetaria</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            <button type="submit" class="btn btn-primary">Aceptar</button>
+          <div class="modal-body">
+            <form action="funcionalidades/ingresarDinero.php" method="post">
+              <div class="mb-3">
+                <label for="cantidadIngreso" class="form-label">Cantidad Monetaria:</label>
+                <input type="number" step="any" class="form-control" name="cantidadIngreso" id="cantidadIngreso" placeholder="Ingrese la cantidad" title="Ingrese un número con hasta dos decimales" required>
+                <small id="cantidadHelp" class="form-text text-muted">Ingrese un número con hasta dos decimales.</small>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-primary">Aceptar</button>
+              </div>
+            </form>
           </div>
-        </form>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
 
     <div class="boton-fijo">
@@ -86,7 +86,24 @@ include 'funcionalidades/obtenerDatos.php';
 
         <div class="col-md-8 main-content order-2">
           <h1>Contenido Principal</h1>
-          <p>Este es el contenido principal de la página.</p>
+          <div style="display: flex;">
+        <canvas id="saldoChart" width="600" height="400" style="margin-right: 20px;"></canvas>
+        <div id="filtroMeses">
+            <button onclick="filtrarPorMes('Enero')">Enero</button>
+            <button onclick="filtrarPorMes('Febrero')">Febrero</button>
+            <button onclick="filtrarPorMes('Marzo')">Marzo</button>
+            <button onclick="filtrarPorMes('Abril')">Abril</button>
+            <button onclick="filtrarPorMes('Mayo')">Mayo</button>
+            <button onclick="filtrarPorMes('Junio')">Junio</button>
+            <button onclick="filtrarPorMes('Julio')">Julio</button>
+            <button onclick="filtrarPorMes('Agosto')">Agosto</button>
+            <button onclick="filtrarPorMes('Septiembre')">Septiembre</button>
+            <button onclick="filtrarPorMes('Octubre')">Octubre</button>
+            <button onclick="filtrarPorMes('Noviembre')">Noviembre</button>
+            <button onclick="filtrarPorMes('Diciembre')">Diciembre</button>
+            
+        </div>
+    </div>
         </div>
 
         <div class="col-md-4 sidebar order-1">
@@ -113,13 +130,13 @@ include 'funcionalidades/obtenerDatos.php';
               </div>
 
               <div class="col-lg-12 col-md-6 offset-lg-0 offset-md-3 mx-auto justify-content-center d-flex mt-3" id="saltoSeccion2">
-              
-              <div class="rotating-card" onclick="rotateCard(this)">
-                <img id="cardImage" src="img/Tarjeta_Anverso.PNG" alt="Imagen de la tarjeta" class="img-fluid">
-            </div>
 
+                <div class="rotating-card" onclick="rotateCard(this)">
+                  <img id="cardImage" src="img/Tarjeta_Anverso.PNG" alt="Imagen de la tarjeta" class="img-fluid">
+                </div>
               </div>
             </div>
+
           </div>
         </div>
 
@@ -136,7 +153,9 @@ include 'funcionalidades/obtenerDatos.php';
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
   </script>
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="scripts/scripts_plantilla.js"></script>
+  <script src="scripts/script_grafica.js"></script>
 </body>
 
 </html>
