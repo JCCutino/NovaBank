@@ -280,3 +280,9 @@
   -webkit-transform: rotateY(360deg);
           transform: rotateY(360deg);
 }
+
+#saldoChart {
+  max-width: 60% !important;
+  height: auto !important;
+  display: unset !important;
+}

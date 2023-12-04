@@ -86,24 +86,29 @@ include 'funcionalidades/obtenerDatos.php';
 
         <div class="col-md-8 main-content order-2">
           <h1>Contenido Principal</h1>
-          <div style="display: flex;">
-        <canvas id="saldoChart" width="600" height="400" style="margin-right: 20px;"></canvas>
-        <div id="filtroMeses">
-            <button onclick="filtrarPorMes('Enero')">Enero</button>
-            <button onclick="filtrarPorMes('Febrero')">Febrero</button>
-            <button onclick="filtrarPorMes('Marzo')">Marzo</button>
-            <button onclick="filtrarPorMes('Abril')">Abril</button>
-            <button onclick="filtrarPorMes('Mayo')">Mayo</button>
-            <button onclick="filtrarPorMes('Junio')">Junio</button>
-            <button onclick="filtrarPorMes('Julio')">Julio</button>
-            <button onclick="filtrarPorMes('Agosto')">Agosto</button>
-            <button onclick="filtrarPorMes('Septiembre')">Septiembre</button>
-            <button onclick="filtrarPorMes('Octubre')">Octubre</button>
-            <button onclick="filtrarPorMes('Noviembre')">Noviembre</button>
-            <button onclick="filtrarPorMes('Diciembre')">Diciembre</button>
-            
-        </div>
-    </div>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12 text-center">
+                <canvas id="saldoChart"></canvas>
+              </div>
+              <div class="col-md-12 text-center d-flex">
+                <div id="filtroMeses" class="d-flex flex-wrap gap-2 justify-content-center">
+                  <button class="btn btn-primary" onclick="filtrarPorMes('Enero')">Enero</button>
+                  <button class="btn btn-primary" onclick="filtrarPorMes('Febrero')">Febrero</button>
+                  <button class="btn btn-primary" onclick="filtrarPorMes('Marzo')">Marzo</button>
+                  <button class="btn btn-primary" onclick="filtrarPorMes('Abril')">Abril</button>
+                  <button class="btn btn-primary" onclick="filtrarPorMes('Mayo')">Mayo</button>
+                  <button class="btn btn-primary" onclick="filtrarPorMes('Junio')">Junio</button>
+                  <button class="btn btn-primary" onclick="filtrarPorMes('Julio')">Julio</button>
+                  <button class="btn btn-primary" onclick="filtrarPorMes('Agosto')">Agosto</button>
+                  <button class="btn btn-primary" onclick="filtrarPorMes('Septiembre')">Septiembre</button>
+                  <button class="btn btn-primary" onclick="filtrarPorMes('Octubre')">Octubre</button>
+                  <button class="btn btn-primary" onclick="filtrarPorMes('Noviembre')">Noviembre</button>
+                  <button class="btn btn-primary" onclick="filtrarPorMes('Diciembre')">Diciembre</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="col-md-4 sidebar order-1">
@@ -153,7 +158,7 @@ include 'funcionalidades/obtenerDatos.php';
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
   </script>
-   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="scripts/scripts_plantilla.js"></script>
   <script src="scripts/script_grafica.js"></script>
 </body>

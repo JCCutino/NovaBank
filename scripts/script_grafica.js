@@ -74,7 +74,24 @@ function obtenerDatosFiltradosPorMes(mes) {
     // Generar etiquetas para cada día del mes
     var labels = Array.from({ length: ultimoDia }, (_, i) => `${i + 1} ${mes}`);
 
-    var data = Array.from({ length: ultimoDia }, () => Math.floor(Math.random() * 2000) + 1000);
-
+    function generarDatosConValorBase(ultimoDia, valorBase) {
+        // Generar datos con un valor base y sumar/restar valores aleatorios
+        var data = Array.from({ length: ultimoDia }, (_, index) => {
+            // Generar un valor aleatorio entre 20 y 100
+            var randomValue = Math.floor(Math.random() * (100 - 20 + 1)) + 20;
+    
+            // Decidir aleatoriamente si sumar o restar el valor
+            var randomSign = Math.random() < 0.5 ? -1 : 1;
+    
+            // Aplicar el signo al valor generado y sumarlo al valor anterior
+            valorBase += randomValue * randomSign;
+    
+            return valorBase;
+        });
+    
+        return data;
+    }
+   
+    var data = generarDatosConValorBase(ultimoDia, 2000);
     return { labels: labels, data: data };
 }
