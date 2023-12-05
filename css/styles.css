@@ -87,7 +87,7 @@
 }
 
 .main-content {
-  padding: 20px;
+  margin-top: 50px;
   min-height: 400px;
   color: #ffffff;
 }
@@ -245,6 +245,7 @@
     top: 0;
     overflow-y: auto;
   }
+  
 }
 @media (min-width: 1180px) {
   .elemento-oculto {
@@ -255,6 +256,15 @@
   .elemento-oculto {
     display: none;
   }
+  .main-content {
+    margin-top: 50px;
+    padding-left: 110px;
+    padding-right: 110px;
+    min-height: 400px;
+    color: #ffffff;
+    margin-left: 200px;
+  }
+  
 }
 .rotating-card {
   margin-top: 40px;

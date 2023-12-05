@@ -42,7 +42,7 @@ function obtenerSaldo($conn) {
 
             $_SESSION['Id_Persona'] = $Id_Persona;
             $_SESSION['saldoCuenta'] = $saldoCuenta;
-
+            
            return $saldoCuenta;
         } else {
             return null; 
@@ -52,9 +52,30 @@ function obtenerSaldo($conn) {
     }
 } 
 
+function obtenerIBAN($conn) {
+    $Id_Persona = $_SESSION['Id_Persona'];
+
+        $consultaIBAN= "SELECT IBAN FROM Cuenta WHERE Id_Persona = '$Id_Persona'";
+        $resultadoIBAN = $conn->query($consultaIBAN);
+
+        if ($resultadoIBAN->num_rows > 0) {
+            $rowIBAN = $resultadoIBAN->fetch_assoc();
+            $IBAN = $rowIBAN["IBAN"];
+
+            $_SESSION['IBAN'] = $IBAN;
+
+            
+           return $IBAN;
+        } else {
+            return null; 
+        }
+}
+
+
+
 $nombreCompleto = obtenerNombreApellidoUsuario($conn);
 $saldo = obtenerSaldo($conn);
-
+$IBAN = obtenerIBAN($conn);
 $conn->close();
 
 ?>

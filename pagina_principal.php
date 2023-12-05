@@ -81,34 +81,13 @@ include 'funcionalidades/obtenerDatos.php';
       </div>
     </div>
 
-    <div class="container-fluid">
-      <div class="row justify-content-center text-center">
+    <div class="container-fluid justify-content-center text-center">
+      <div class="row">
 
         <div class="col-md-8 main-content order-2">
-          <h1>Contenido Principal</h1>
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-md-12 text-center">
-                <canvas id="saldoChart"></canvas>
-              </div>
-              <div class="col-md-12 text-center d-flex">
-                <div id="filtroMeses" class="d-flex flex-wrap gap-2 justify-content-center">
-                  <button class="btn btn-primary" onclick="filtrarPorMes('Enero')">Enero</button>
-                  <button class="btn btn-primary" onclick="filtrarPorMes('Febrero')">Febrero</button>
-                  <button class="btn btn-primary" onclick="filtrarPorMes('Marzo')">Marzo</button>
-                  <button class="btn btn-primary" onclick="filtrarPorMes('Abril')">Abril</button>
-                  <button class="btn btn-primary" onclick="filtrarPorMes('Mayo')">Mayo</button>
-                  <button class="btn btn-primary" onclick="filtrarPorMes('Junio')">Junio</button>
-                  <button class="btn btn-primary" onclick="filtrarPorMes('Julio')">Julio</button>
-                  <button class="btn btn-primary" onclick="filtrarPorMes('Agosto')">Agosto</button>
-                  <button class="btn btn-primary" onclick="filtrarPorMes('Septiembre')">Septiembre</button>
-                  <button class="btn btn-primary" onclick="filtrarPorMes('Octubre')">Octubre</button>
-                  <button class="btn btn-primary" onclick="filtrarPorMes('Noviembre')">Noviembre</button>
-                  <button class="btn btn-primary" onclick="filtrarPorMes('Diciembre')">Diciembre</button>
-                </div>
-              </div>
-            </div>
-          </div>
+          <h1>IBAN:  <?php echo $IBAN ?></h1>
+
+          
         </div>
 
         <div class="col-md-4 sidebar order-1">
