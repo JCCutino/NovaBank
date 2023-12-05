@@ -30,7 +30,7 @@ $insertUsuario->bind_param("ssssss", $nombre, $apellidos, $dni, $pais, $correoEl
 
         $Id_Persona = $row["Id_Persona"];
 
-        $IBAN = generarIBAN($nombre);
+        $IBAN = generarIBAN($nombre, $conn);
         $fecha = obtenerFecha();
         $saldo = 0;
 
@@ -50,7 +50,7 @@ $insertUsuario->bind_param("ssssss", $nombre, $apellidos, $dni, $pais, $correoEl
 
 
 
-    function generarIBAN($nombre) {
+    function generarIBAN($nombre, $conn) {
 
         $nombre = str_pad($nombre , 4 , "z");
     
@@ -61,15 +61,24 @@ $insertUsuario->bind_param("ssssss", $nombre, $apellidos, $dni, $pais, $correoEl
         for ($i=0; $i <strlen($primerasLetras) ; $i++) { 
            $letra = strtolower($primerasLetras[$i]);
            $valorASCII = ord($letra);
-          
-          
+            
            $posicion = $valorASCII - ord('a') + 1;
            
            $valorBinario = decbin($posicion);
            $cadenaBinaria = $cadenaBinaria.$valorBinario;
         }
+ do{
+        $consultaIBAN = $conn->prepare("SELECT IBAN FROM Cuenta WHERE IBAN = ?");
+        $consultaIBAN->bind_param("s", $cadenaBinaria);
+        $consultaIBAN->execute();
+        $resultadoIBAN = $consultaIBAN->get_result();
     
-        return $cadenaBinaria;
+        if ($resultadoIBAN->num_rows > 0) {
+            $cadenaBinaria = $cadenaBinaria . "1";
+        }
+    } while ($resultadoIBAN->num_rows > 0);
+
+    return $cadenaBinaria;
     }
 
     function obtenerFecha() {
