@@ -81,14 +81,18 @@ include 'funcionalidades/obtenerDatos.php';
       </div>
     </div>
 
-    <div class="container-fluid">
-      <div class="row justify-content-center text-center">
+    <div class="container-fluid justify-content-center text-center">
+      <div class="row">
 
-        <div class="col-md-8 main-content order-2">
-          <h1>Contenido Principal</h1>
+      <div class="col-md-4  order-2">
+         
+         </div>
+         <div class="col-md-4 main-content order-2">
+         <h1>Contenido Principal</h1>
           <p>Este es el contenido principal de la página.</p>
-        </div>
-
+ 
+           
+         </div>
         <div class="col-md-4 sidebar order-1">
           <div class="container-fluid mt-3">
             <div class="row justify-content-center">
