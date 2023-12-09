@@ -256,14 +256,6 @@
   .elemento-oculto {
     display: none;
   }
-  .main-content {
-    margin-top: 50px;
-    padding-left: 110px;
-    padding-right: 110px;
-    min-height: 400px;
-    color: #ffffff;
-    margin-left: 200px;
-  }
   
 }
 .rotating-card {
