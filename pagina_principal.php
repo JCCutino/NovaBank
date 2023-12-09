@@ -85,7 +85,8 @@ include 'funcionalidades/obtenerDatos.php';
       <div class="row">
 
         <div class="col-md-8 main-content order-2">
-          <h1>IBAN:  <?php echo $IBAN ?></h1>
+        <h1><?php echo "Hola ".$nombreSimple. " hoy es ".$fecha ?></h1>
+        <h1>IBAN:  <?php echo $IBAN ?></h1>
 
           
         </div>

@@ -1,7 +1,7 @@
 <?php
 session_start(); 
 include 'conexion.php';
-function obtenerNombreApellidoUsuario($conn) {
+function obtenerNombreCompleto($conn) {
     $correoElectronico = $_SESSION['correoElectronico'];
     if (isset($_SESSION['correoElectronico'])) {
         
@@ -16,10 +16,10 @@ function obtenerNombreApellidoUsuario($conn) {
             $apellidos = $row['Apellidos'];
             return "$nombre $apellidos";
         } else {
-            return "$correoElectronico";
+            return null;
         }
     } else {
-        return "$correoElectronico";
+        return null;
     }
 }
 
@@ -71,11 +71,45 @@ function obtenerIBAN($conn) {
         }
 }
 
+function obtenerNombreSimple($conn) {
+    
+    $correoElectronico = $_SESSION['correoElectronico'];
+
+        $consultaNombre = "SELECT Nombre FROM Persona WHERE Correo_Electronico = '$correoElectronico'";
+        $resultado = $conn->query($consultaNombre);
+
+        if ($resultado->num_rows > 0) {
+            $row = $resultado->fetch_assoc();
+            $nombre = $row['Nombre'];
+            $nombre = strtoupper($nombre);
+            return "$nombre";
+        } else {
+            return null;
+        }
+    } 
+
+function obtenerFecha(){
+
+    setlocale(LC_TIME, 'es_ES');
+
+    $diaSemana = strftime('%A');
+
+    $fechaActual = date("d-m-Y");
+
+    $fechaDia = $diaSemana." ".$fechaActual;
+
+    return $fechaDia;
+}
+    
 
 
-$nombreCompleto = obtenerNombreApellidoUsuario($conn);
+
+
+$nombreCompleto = obtenerNombreCompleto($conn);
 $saldo = obtenerSaldo($conn);
 $IBAN = obtenerIBAN($conn);
+$nombreSimple = obtenerNombreSimple($conn);
+$fecha = obtenerFecha();
 $conn->close();
 
 ?>
