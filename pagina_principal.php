@@ -81,7 +81,7 @@ include 'funcionalidades/obtenerDatos.php';
       </div>
     </div>
 
-    <div class="container-fluid justify-content-center text-center">
+    <div class="container-fluid ">
       <div class="row">
 
 
@@ -89,7 +89,8 @@ include 'funcionalidades/obtenerDatos.php';
          
         </div>
         <div class="col-md-4 main-content order-2">
-          <h1>IBAN:  <?php echo $IBAN ?></h1>
+          
+        <h1>IBAN:  <?php echo $IBAN ?></h1>
 
           
         </div>
