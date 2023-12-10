@@ -23,22 +23,25 @@ $modales= '<div class="modal fade" id="nombreModal" tabindex="-1" aria-labelledb
 
 
 <div class="modal fade" id="apellidosModal" tabindex="-1" aria-labelledby="apellidosModalLabel" aria-hidden="true">
-<div class="modal-dialog">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h5 class="modal-title" id="apellidosModalLabel">Editar Apellidos</h5>
-      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-    </div>
-    <div class="modal-body">
-      <label for="apellidosInput" class="form-label">Nuevos Apellidos:</label>
-      <input type="text" class="form-control" id="apellidosInput" placeholder="Introduce los nuevos apellidos">
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-      <button type="button" class="btn btn-primary">Guardar cambios</button>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="apellidosModalLabel">Editar Apellidos</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="funcionalidades/updateDatos.php" method="post">
+          <label for="apellidosInput" class="form-label">Nuevos Apellidos:</label>
+          <input type="text" class="form-control" id="apellidosInput" name="nuevoApellido" placeholder="Introduce los nuevos apellidos">
+          </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+        <input type="hidden" name="accion" value="actualizarApellido">
+        </form>
+      </div>
     </div>
   </div>
-</div>
 </div>
 
 <div class="modal fade" id="fechaNacimientoModal" tabindex="-1" aria-labelledby="fechaNacimientoModalLabel" aria-hidden="true">
@@ -49,12 +52,15 @@ $modales= '<div class="modal fade" id="nombreModal" tabindex="-1" aria-labelledb
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <label for="fechaNacimientoInput" class="form-label">Nueva Fecha de Nacimiento:</label>
-        <input type="date" class="form-control" id="fechaNacimientoInput">
+        <form action="funcionalidades/updateDatos.php" method="post">
+          <label for="fechaNacimientoInput" class="form-label">Nueva Fecha de Nacimiento:</label>
+          <input type="date" class="form-control" id="fechaNacimientoInput" name="nuevaFechaNacimiento">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Guardar cambios</button>
+        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+        <input type="hidden" name="accion" value="actualizarFechaNacimiento">
+        </form>
       </div>
     </div>
   </div>
@@ -62,23 +68,27 @@ $modales= '<div class="modal fade" id="nombreModal" tabindex="-1" aria-labelledb
 
 
 <div class="modal fade" id="direccionModal" tabindex="-1" aria-labelledby="direccionModalLabel" aria-hidden="true">
-<div class="modal-dialog">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h5 class="modal-title" id="direccionModalLabel">Editar Dirección</h5>
-      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-    </div>
-    <div class="modal-body">
-      <label for="direccionInput" class="form-label">Nueva Dirección:</label>
-      <input type="text" class="form-control" id="direccionInput" placeholder="Introduce la nueva dirección">
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-      <button type="button" class="btn btn-primary">Guardar cambios</button>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="direccionModalLabel">Editar Dirección</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="funcionalidades/updateDatos.php" method="post">
+          <label for="direccionInput" class="form-label">Nueva Dirección:</label>
+          <input type="text" class="form-control" id="direccionInput" name="nuevaDireccion" placeholder="Introduce la nueva dirección">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+        <input type="hidden" name="accion" value="actualizarDireccion">
+        </form>
+      </div>
     </div>
   </div>
 </div>
-</div>
+
 <div class="modal fade" id="codigoPostalModal" tabindex="-1" aria-labelledby="codigoPostalModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -87,16 +97,20 @@ $modales= '<div class="modal fade" id="nombreModal" tabindex="-1" aria-labelledb
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <label for="codigoPostalInput" class="form-label">Nuevo Código Postal:</label>
-        <input type="text" class="form-control" id="codigoPostalInput" placeholder="Introduce el nuevo código postal">
+        <form action="funcionalidades/updateDatos.php" method="post">
+          <label for="codigoPostalInput" class="form-label">Nuevo Código Postal:</label>
+          <input type="text" class="form-control" id="codigoPostalInput" name="nuevoCodigoPostal" placeholder="Introduce el nuevo código postal">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Guardar cambios</button>
+        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+        <input type="hidden" name="accion" value="actualizarCodigoPostal">
+        </form>
       </div>
     </div>
   </div>
 </div>
+
 <div class="modal fade" id="ciudadModal" tabindex="-1" aria-labelledby="ciudadModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -105,16 +119,20 @@ $modales= '<div class="modal fade" id="nombreModal" tabindex="-1" aria-labelledb
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <label for="ciudadInput" class="form-label">Nueva Ciudad:</label>
-        <input type="text" class="form-control" id="ciudadInput" placeholder="Introduce la nueva ciudad">
+        <form action="funcionalidades/updateDatos.php" method="post">
+          <label for="ciudadInput" class="form-label">Nueva Ciudad:</label>
+          <input type="text" class="form-control" id="ciudadInput" name="nuevaCiudad" placeholder="Introduce la nueva ciudad">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Guardar cambios</button>
+        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+        <input type="hidden" name="accion" value="actualizarCiudad">
+        </form>
       </div>
     </div>
   </div>
 </div>
+
 <div class="modal fade" id="provinciaModal" tabindex="-1" aria-labelledby="provinciaModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -123,16 +141,20 @@ $modales= '<div class="modal fade" id="nombreModal" tabindex="-1" aria-labelledb
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <label for="provinciaInput" class="form-label">Nueva Provincia:</label>
-        <input type="text" class="form-control" id="provinciaInput" placeholder="Introduce la nueva provincia">
+        <form action="funcionalidades/updateDatos.php" method="post">
+          <label for="provinciaInput" class="form-label">Nueva Provincia:</label>
+          <input type="text" class="form-control" id="provinciaInput" name="nuevaProvincia" placeholder="Introduce la nueva provincia">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Guardar cambios</button>
+        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+        <input type="hidden" name="accion" value="actualizarProvincia">
+        </form>
       </div>
     </div>
   </div>
 </div>
+
 <div class="modal fade" id="paisModal" tabindex="-1" aria-labelledby="paisModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -141,16 +163,20 @@ $modales= '<div class="modal fade" id="nombreModal" tabindex="-1" aria-labelledb
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <label for="paisInput" class="form-label">Nuevo País:</label>
-        <input type="text" class="form-control" id="paisInput" placeholder="Introduce el nuevo país">
+        <form action="funcionalidades/updateDatos.php" method="post">
+          <label for="paisInput" class="form-label">Nuevo País:</label>
+          <input type="text" class="form-control" id="paisInput" name="nuevoPais" placeholder="Introduce el nuevo país">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Guardar cambios</button>
+        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+        <input type="hidden" name="accion" value="actualizarPais">
+        </form>
       </div>
     </div>
   </div>
 </div>
+
 <div class="modal fade" id="contrasenaModal" tabindex="-1" aria-labelledby="contrasenaModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -169,6 +195,7 @@ $modales= '<div class="modal fade" id="nombreModal" tabindex="-1" aria-labelledb
     </div>
   </div>
 </div>
+
 <div class="modal fade" id="urlFotoModal" tabindex="-1" aria-labelledby="urlFotoModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">

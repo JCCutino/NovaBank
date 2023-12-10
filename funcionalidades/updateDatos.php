@@ -9,6 +9,61 @@ function actualizarNombre($conn, $nuevoNombre) {
 
     return $resultadoUpdateNombre;
 }
+function actualizarApellido($conn, $nuevoApellido) {
+    $correoElectronico = $_SESSION['correoElectronico'];
+    $consultaUpdateApellido = "UPDATE Persona SET Apellidos = '$nuevoApellido' WHERE Correo_Electronico = '$correoElectronico'";
+    $resultadoUpdateApellido = $conn->query($consultaUpdateApellido);
+    
+    return $resultadoUpdateApellido;
+}
+
+function actualizarFechaNacimiento($conn, $nuevaFechaNacimiento) {
+    $correoElectronico = $_SESSION['correoElectronico'];
+    $consultaUpdateFechaNacimiento = "UPDATE Persona SET Fecha_nacimiento = '$nuevaFechaNacimiento' WHERE Correo_Electronico = '$correoElectronico'";
+    $resultadoUpdateFechaNacimiento = $conn->query($consultaUpdateFechaNacimiento);
+
+    return $resultadoUpdateFechaNacimiento;
+}
+
+function actualizarDireccion($conn, $nuevaDireccion) {
+    $correoElectronico = $_SESSION['correoElectronico'];
+    $consultaUpdateDireccion = "UPDATE Persona SET Direccion = '$nuevaDireccion' WHERE Correo_Electronico = '$correoElectronico'";
+    $resultadoUpdateDireccion = $conn->query($consultaUpdateDireccion);
+
+    return $resultadoUpdateDireccion;
+}
+
+function actualizarCodigoPostal($conn, $nuevoCodigoPostal) {
+    $correoElectronico = $_SESSION['correoElectronico'];
+    $consultaUpdateCodigoPostal = "UPDATE Persona SET CP = '$nuevoCodigoPostal' WHERE Correo_Electronico = '$correoElectronico'";
+    $resultadoUpdateCodigoPostal = $conn->query($consultaUpdateCodigoPostal);
+
+    return $resultadoUpdateCodigoPostal;
+}
+
+function actualizarCiudad($conn, $nuevaCiudad) {
+    $correoElectronico = $_SESSION['correoElectronico'];
+    $consultaUpdateCiudad = "UPDATE Persona SET Ciudad = '$nuevaCiudad' WHERE Correo_Electronico = '$correoElectronico'";
+    $resultadoUpdateCiudad = $conn->query($consultaUpdateCiudad);
+
+    return $resultadoUpdateCiudad;
+}
+
+function actualizarProvincia($conn, $nuevaProvincia) {
+    $correoElectronico = $_SESSION['correoElectronico'];
+    $consultaUpdateProvincia = "UPDATE Persona SET Provincia = '$nuevaProvincia' WHERE Correo_Electronico = '$correoElectronico'";
+    $resultadoUpdateProvincia = $conn->query($consultaUpdateProvincia);
+
+    return $resultadoUpdateProvincia;
+}
+
+function actualizarPais($conn, $nuevoPais) {
+    $correoElectronico = $_SESSION['correoElectronico'];
+    $consultaUpdatePais = "UPDATE Persona SET Pais = '$nuevoPais' WHERE Correo_Electronico = '$correoElectronico'";
+    $resultadoUpdatePais = $conn->query($consultaUpdatePais);
+
+    return $resultadoUpdatePais;
+}
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (isset($_POST["accion"])) {
@@ -30,6 +85,121 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     echo "Parámetros insuficientes para la acción actualizarNombre";
                 }
                 break;
+            
+                case "actualizarApellido":
+                    echo "PRUEBA";
+                    if (isset($_POST["nuevoApellido"])) {
+                        $nuevoApellido = $_POST["nuevoApellido"];
+                        $resultado = actualizarApellido($conn, $nuevoApellido);
+                
+                        if ($resultado) {
+                            header("Location: ../pagina_datos.php");
+                            exit(); 
+                        } else {
+                            echo "Error al actualizar el apellido";
+                        }
+                    } else {
+                        echo "Parámetros insuficientes para la acción actualizarApellido";
+                    }
+                    break;
+                
+             case "actualizarFechaNacimiento":
+                if (isset($_POST["nuevaFechaNacimiento"])) {
+                    $nuevaFechaNacimiento = $_POST["nuevaFechaNacimiento"];
+                    $resultado = actualizarFechaNacimiento($conn, $nuevaFechaNacimiento);
+
+                    if ($resultado) {
+                        header("Location: ../pagina_datos.php");
+                        exit(); 
+                    } else {
+                        echo "Error al actualizar la fecha de nacimiento";
+                    }
+                } else {
+                    echo "Parámetros insuficientes para la acción actualizarFechaNacimiento";
+                }
+                break;
+                
+             case "actualizarDireccion":
+                if (isset($_POST["nuevaDireccion"])) {
+                    $nuevaDireccion = $_POST["nuevaDireccion"];
+                    $resultado = actualizarDireccion($conn, $nuevaDireccion);
+
+                    if ($resultado) {
+                        header("Location: ../pagina_datos.php");
+                        exit(); 
+                    } else {
+                        echo "Error al actualizar la dirección";
+                    }
+                } else {
+                    echo "Parámetros insuficientes para la acción actualizarDireccion";
+                }
+                break;
+
+                case "actualizarCodigoPostal":
+                    if (isset($_POST["nuevoCodigoPostal"])) {
+                        $nuevoCodigoPostal = $_POST["nuevoCodigoPostal"];
+                        $resultado = actualizarCodigoPostal($conn, $nuevoCodigoPostal);
+    
+                        if ($resultado) {
+                            header("Location: ../pagina_datos.php");
+                            exit(); 
+                        } else {
+                            echo "Error al actualizar el código postal";
+                        }
+                    } else {
+                        echo "Parámetros insuficientes para la acción actualizarCodigoPostal";
+                    }
+                    break;
+
+                 case "actualizarCiudad":
+                if (isset($_POST["nuevaCiudad"])) {
+                    $nuevaCiudad = $_POST["nuevaCiudad"];
+                    $resultado = actualizarCiudad($conn, $nuevaCiudad);
+
+                    if ($resultado) {
+                        header("Location: ../pagina_datos.php");
+                        exit(); 
+                    } else {
+                        echo "Error al actualizar la ciudad";
+                    }
+                } else {
+                    echo "Parámetros insuficientes para la acción actualizarCiudad";
+                }
+                break;
+
+             case "actualizarProvincia":
+                if (isset($_POST["nuevaProvincia"])) {
+                    $nuevaProvincia = $_POST["nuevaProvincia"];
+                    $resultado = actualizarProvincia($conn, $nuevaProvincia);
+
+                    if ($resultado) {
+                        header("Location: ../pagina_datos.php");
+                        exit(); 
+                    } else {
+                        echo "Error al actualizar la provincia";
+                    }
+                } else {
+                    echo "Parámetros insuficientes para la acción actualizarProvincia";
+                }
+                break;
+
+            case "actualizarPais":
+                if (isset($_POST["nuevoPais"])) {
+                    $nuevoPais = $_POST["nuevoPais"];
+                    $resultado = actualizarPais($conn, $nuevoPais);
+
+                    if ($resultado) {
+                        header("Location: ../pagina_datos.php");
+                        exit(); 
+                    } else {
+                        echo "Error al actualizar el país";
+                    }
+                } else {
+                    echo "Parámetros insuficientes para la acción actualizarPais";
+                }
+                break;
+
+    
         }
     } else {
         echo "Acción no especificada";
