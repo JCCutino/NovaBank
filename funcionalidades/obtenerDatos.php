@@ -90,15 +90,13 @@ function obtenerNombreSimple($conn) {
 
 function obtenerFecha(){
 
-    setlocale(LC_TIME, 'es_ES');
+$local = 'es_ES';
+$fmt = new IntlDateFormatter($local, IntlDateFormatter::FULL, IntlDateFormatter::NONE, 'UTC');
 
-    $diaSemana = strftime('%A');
+$fechaActual = new DateTime();
+$fechaDia = $fmt->format($fechaActual);
 
-    $fechaActual = date("d-m-Y");
-
-    $fechaDia = $diaSemana." ".$fechaActual;
-
-    return $fechaDia;
+return $fechaDia;
 }
     
 
