@@ -1,6 +1,7 @@
 <?php
 include 'funcionalidades/obtenerDatos.php';
-
+include 'funcionalidades/obtenerDatosCompletos.php';
+include 'componentes/modales.php';
 ?>
 
 <!doctype html>
@@ -27,6 +28,10 @@ include 'funcionalidades/obtenerDatos.php';
     <!-- place navbar here -->
   </header>
   <main>
+
+  <?php
+  echo $modales;
+  ?>
 
   <div class="modal fade" id="modalIngreso" tabindex="-1" aria-labelledby="tituloModal" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
@@ -81,19 +86,101 @@ include 'funcionalidades/obtenerDatos.php';
       </div>
     </div>
 
-    <div class="container-fluid justify-content-center text-center">
+    <div class="container-fluid ">
       <div class="row">
 
-      <div class="col-md-4  order-2">
-         
-         </div>
-         <div class="col-md-4 main-content order-2">
-         <h1>Contenido Principal</h1>
-          <p>Este es el contenido principal de la página.</p>
- 
-           
-         </div>
-        <div class="col-md-4 sidebar order-1">
+
+      <div class="col-lg-3 col-md-12  order-2 container-invisible"></div>
+      
+        <div class="col-lg-6 col-md-12 main-content order-2">
+       
+        <div class="container">
+  <h2>Información de Persona</h2>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <span>Nombre:</span>
+      <span><?php echo $nombre; ?></span>
+      <button type="button" class="btn btn-secondary edit-button" data-field="nombre" data-bs-toggle="modal" data-bs-target="#nombreModal">
+        <i class="bi bi-pencil edit-icon"></i>
+      </button>
+    </li>
+    <li class="list-group-item">
+      <span>Apellidos:</span>
+      <span><?php echo $apellidos; ?></span>
+      <button type="button" class="btn btn-secondary edit-button" data-field="apellidos" data-bs-toggle="modal" data-bs-target="#apellidosModal">
+        <i class="bi bi-pencil edit-icon"></i>
+      </button>
+    </li>
+    <li class="list-group-item">
+      <span>DNI:</span>
+      <span><?php echo $dni; ?></span>
+    </li>
+    <li class="list-group-item">
+      <span>Fecha de Nacimiento:</span>
+      <span><?php echo $fechaNacimiento; ?></span>
+      <button type="button" class="btn btn-secondary edit-button" data-field="fechaNacimiento" data-bs-toggle="modal" data-bs-target="#fechaNacimientoModal">
+        <i class="bi bi-pencil edit-icon"></i>
+      </button>
+    </li>
+    <li class="list-group-item">
+      <span>Dirección:</span>
+      <span><?php echo $direccion; ?></span>
+      <button type="button" class="btn btn-secondary edit-button" data-field="direccion" data-bs-toggle="modal" data-bs-target="#direccionModal">
+        <i class="bi bi-pencil edit-icon"></i>
+      </button>
+    </li>
+    <li class="list-group-item">
+      <span>Código Postal:</span>
+      <span><?php echo $codigoPostal; ?></span>
+      <button type="button" class="btn btn-secondary edit-button" data-field="codigoPostal" data-bs-toggle="modal" data-bs-target="#codigoPostalModal">
+        <i class="bi bi-pencil edit-icon"></i>
+      </button>
+    </li>
+    <li class="list-group-item">
+      <span>Ciudad:</span>
+      <span><?php echo $ciudad; ?></span>
+      <button type="button" class="btn btn-secondary edit-button" data-field="ciudad" data-bs-toggle="modal" data-bs-target="#ciudadModal">
+        <i class="bi bi-pencil edit-icon"></i>
+      </button>
+    </li>
+    <li class="list-group-item">
+      <span>Provincia:</span>
+      <span><?php echo $provincia; ?></span>
+      <button type="button" class="btn btn-secondary edit-button" data-field="provincia" data-bs-toggle="modal" data-bs-target="#provinciaModal">
+        <i class="bi bi-pencil edit-icon"></i>
+      </button>
+    </li>
+    <li class="list-group-item">
+      <span>País:</span>
+      <span><?php echo $pais; ?></span>
+      <button type="button" class="btn btn-secondary edit-button" data-field="pais" data-bs-toggle="modal" data-bs-target="#paisModal">
+        <i class="bi bi-pencil edit-icon"></i>
+      </button>
+    </li>
+    <li class="list-group-item">
+      <span>Correo Electrónico:</span>
+      <span><?php echo $correoElectronico; ?></span>
+    </li>
+    <li class="list-group-item">
+      <span>Contraseña:</span>
+      <span><?php echo $contrasena; ?></span>
+      <button type="button" class="btn btn-secondary edit-button" data-field="contrasena" data-bs-toggle="modal" data-bs-target="#contrasenaModal">
+        <i class="bi bi-pencil edit-icon"></i>
+      </button>
+    </li>
+    <li class="list-group-item">
+      <span>URL de Foto:</span>
+      <span><?php echo $urlFoto; ?></span>
+      <button type="button" class="btn btn-secondary edit-button" data-field="urlFoto" data-bs-toggle="modal" data-bs-target="#urlFotoModal">
+        <i class="bi bi-pencil edit-icon"></i>
+      </button>
+    </li>
+  </ul>
+</div>
+          
+        </div>
+
+        <div class="col-lg-3 col-md-12 sidebar order-1">
           <div class="container-fluid mt-3">
             <div class="row justify-content-center">
               <div class="col-2">
@@ -117,19 +204,18 @@ include 'funcionalidades/obtenerDatos.php';
               </div>
 
               <div class="col-lg-12 col-md-6 offset-lg-0 offset-md-3 mx-auto justify-content-center d-flex mt-3" id="saltoSeccion2">
-              
-              <div class="rotating-card" onclick="rotateCard(this)">
-                <img id="cardImage" src="img/Tarjeta_Anverso.PNG" alt="Imagen de la tarjeta" class="img-fluid">
-            </div>
 
+                <div class="rotating-card" onclick="rotateCard(this)">
+                  <img id="cardImage" src="img/Tarjeta_Anverso.PNG" alt="Imagen de la tarjeta" class="img-fluid">
+                </div>
               </div>
             </div>
+
           </div>
         </div>
 
       </div>
     </div>
-
   </main>
   <footer>
     <!-- place footer here -->

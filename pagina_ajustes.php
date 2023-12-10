@@ -81,19 +81,20 @@ include 'funcionalidades/obtenerDatos.php';
       </div>
     </div>
 
-    <div class="container-fluid justify-content-center text-center">
-      <div class="row ">
+    <div class="container-fluid ">
+      <div class="row">
 
-      <div class="col-md-4  order-2">
-         
-         </div>
-         <div class="col-md-4 main-content order-2">
-         <h1>Contenido Principal</h1>
-          <p>Este es el contenido principal de la página.</p>
- 
-           
-         </div>
-        <div class="col-md-4 sidebar order-1">
+
+      <div class="col-lg-3 col-md-12  order-2 container-invisible"></div>
+      
+        <div class="col-lg-6 col-md-12 main-content order-2">
+        <h1><?php echo "Hola ".$nombreSimple. ", hoy es ".$fecha ?></h1>
+        <h1 class="mt-3">IBAN:  <?php echo $IBAN ?></h1>
+
+          
+        </div>
+
+        <div class="col-lg-3 col-md-12 sidebar order-1">
           <div class="container-fluid mt-3">
             <div class="row justify-content-center">
               <div class="col-2">
@@ -117,19 +118,18 @@ include 'funcionalidades/obtenerDatos.php';
               </div>
 
               <div class="col-lg-12 col-md-6 offset-lg-0 offset-md-3 mx-auto justify-content-center d-flex mt-3" id="saltoSeccion2">
-              
-              <div class="rotating-card" onclick="rotateCard(this)">
-                <img id="cardImage" src="img/Tarjeta_Anverso.PNG" alt="Imagen de la tarjeta" class="img-fluid">
-            </div>
 
+                <div class="rotating-card" onclick="rotateCard(this)">
+                  <img id="cardImage" src="img/Tarjeta_Anverso.PNG" alt="Imagen de la tarjeta" class="img-fluid">
+                </div>
               </div>
             </div>
+
           </div>
         </div>
 
       </div>
     </div>
-
   </main>
   <footer>
     <!-- place footer here -->
