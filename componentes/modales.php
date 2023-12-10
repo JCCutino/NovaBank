@@ -56,23 +56,24 @@ $modales= '<div class="modal fade" id="nombreModal" tabindex="-1" aria-labelledb
 </div>
 
 <div class="modal fade" id="fechaNacimientoModal" tabindex="-1" aria-labelledby="fechaNacimientoModalLabel" aria-hidden="true">
-<div class="modal-dialog">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h5 class="modal-title" id="fechaNacimientoModalLabel">Editar Fecha de Nacimiento</h5>
-      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-    </div>
-    <div class="modal-body">
-      <label for="fechaNacimientoInput" class="form-label">Nueva Fecha de Nacimiento:</label>
-      <input type="text" class="form-control" id="fechaNacimientoInput" placeholder="Introduce la nueva fecha de nacimiento">
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-      <button type="button" class="btn btn-primary">Guardar cambios</button>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="fechaNacimientoModalLabel">Editar Fecha de Nacimiento</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <label for="fechaNacimientoInput" class="form-label">Nueva Fecha de Nacimiento:</label>
+        <input type="date" class="form-control" id="fechaNacimientoInput">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Guardar cambios</button>
+      </div>
     </div>
   </div>
 </div>
-</div>
+
 
 <div class="modal fade" id="direccionModal" tabindex="-1" aria-labelledby="direccionModalLabel" aria-hidden="true">
 <div class="modal-dialog">
@@ -190,8 +191,9 @@ $modales= '<div class="modal fade" id="nombreModal" tabindex="-1" aria-labelledb
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <label for="urlFotoInput" class="form-label">Nueva URL de Foto:</label>
-        <input type="text" class="form-control" id="urlFotoInput" placeholder="Introduce la nueva URL de la foto">
+        <label for="urlFotoInput" class="form-label">Seleccionar Foto:</label>
+        <input type="file" class="form-control" id="urlFotoInput" accept="image/*">
+        <small class="text-muted">Selecciona un archivo de imagen (jpg, png, etc.)</small>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -200,6 +202,7 @@ $modales= '<div class="modal fade" id="nombreModal" tabindex="-1" aria-labelledb
     </div>
   </div>
 </div>
+
 ';
 
 ?>
