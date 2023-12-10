@@ -1,21 +1,26 @@
 <?php
-$modales= '<div class="modal fade" id="nombreModal" tabindex="-1" aria-labelledby="nombreModalLabel" aria-hidden="true"> <div class="modal-dialog">
+$modales= '<div class="modal fade" id="nombreModal" tabindex="-1" aria-labelledby="nombreModalLabel" aria-hidden="true">
+<div class="modal-dialog">
   <div class="modal-content">
     <div class="modal-header">
       <h5 class="modal-title" id="nombreModalLabel">Editar Nombre</h5>
       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
     <div class="modal-body">
-      <label for="nombreInput" class="form-label">Nuevo Nombre:</label>
-      <input type="text" class="form-control" id="nombreInput" placeholder="Introduce el nuevo nombre">
+      <form action="funcionalidades/updateDatos.php" method="post">
+        <label for="nombreInput" class="form-label">Nuevo Nombre:</label>
+        <input type="text" class="form-control" id="nombreInput" name="nuevoNombre" placeholder="Introduce el nuevo nombre">
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-      <button type="button" class="btn btn-primary">Guardar cambios</button>
+      <button type="submit" class="btn btn-primary">Guardar cambios</button>
+      <input type="hidden" name="accion" value="actualizarNombre">
+      </form>
     </div>
   </div>
 </div>
 </div>
+
 
 <div class="modal fade" id="apellidosModal" tabindex="-1" aria-labelledby="apellidosModalLabel" aria-hidden="true">
 <div class="modal-dialog">
@@ -27,25 +32,6 @@ $modales= '<div class="modal fade" id="nombreModal" tabindex="-1" aria-labelledb
     <div class="modal-body">
       <label for="apellidosInput" class="form-label">Nuevos Apellidos:</label>
       <input type="text" class="form-control" id="apellidosInput" placeholder="Introduce los nuevos apellidos">
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-      <button type="button" class="btn btn-primary">Guardar cambios</button>
-    </div>
-  </div>
-</div>
-</div>
-
-<div class="modal fade" id="dniModal" tabindex="-1" aria-labelledby="dniModalLabel" aria-hidden="true">
-<div class="modal-dialog">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h5 class="modal-title" id="dniModalLabel">Editar DNI</h5>
-      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-    </div>
-    <div class="modal-body">
-      <label for="dniInput" class="form-label">Nuevo DNI:</label>
-      <input type="text" class="form-control" id="dniInput" placeholder="Introduce el nuevo DNI">
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>

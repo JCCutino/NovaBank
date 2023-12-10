@@ -67,4 +67,6 @@ if ($resultadoActualizacion) {
     echo "Error al actualizar el saldo.";
 }
 
+
+$conn->close();
 ?>
