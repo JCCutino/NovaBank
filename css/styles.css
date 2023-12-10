@@ -288,3 +288,7 @@
   height: auto !important;
   display: unset !important;
 }
+
+.container-invisible{
+  width: 415px;
+}
