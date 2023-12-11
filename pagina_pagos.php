@@ -90,15 +90,15 @@ include 'funcionalidades/obtenerDatos.php';
       <div class="col-lg-6 col-md-12 main-content order-2" id="container-responsive">
     <h1 class="mt-3">Enviar dinero</h1>
 
-    <form action="funcionalidades/procesar_envio.php" method="post" class="text-center">
+    <form action="funcionalidades/envioTransferencia.php" method="post" class="text-center">
         <div class="form-group">
             <label for="iban">IBAN:</label>
-            <input type="text" class="form-control" id="iban" name="iban" placeholder="Introduce el IBAN" required>
+            <input type="text" class="form-control" id="ibanReceptor" name="ibanReceptor" placeholder="Introduce el IBAN" required>
         </div>
 
         <div class="form-group">
             <label for="cantidad">Cantidad a enviar:</label>
-            <input type="number" class="form-control" id="cantidad" name="cantidad" placeholder="Introduce la cantidad" required>
+            <input type="number" class="form-control" id="cantidadTransferencia" name="cantidadTransferencia" placeholder="Introduce la cantidad" required>
         </div>
 
         <button type="submit" class="btn btn-primary">Enviar</button>
