@@ -87,7 +87,7 @@ include 'funcionalidades/obtenerDatos.php';
 
       <div class="col-lg-3 col-md-12  order-2 container-invisible"></div>
       
-        <div class="col-lg-6 col-md-12 main-content order-2">
+        <div class="col-lg-6 col-md-12 main-content order-2"  id="container-responsive">
         <h1><?php echo "Hola ".$nombreSimple. ", hoy es ".$fecha ?></h1>
         <h1 class="mt-3">IBAN:  <?php echo $IBAN ?></h1>
 

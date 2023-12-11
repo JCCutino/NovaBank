@@ -92,7 +92,7 @@ include 'componentes/modales.php';
 
       <div class="col-lg-3 col-md-12  order-2 container-invisible"></div>
       
-        <div class="col-lg-6 col-md-12 main-content order-2">
+        <div class="col-lg-6 col-md-12 main-content order-2"  id="container-responsive">
        
         <div class="container">
   <h2>Información de Persona</h2>

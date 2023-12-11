@@ -17,14 +17,19 @@ function abrirOffcanvas() {
   function añadirClase() {
     let elemento = document.getElementById("saltoSeccion1");
     let elemento2 = document.getElementById("saltoSeccion2");
+
+    let elemento3 = document.getElementById("container-responsive");
     if (!elemento) {
       console.error("Elemento no encontrado con ID: " + "saltoSeccion1");
       return;
   }
     elemento.classList.remove("col-lg-6");
     elemento2.classList.remove("col-lg-6");
+    elemento3.classList.remove("col-lg-12");
+
     elemento.classList.add("col-lg-12");
     elemento2.classList.add("col-lg-12");
+    elemento3.classList.add("col-lg-6");
     
 }
 
@@ -32,14 +37,17 @@ function quitarClase() {
   let elemento = document.getElementById("saltoSeccion1");
   let elemento2 = document.getElementById("saltoSeccion2");
 
+  let elemento3 = document.getElementById("container-responsive");
   if (!elemento) {
     console.error("Elemento no encontrado con ID: " + "saltoSeccion1");
     return;
 }
   elemento.classList.remove("col-lg-12");
   elemento2.classList.remove("col-lg-12");
+  elemento3.classList.remove("col-lg-6");
   elemento.classList.add("col-lg-6");
   elemento2.classList.add("col-lg-6");
+  elemento3.classList.add("col-lg-12");
 }
 
 function ajustarVentana() {
