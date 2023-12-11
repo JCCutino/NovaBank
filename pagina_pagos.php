@@ -32,8 +32,6 @@ $errorEnvioDinero = json_encode(isset($_SESSION['errorEnvioDinero']) && $_SESSIO
 
   <?php include 'componentes/modales_errores_pagos.php';?>
 
-  
-
   <div class="modal fade" id="modalIngreso" tabindex="-1" aria-labelledby="tituloModal" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -57,6 +55,9 @@ $errorEnvioDinero = json_encode(isset($_SESSION['errorEnvioDinero']) && $_SESSIO
     </div>
   </div>
 </div>
+  
+
+  
 
 
     <div class="boton-fijo">
@@ -164,12 +165,11 @@ $errorEnvioDinero = json_encode(isset($_SESSION['errorEnvioDinero']) && $_SESSIO
 document.addEventListener('DOMContentLoaded', function () {
     <?php
     $tipoError = isset($_SESSION['errorEnvioDinero']) ? $_SESSION['errorEnvioDinero'] : '';
-    $tipoError =   $_SESSION['errorEnvioDinero'];
     ?>
 
     var tipoError = "<?php echo $tipoError; ?>";
     
-   <?php $_SESSION['errorEnvioDinero'] = null; ?>
+   
     switch (tipoError) {
         case 'saldoInsuficiente':
             mostrarModal('saldoInsuficienteModal');
@@ -195,6 +195,7 @@ document.addEventListener('DOMContentLoaded', function () {
 function mostrarModal(modalId) {
     var modal = new bootstrap.Modal(document.getElementById(modalId));
     modal.show();
+    <?php $_SESSION['errorEnvioDinero'] = null; ?>
    
 }
 
