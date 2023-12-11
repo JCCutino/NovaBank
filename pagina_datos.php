@@ -95,7 +95,7 @@ include 'componentes/modales.php';
         <div class="col-lg-6 col-md-12 main-content order-2"  id="container-responsive">
        
         <div class="container">
-  <h2>Información de Persona</h2>
+  <h2>Tu información</h2>
   <ul class="list-group">
     <li class="list-group-item">
       <span>Nombre:</span>
@@ -163,7 +163,7 @@ include 'componentes/modales.php';
     </li>
     <li class="list-group-item">
       <span>Contraseña:</span>
-      <span><?php echo $contrasena; ?></span>
+      <span>***********</span>
       <button type="button" class="btn btn-secondary edit-button" data-field="contrasena" data-bs-toggle="modal" data-bs-target="#contrasenaModal">
         <i class="bi bi-pencil edit-icon"></i>
       </button>

@@ -64,6 +64,23 @@ function actualizarPais($conn, $nuevoPais) {
 
     return $resultadoUpdatePais;
 }
+function actualizarContrasena($conn, $nuevaContrasena) {
+    $correoElectronico = $_SESSION['correoElectronico'];
+    $nuevaContrasenaHasheada = password_hash($nuevaContrasena, PASSWORD_DEFAULT);
+    
+    $consultaUpdateContrasena = $conn->prepare("UPDATE Persona SET Contrasena = ? WHERE Correo_Electronico = ?");
+    $consultaUpdateContrasena->bind_param("ss", $nuevaContrasenaHasheada, $correoElectronico);
+    
+    if ($consultaUpdateContrasena->execute()) {
+  
+        session_regenerate_id(true);
+        return true; 
+    } else {
+       
+        echo "Error en la consulta: " . $conn->error;
+        return false; 
+    }
+ }
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (isset($_POST["accion"])) {
@@ -196,6 +213,24 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     }
                 } else {
                     echo "Parámetros insuficientes para la acción actualizarPais";
+                }
+                break;
+
+            case "actualizarContrasena":
+                if (isset($_POST["nuevaContrasena"])) {
+                    $nuevoPais = $_POST["nuevaContrasena"];
+
+
+                    $resultado = actualizarContrasena($conn, $nuevaContrasena);
+
+                    if ($resultado) {
+                        header("Location: ../pagina_datos.php");
+                        exit(); 
+                    } else {
+                        echo "Error al actualizar la contraseña";
+                    }
+                } else {
+                    echo "Parámetros insuficientes para la acción actualizarContrasena";
                 }
                 break;
 

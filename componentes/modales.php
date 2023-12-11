@@ -185,16 +185,20 @@ $modales= '<div class="modal fade" id="nombreModal" tabindex="-1" aria-labelledb
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <label for="contrasenaInput" class="form-label">Nueva Contraseña:</label>
-        <input type="password" class="form-control" id="contrasenaInput" placeholder="Introduce la nueva contraseña">
+        <form action="funcionalidades/updateDatos.php" method="post">
+          <label for="contrasenaInput" class="form-label">Nuevo Contraseña:</label>
+          <input type="password" class="form-control" id="contrasenaInput" name="nuevaContrasena" placeholder="Introduce la nueva contraseña">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Guardar cambios</button>
+        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+        <input type="hidden" name="accion" value="actualizarContrasena">
+        </form>
       </div>
     </div>
   </div>
 </div>
+
 
 <div class="modal fade" id="urlFotoModal" tabindex="-1" aria-labelledby="urlFotoModalLabel" aria-hidden="true">
   <div class="modal-dialog">
