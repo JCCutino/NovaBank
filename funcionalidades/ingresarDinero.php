@@ -51,7 +51,7 @@ function realizarTransaccion($conn, $cantidad) {
         return false;
     }
 }
-
+$referer = $_SERVER['HTTP_REFERER'];
 $cantidadIngreso = $_POST['cantidadIngreso']; 
 
 $saldoActual = $_SESSION['saldoCuenta'];
@@ -62,7 +62,7 @@ $resultadoActualizacion = actualizarSaldo($conn, $nuevoSaldo);
 realizarTransaccion($conn, $cantidadIngreso);
 
 if ($resultadoActualizacion) {
-    header ("location: ../pagina_principal.php");
+    header("Location: $referer");
 } else {
     echo "Error al actualizar el saldo.";
 }
