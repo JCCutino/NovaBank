@@ -1,66 +1,71 @@
 <?php
 session_start(); 
 include 'conexion.php';
-
-function realizarTransferencia($conn, $monto, $IBAN_destinatario) {
+function realizarTransferencia($conn, $monto, $IBAN_receptor) {
     $Id_Persona = $_SESSION['Id_Persona'];
 
-  
-    $consultaIBAN_remitente = $conn->prepare("SELECT IBAN, Saldo FROM Cuenta WHERE Id_Persona = ?");
-    $consultaIBAN_remitente->bind_param("s", $Id_Persona);
-    $consultaIBAN_remitente->execute();
-    $resultadoIBAN_remitente = $consultaIBAN_remitente->get_result();
+    if ($monto <= 0) {
+        return 'cantidadInvalida';
+    }
 
-    if ($resultadoIBAN_remitente) {
-        $filaIBAN_remitente = $resultadoIBAN_remitente->fetch_assoc();
-        $IBAN_remitente = $filaIBAN_remitente['IBAN'];
-        $saldo_remitente = $filaIBAN_remitente['Saldo'];
+    // Verificar que el IBAN del emisor existe
+    $consultaIBAN_emisor = $conn->prepare("SELECT IBAN, Saldo FROM Cuenta WHERE Id_Persona = ?");
+    $consultaIBAN_emisor->bind_param("s", $Id_Persona);
+    $consultaIBAN_emisor->execute();
+    $resultadoIBAN_emisor = $consultaIBAN_emisor->get_result();
 
-     
-        if ($saldo_remitente < $monto) {
-            return false; 
-        }
+    if ($resultadoIBAN_emisor->num_rows <= 0) {
+        return 'ibanNoEncontradoEmisor';
+    }
 
-      
-        $nuevoSaldo_remitente = $saldo_remitente - $monto;
-        $consultaActualizarSaldo_remitente = $conn->prepare("UPDATE Cuenta SET Saldo = ? WHERE Id_Persona = ?");
-        $consultaActualizarSaldo_remitente->bind_param("ds", $nuevoSaldo_remitente, $Id_Persona);
-        $resultadoActualizarSaldo_remitente = $consultaActualizarSaldo_remitente->execute();
+    $filaIBAN_emisor = $resultadoIBAN_emisor->fetch_assoc();
+    $IBAN_emisor = $filaIBAN_emisor['IBAN'];
+    $saldo_emisor = $filaIBAN_emisor['Saldo'];
 
-   
-        if ($resultadoActualizarSaldo_remitente) {
-           
-            $consultaIBAN_destinatario = $conn->prepare("SELECT Saldo FROM Cuenta WHERE IBAN = ?");
-            $consultaIBAN_destinatario->bind_param("s", $IBAN_destinatario);
-            $consultaIBAN_destinatario->execute();
-            $resultadoIBAN_destinatario = $consultaIBAN_destinatario->get_result();
+    // Verificar que el IBAN del receptor existe
+    $consultaIBAN_receptor = $conn->prepare("SELECT Saldo FROM Cuenta WHERE IBAN = ?");
+    $consultaIBAN_receptor->bind_param("s", $IBAN_receptor);
+    $consultaIBAN_receptor->execute();
+    $resultadoIBAN_receptor = $consultaIBAN_receptor->get_result();
 
-            if ($resultadoIBAN_destinatario) {
-                $filaIBAN_destinatario = $resultadoIBAN_destinatario->fetch_assoc();
-                $saldo_destinatario = $filaIBAN_destinatario['Saldo'];
+    if ($resultadoIBAN_receptor->num_rows <= 0) {
+        return 'ibanNoEncontradoReceptor';
+    }
 
-              
-                $nuevoSaldo_destinatario = $saldo_destinatario + $monto;
-                $consultaActualizarSaldo_destinatario = $conn->prepare("UPDATE Cuenta SET Saldo = ? WHERE IBAN = ?");
-                $consultaActualizarSaldo_destinatario->bind_param("ds", $nuevoSaldo_destinatario, $IBAN_destinatario);
-                $resultadoActualizarSaldo_destinatario = $consultaActualizarSaldo_destinatario->execute();
+    // Verificar que el saldo del emisor sea suficiente
+    if ($saldo_emisor < $monto) {
+        return 'saldoInsuficiente';
+    }
 
-             
-                if ($resultadoActualizarSaldo_destinatario) {
-                    return true; 
-                } else {
-                    return false;
-                }
-            } else {
-                return false; 
-            }
-        } else {
-            return false; 
+    // Realizar la transferencia
+    $nuevoSaldo_emisor = $saldo_emisor - $monto;
+    $consultaActualizarSaldo_emisor = $conn->prepare("UPDATE Cuenta SET Saldo = ? WHERE Id_Persona = ?");
+    $consultaActualizarSaldo_emisor->bind_param("ds", $nuevoSaldo_emisor, $Id_Persona);
+    $resultadoActualizarSaldo_emisor = $consultaActualizarSaldo_emisor->execute();
+
+    if ($resultadoActualizarSaldo_emisor) {
+        // Actualizar el saldo del receptor
+        $filaIBAN_receptor = $resultadoIBAN_receptor->fetch_assoc();
+        $saldo_receptor = $filaIBAN_receptor['Saldo'];
+
+        $nuevoSaldo_receptor = $saldo_receptor + $monto;
+        $consultaActualizarSaldo_receptor = $conn->prepare("UPDATE Cuenta SET Saldo = ? WHERE IBAN = ?");
+        $consultaActualizarSaldo_receptor->bind_param("ds", $nuevoSaldo_receptor, $IBAN_receptor);
+        $resultadoActualizarSaldo_receptor = $consultaActualizarSaldo_receptor->execute();
+
+        if (!$resultadoActualizarSaldo_receptor) {
+            return 'errorBaseDatosReceptor';
         }
     } else {
-        return false; 
+        return 'errorBaseDatosEmisor';
     }
+
+    return ''; // Todo ha ido bien, no hay error
 }
+
+
+
+
 
 
 function realizarTransaccionCompleta($conn, $monto, $ibanDestinatario = null) {
@@ -91,19 +96,23 @@ function realizarTransaccionCompleta($conn, $monto, $ibanDestinatario = null) {
 $cantidadIngreso = $_POST['cantidadTransferencia']; 
 $iban =  $_POST['ibanReceptor']; 
 
+$resultadoTransferencia = realizarTransferencia($conn, $cantidadIngreso, $iban);
 
-$resultadoActualizacion = realizarTransferencia($conn, $cantidadIngreso, $iban);
 
-
-if ($resultadoActualizacion) {
+if ($resultadoTransferencia === '') { 
     realizarTransaccionCompleta($conn, $cantidadIngreso, $iban);
-    header ("location: ../pagina_pagos.php");
+    $conn->close();
+    $_SESSION['errorEnvioDinero'] = 'exito';
+
+    header("Location: ../pagina_pagos.php");
+    exit();
+
 } else {
-    echo "Error al actualizar el saldo.";
+    $_SESSION['errorEnvioDinero'] = $resultadoTransferencia;
+    header("Location: ../pagina_pagos.php");
+    $conn->close();
+    exit();
 }
-
-
-$conn->close();
 
 
 ?>

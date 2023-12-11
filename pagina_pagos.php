@@ -1,7 +1,9 @@
 <?php
 include 'funcionalidades/obtenerDatos.php';
+$errorEnvioDinero = json_encode(isset($_SESSION['errorEnvioDinero']) && $_SESSION['errorEnvioDinero']);
+           
+            ?>
 
-?>
 
 <!doctype html>
 <html lang="en">
@@ -27,6 +29,10 @@ include 'funcionalidades/obtenerDatos.php';
     <!-- place navbar here -->
   </header>
   <main>
+
+  <?php include 'componentes/modales_errores_pagos.php';?>
+
+  
 
   <div class="modal fade" id="modalIngreso" tabindex="-1" aria-labelledby="tituloModal" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
@@ -153,6 +159,48 @@ include 'funcionalidades/obtenerDatos.php';
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
   </script>
   <script src="scripts/scripts_plantilla.js"></script>
+
+ <script>
+document.addEventListener('DOMContentLoaded', function () {
+    <?php
+    $tipoError = isset($_SESSION['errorEnvioDinero']) ? $_SESSION['errorEnvioDinero'] : '';
+    $tipoError =   $_SESSION['errorEnvioDinero'];
+    ?>
+
+    var tipoError = "<?php echo $tipoError; ?>";
+    
+   <?php $_SESSION['errorEnvioDinero'] = null; ?>
+    switch (tipoError) {
+        case 'saldoInsuficiente':
+            mostrarModal('saldoInsuficienteModal');
+            break;
+        case 'ibanNoEncontradoReceptor':
+        case 'ibanNoEncontradoEmisor':
+            mostrarModal('ibanNoEncontradoModal');
+            break;
+        case 'errorBaseDatosRemitente':
+        case 'errorBaseDatosDestinatario':
+            mostrarModal('errorBaseDatosModal');
+            break;
+        case 'cantidadInvalida':
+            mostrarModal('cantidadInvalidaModal');
+            break;
+        case 'exito':
+            mostrarModal('transferenciaExitosaModal');
+            break;
+    }
+});
+
+
+function mostrarModal(modalId) {
+    var modal = new bootstrap.Modal(document.getElementById(modalId));
+    modal.show();
+   
+}
+
+
+
+ </script>
 </body>
 
 </html>
