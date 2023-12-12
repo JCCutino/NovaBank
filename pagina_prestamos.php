@@ -179,8 +179,14 @@ document.addEventListener('DOMContentLoaded', function () {
     case 'saldoInsuficiente':
         mostrarModal('saldoInsuficienteModal');
         break;
-        case 'prestamoPendiente':
+    case 'prestamoPendiente':
         mostrarModal('prestamoPendienteModal');
+        break;
+    case 'errorMenorEdad':
+        mostrarModal('errorMenorEdadModal');
+        break;
+    case 'errorEdadDesconocida':
+        mostrarModal('errorEdadDesconocidaModal');
         break;
     case 'exito':
         mostrarModal('prestamoExitosoModal');

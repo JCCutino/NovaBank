@@ -15,8 +15,41 @@ function obtenerIBAN($idPersona, $conn) {
     }
 }
 
+function obtenerEdad($fechaNacimiento) {
+    $hoy = new DateTime();
+    $fechaNacimiento = new DateTime($fechaNacimiento);
+    $edad = $hoy->diff($fechaNacimiento)->y;
+    return $edad;
+}
+
+function validarEdad($idPersona, $conn) {
+    $queryFechaNacimiento = "SELECT Fecha_nacimiento FROM Persona WHERE ID_Persona = '$idPersona'";
+    $resultadoFechaNacimiento = $conn->query($queryFechaNacimiento);
+
+    if ($resultadoFechaNacimiento && $resultadoFechaNacimiento->num_rows > 0) {
+        $filaFechaNacimiento = $resultadoFechaNacimiento->fetch_assoc();
+        $fechaNacimiento = $filaFechaNacimiento['Fecha_nacimiento'];
+
+        $edad = obtenerEdad($fechaNacimiento);
+
+        if ($edad < 18) {
+            return "errorMenorEdad";
+        }
+    } else {
+        return "errorEdadDesconocida";
+    }
+
+    return "";  
+}
+
+
 function validarSolicitudPrestamo($conceptoPrestamo, $cantidadSolicitada, $idPersona, $conn) {
   
+
+    $errorEdad = validarEdad($idPersona, $conn);
+    if ($errorEdad !== "") {
+        return $errorEdad;
+    }
 
 $queryPrestamoPendiente = "SELECT COUNT(*) as countPrestamos FROM Prestamo WHERE ID_Persona = '$idPersona' AND Estado_Prestamo = 'Pendiente'";
 $resultadoPrestamoPendiente = $conn->query($queryPrestamoPendiente);

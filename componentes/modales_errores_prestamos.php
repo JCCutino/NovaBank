@@ -85,6 +85,41 @@ $modales_errores = '<div class="modal" tabindex="-1" role="dialog" id="errorIban
     </div>
 </div>
 
+<div class="modal" tabindex="-1" role="dialog" id="errorMenorEdadModal">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Error: Menor de Edad</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Debes tener al menos 18 años para solicitar un préstamo.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="errorEdadDesconocidaModal">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Error: Edad Desconocida</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Se produjo un error al obtener la información de edad del usuario.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <div class="modal" tabindex="-1" role="dialog" id="prestamoExitosoModal">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
