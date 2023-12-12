@@ -1,12 +1,8 @@
 <?php
-include '../funcionalidades/obtenerDatosAdmin.php';
+include '../funcionalidades/obtenerDatos.php';
+include '../funcionalidades/seguridadSesion.php';
+$errorEnvioDinero = json_encode(isset($_SESSION['errorEnvioDinero']) && $_SESSION['errorEnvioDinero']);
 
-
-if (!isset($_SESSION['redireccion_hecha'])) {
-  
-  $_SESSION['redireccion_hecha'] = true;
-  include '../funcionalidades/comprobarSesion.php';
-}
 ?>
 
 <!doctype html>
@@ -34,6 +30,9 @@ if (!isset($_SESSION['redireccion_hecha'])) {
   </header>
   <main>
 
+  <?php include '../componentes/modales_errores_pagos.php';?>
+
+
     <div class="modal fade" id="modalIngreso" tabindex="-1" aria-labelledby="tituloModal" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -42,7 +41,7 @@ if (!isset($_SESSION['redireccion_hecha'])) {
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form action="funcionalidades/ingresarDinero.php" method="post">
+            <form action="../funcionalidades/ingresarDinero.php" method="post">
               <div class="mb-3">
                 <label for="cantidadIngreso" class="form-label">Cantidad Monetaria:</label>
                 <input type="number" step="any" class="form-control" name="cantidadIngreso" id="cantidadIngreso" placeholder="Ingrese la cantidad" title="Ingrese un número con hasta dos decimales" required>
@@ -94,10 +93,23 @@ if (!isset($_SESSION['redireccion_hecha'])) {
       <div class="col-lg-3 col-md-12  order-2 container-invisible" ></div>
       
         <div class="col-lg-6 col-md-12 main-content order-2"  id="container-responsive">
-        <h1><?php echo "Hola ".$nombreSimple. ", hoy es ".$fecha ?></h1>
+         <h1 class="mt-3">Enviar dinero</h1>
+
+    <form action="../funcionalidades/envioTransferencia.php" method="post" class="text-center">
+        <div class="form-group">
+            <label for="iban">IBAN:</label>
+            <input type="text" class="form-control" id="ibanReceptor" name="ibanReceptor" placeholder="Introduce el IBAN" required>
+        </div>
+
+        <div class="form-group">
+            <label for="cantidad">Cantidad a enviar:</label>
+            <input type="number" class="form-control" id="cantidadTransferencia" name="cantidadTransferencia" placeholder="Introduce la cantidad" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
         
 
-          
         </div>
 
         <div class="col-lg-3 col-md-12 sidebar order-1">
@@ -118,7 +130,7 @@ if (!isset($_SESSION['redireccion_hecha'])) {
               <div class="col-lg-12 col-md-6 offset-lg-0 offset-md-3 mx-auto justify-content-center align-items-center d-flex" id="saltoSeccion1">
                 <section class="saldo_cuenta_card">
                   <div class="titulo-card">Saldo de Cuenta</div>
-                  <div class="saldo-card"> </div>
+                  <div class="saldo-card"><?php echo $saldo; ?> </div>
                   <button class="boton-recargar" data-bs-toggle="modal" data-bs-target="#modalIngreso">Recargar</button>
                 </section>
               </div>
@@ -150,6 +162,48 @@ if (!isset($_SESSION['redireccion_hecha'])) {
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="../scripts/script_plantilla_admin.js"></script>
   <script src="../scripts/script_grafica.js"></script>
+
+  <script>
+document.addEventListener('DOMContentLoaded', function () {
+    <?php
+    $tipoError = isset($_SESSION['errorEnvioDinero']) ? $_SESSION['errorEnvioDinero'] : '';
+    ?>
+
+    var tipoError = "<?php echo $tipoError; ?>";
+    
+   switch (tipoError) {
+    case 'saldoInsuficiente':
+        mostrarModal('saldoInsuficienteModal');
+        break;
+    case 'ibanNoEncontradoReceptor':
+    case 'ibanNoEncontradoEmisor':
+        mostrarModal('ibanNoEncontradoModal');
+        break;
+    case 'errorBaseDatosRemitente':
+    case 'errorBaseDatosDestinatario':
+        mostrarModal('errorBaseDatosModal');
+        break;
+    case 'cantidadInvalida':
+        mostrarModal('cantidadInvalidaModal');
+        break;
+    case 'ibanEmisorReceptorIguales':
+        mostrarModal('envioMismoUsuarioModal');
+        break;
+    case 'exito':
+        mostrarModal('transferenciaExitosaModal');
+        break;
+}
+});
+
+
+function mostrarModal(modalId) {
+    var modal = new bootstrap.Modal(document.getElementById(modalId));
+    modal.show();
+    <?php $_SESSION['errorEnvioDinero'] = null; ?>
+   
+}
+ </script>
+
 </body>
 
 </html>

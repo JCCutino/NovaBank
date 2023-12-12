@@ -120,8 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $resultadoPrestamo = validarSolicitudPrestamo($conceptoPrestamo, $cantidadSolicitada, $idPersona, $conn);
 
     $_SESSION['resultadoPrestamo'] = $resultadoPrestamo;
-    header("Location: ../pagina_prestamos.php");
-
+    header("location: " . $_SERVER['HTTP_REFERER']);
     $conn->close();
     exit();
 }

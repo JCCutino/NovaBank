@@ -109,12 +109,12 @@ if ($resultadoTransferencia === '') {
     $conn->close();
     $_SESSION['errorEnvioDinero'] = 'exito';
 
-    header("Location: ../pagina_pagos.php");
+    header("location: " . $_SERVER['HTTP_REFERER']);
     exit();
 
 } else {
     $_SESSION['errorEnvioDinero'] = $resultadoTransferencia;
-    header("Location: ../pagina_pagos.php");
+    header("location: " . $_SERVER['HTTP_REFERER']);
     $conn->close();
     exit();
 }

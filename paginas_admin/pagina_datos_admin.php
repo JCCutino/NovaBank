@@ -1,12 +1,7 @@
 <?php
-include '../funcionalidades/obtenerDatosAdmin.php';
+include '../funcionalidades/obtenerDatos.php';
+ include '../funcionalidades/seguridadSesion.php';
 
-
-if (!isset($_SESSION['redireccion_hecha'])) {
-  
-  $_SESSION['redireccion_hecha'] = true;
-  include '../funcionalidades/comprobarSesion.php';
-}
 ?>
 
 <!doctype html>
@@ -42,7 +37,7 @@ if (!isset($_SESSION['redireccion_hecha'])) {
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form action="funcionalidades/ingresarDinero.php" method="post">
+            <form action="../funcionalidades/ingresarDinero.php" method="post">
               <div class="mb-3">
                 <label for="cantidadIngreso" class="form-label">Cantidad Monetaria:</label>
                 <input type="number" step="any" class="form-control" name="cantidadIngreso" id="cantidadIngreso" placeholder="Ingrese la cantidad" title="Ingrese un número con hasta dos decimales" required>
@@ -118,7 +113,7 @@ if (!isset($_SESSION['redireccion_hecha'])) {
               <div class="col-lg-12 col-md-6 offset-lg-0 offset-md-3 mx-auto justify-content-center align-items-center d-flex" id="saltoSeccion1">
                 <section class="saldo_cuenta_card">
                   <div class="titulo-card">Saldo de Cuenta</div>
-                  <div class="saldo-card"> </div>
+                  <div class="saldo-card"><?php echo $saldo; ?> </div>
                   <button class="boton-recargar" data-bs-toggle="modal" data-bs-target="#modalIngreso">Recargar</button>
                 </section>
               </div>
