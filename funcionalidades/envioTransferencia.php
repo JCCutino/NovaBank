@@ -32,6 +32,11 @@ function realizarTransferencia($conn, $monto, $IBAN_receptor) {
         return 'ibanNoEncontradoReceptor';
     }
 
+    // Verificar que el IBAN del emisor y receptor no sea el mismo
+    if ($IBAN_emisor === $IBAN_receptor) {
+        return 'ibanEmisorReceptorIguales';
+    }
+
     // Verificar que el saldo del emisor sea suficiente
     if ($saldo_emisor < $monto) {
         return 'saldoInsuficiente';

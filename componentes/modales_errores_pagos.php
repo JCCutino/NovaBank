@@ -18,6 +18,24 @@ $modales_errores = '<!-- Modal de Error: Saldo Insuficiente -->
     </div>
 </div>
 
+<!-- Nuevo Modal: No puedes enviarte dinero a ti mismo -->
+<div class="modal" tabindex="-1" role="dialog" id="envioMismoUsuarioModal">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Error: No puedes enviarte dinero a ti mismo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                No puedes realizar una transferencia a tu propia cuenta. Por favor, selecciona otro destinatario.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Modal de Error: IBAN no Encontrado -->
 <div class="modal" tabindex="-1" role="dialog" id="ibanNoEncontradoModal">
     <div class="modal-dialog modal-dialog-centered" role="document">

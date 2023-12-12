@@ -169,26 +169,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var tipoError = "<?php echo $tipoError; ?>";
     
-   
-    switch (tipoError) {
-        case 'saldoInsuficiente':
-            mostrarModal('saldoInsuficienteModal');
-            break;
-        case 'ibanNoEncontradoReceptor':
-        case 'ibanNoEncontradoEmisor':
-            mostrarModal('ibanNoEncontradoModal');
-            break;
-        case 'errorBaseDatosRemitente':
-        case 'errorBaseDatosDestinatario':
-            mostrarModal('errorBaseDatosModal');
-            break;
-        case 'cantidadInvalida':
-            mostrarModal('cantidadInvalidaModal');
-            break;
-        case 'exito':
-            mostrarModal('transferenciaExitosaModal');
-            break;
-    }
+   switch (tipoError) {
+    case 'saldoInsuficiente':
+        mostrarModal('saldoInsuficienteModal');
+        break;
+    case 'ibanNoEncontradoReceptor':
+    case 'ibanNoEncontradoEmisor':
+        mostrarModal('ibanNoEncontradoModal');
+        break;
+    case 'errorBaseDatosRemitente':
+    case 'errorBaseDatosDestinatario':
+        mostrarModal('errorBaseDatosModal');
+        break;
+    case 'cantidadInvalida':
+        mostrarModal('cantidadInvalidaModal');
+        break;
+    case 'ibanEmisorReceptorIguales':
+        mostrarModal('envioMismoUsuarioModal');
+        break;
+    case 'exito':
+        mostrarModal('transferenciaExitosaModal');
+        break;
+}
 });
 
 
