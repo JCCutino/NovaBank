@@ -1,6 +1,7 @@
 <?php
 include 'funcionalidades/obtenerDatos.php';
-
+$resultadoPrestamo = json_encode(isset($_SESSION['resultadoPrestamo']) && $_SESSION['resultadoPrestamo']);
+    
 ?>
 
 <!doctype html>
@@ -27,6 +28,8 @@ include 'funcionalidades/obtenerDatos.php';
     <!-- place navbar here -->
   </header>
   <main>
+
+  <?php include 'componentes/modales_errores_prestamos.php';?>
 
   <div class="modal fade" id="modalIngreso" tabindex="-1" aria-labelledby="tituloModal" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
@@ -154,6 +157,44 @@ include 'funcionalidades/obtenerDatos.php';
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
   </script>
   <script src="scripts/scripts_plantilla.js"></script>
+
+  <script>
+document.addEventListener('DOMContentLoaded', function () {
+    <?php
+    $resultadoPrestamo = isset($_SESSION['resultadoPrestamo']) ? $_SESSION['resultadoPrestamo'] : '';
+    ?>
+
+    var resultadoPrestamo = "<?php echo $resultadoPrestamo; ?>";
+    
+   switch (resultadoPrestamo) {
+    case 'errorIBAN':
+        mostrarModal('errorIbanModal');
+        break;
+    case 'errorBaseDatos':
+        mostrarModal('errorBaseDatosModal');
+        break;
+    case 'cantidadInvalida':
+        mostrarModal('cantidadInvalidaModal');
+        break;
+    case 'saldoInsuficiente':
+        mostrarModal('saldoInsuficienteModal');
+        break;
+    case 'exito':
+        mostrarModal('prestamoExitosoModal');
+        break;
+}
+});
+
+
+function mostrarModal(modalId) {
+    var modal = new bootstrap.Modal(document.getElementById(modalId));
+    modal.show();
+    <?php $_SESSION['resultadoPrestamo'] = null; ?>
+   
+}
+
+ </script>
+
 </body>
 
 </html>

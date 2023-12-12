@@ -11,7 +11,7 @@ function obtenerIBAN($idPersona, $conn) {
         $filaIBAN = $resultadoIBAN->fetch_assoc();
         return $filaIBAN['IBAN'];
     } else {
-        return false; // Manejo de errores si es necesario
+        return false; 
     }
 }
 
@@ -20,12 +20,12 @@ function validarSolicitudPrestamo($conceptoPrestamo, $cantidadSolicitada, $idPer
     $iban = obtenerIBAN($idPersona, $conn);
 
     if (!$iban) {
-        return "Error al obtener el IBAN asociado a la Id_Persona.";
+        return "errorIBAN";
     }
 
    
     if ($cantidadSolicitada <= 0) {
-        return "La cantidad solicitada debe ser mayor que 0.";
+        return "cantidadInvalida";
     }
 
  
@@ -41,22 +41,22 @@ function validarSolicitudPrestamo($conceptoPrestamo, $cantidadSolicitada, $idPer
         $cantidadMinimaEnCuenta = $cantidadSolicitada * $porcentajeMinimo;
 
         if ($saldoActual < $cantidadMinimaEnCuenta) {
-            return "No tienes suficiente saldo en tu cuenta. Debes tener al menos el 15% de la cantidad solicitada en tu cuenta.";
+            return "saldoInsuficiente";
         }
     } else {
-        return "Error al obtener el saldo de la cuenta.";
+        return "errorBaseDatos";
     }
 
     $fechaSolicitud = date('Y-m-d');
-    $estadoPrestamo = 'En Espera';
+    $estadoPrestamo = 'Pendiente';
     $query = "INSERT INTO Prestamo (Cantidad, Concepto, Estado_Prestamo, Fecha_Solicitud, ID_Persona, IBAN) VALUES ('$cantidadSolicitada', '$conceptoPrestamo', '$estadoPrestamo', '$fechaSolicitud', '$idPersona', '$iban')";
     
   
     if ($conn->query($query)) {
-        return "Solicitud de préstamo enviada con éxito.";
+        return "exito";
        
     } else {
-        return "Error al enviar la solicitud de préstamo: " . $conn->error;
+        return "errorBaseDatos";
     }
 }
 
@@ -69,12 +69,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $idPersona = $_SESSION['Id_Persona'];
 
    
-    $resultadoValidacion = validarSolicitudPrestamo($conceptoPrestamo, $cantidadSolicitada, $idPersona, $conn);
+    $resultadoPrestamo = validarSolicitudPrestamo($conceptoPrestamo, $cantidadSolicitada, $idPersona, $conn);
 
-   
-    echo $resultadoValidacion;
+    $_SESSION['resultadoPrestamo'] = $resultadoPrestamo;
+    header("Location: ../pagina_prestamos.php");
 
-  
     $conn->close();
+    exit();
 }
 ?>
