@@ -76,8 +76,8 @@ if (!isset($_SESSION['redireccion_hecha'])) {
       <div class="offcanvas-body">
 
         <div class="enlaces">
-          <a href="pagina_principal_admin.php" class="morado">Inicio</a>
-          <a href="pagina_pagos_admin.php">Pagos</a>
+          <a href="pagina_principal_admin.php">Inicio</a>
+          <a href="pagina_pagos_admin.php" class="morado">Pagos</a>
           <a href="pagina_prestamos_admin.php">Préstamos</a>
           <a href="pagina_datos_admin.php">Datos</a>
           
