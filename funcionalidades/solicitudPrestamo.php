@@ -17,6 +17,21 @@ function obtenerIBAN($idPersona, $conn) {
 
 function validarSolicitudPrestamo($conceptoPrestamo, $cantidadSolicitada, $idPersona, $conn) {
   
+
+$queryPrestamoPendiente = "SELECT COUNT(*) as countPrestamos FROM Prestamo WHERE ID_Persona = '$idPersona' AND Estado_Prestamo = 'Pendiente'";
+$resultadoPrestamoPendiente = $conn->query($queryPrestamoPendiente);
+
+if ($resultadoPrestamoPendiente) {
+    $filaPrestamoPendiente = $resultadoPrestamoPendiente->fetch_assoc();
+    $prestamosPendientes = $filaPrestamoPendiente['countPrestamos'];
+
+    if ($prestamosPendientes > 0) {
+        return "prestamoPendiente";
+    }
+} else {
+    return "errorBaseDatos";
+}
+
     $iban = obtenerIBAN($idPersona, $conn);
 
     if (!$iban) {

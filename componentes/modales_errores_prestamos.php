@@ -68,6 +68,23 @@ $modales_errores = '<div class="modal" tabindex="-1" role="dialog" id="errorIban
     </div>
 </div>
 
+<div class="modal" tabindex="-1" role="dialog" id="prestamoPendienteModal">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Error: Préstamo Pendiente</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Ya tienes un préstamo pendiente. No puedes solicitar otro hasta que el préstamo actual sea aprobado o cancelado.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="modal" tabindex="-1" role="dialog" id="prestamoExitosoModal">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
