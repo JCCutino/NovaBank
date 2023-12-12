@@ -1,6 +1,12 @@
 <?php
-include '../funcionalidades/obtenerDatos.php';
+include '../funcionalidades/obtenerDatosAdmin.php';
 
+
+if (!isset($_SESSION['redireccion_hecha'])) {
+  
+  $_SESSION['redireccion_hecha'] = true;
+  include '../funcionalidades/comprobarSesion.php';
+}
 ?>
 
 <!doctype html>
@@ -89,7 +95,7 @@ include '../funcionalidades/obtenerDatos.php';
       
         <div class="col-lg-6 col-md-12 main-content order-2"  id="container-responsive">
         <h1><?php echo "Hola ".$nombreSimple. ", hoy es ".$fecha ?></h1>
-        <h1 class="mt-3">IBAN:  <?php echo $IBAN ?></h1>
+        
 
           
         </div>
@@ -112,7 +118,7 @@ include '../funcionalidades/obtenerDatos.php';
               <div class="col-lg-12 col-md-6 offset-lg-0 offset-md-3 mx-auto justify-content-center align-items-center d-flex" id="saltoSeccion1">
                 <section class="saldo_cuenta_card">
                   <div class="titulo-card">Saldo de Cuenta</div>
-                  <div class="saldo-card"><?php echo $saldo ?></div>
+                  <div class="saldo-card"> </div>
                   <button class="boton-recargar" data-bs-toggle="modal" data-bs-target="#modalIngreso">Recargar</button>
                 </section>
               </div>

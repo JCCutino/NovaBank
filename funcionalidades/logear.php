@@ -16,8 +16,9 @@ if ($result->num_rows > 0) {
         
         $hashedPassword = $row["Contrasena"];
         if ($contrasena == $hashedPassword) {
-            header ("location: ../paginas_admin/pagina_principal_admin.php");
             $_SESSION['correoElectronico'] = $correoElectronico;
+            header ("location: ../paginas_admin/pagina_principal_admin.php");
+            
         } else {
             $_SESSION['contrasenaIncorrecta'] = true;
             header("location: ../index.php");
