@@ -42,6 +42,7 @@ CREATE TABLE Transaccion (
 CREATE TABLE Prestamo (
     ID_Prestamo INT PRIMARY KEY AUTO_INCREMENT,
     Cantidad DECIMAL(15, 2),
+    Concepto VARCHAR (255),
     Tasa_Interes DECIMAL(5, 2),
     Plazo_Prestamo INT,
     Estado_Prestamo VARCHAR(50),
@@ -53,3 +54,6 @@ CREATE TABLE Prestamo (
     FOREIGN KEY (ID_Persona) REFERENCES Persona(ID_Persona),
     FOREIGN KEY (IBAN) REFERENCES Cuenta(IBAN)
 );
+
+INSERT INTO Persona (Nombre, Correo_Electronico, Contrasena) 
+VALUES ('admin', 'admin@admin.com', 'admin2023');
