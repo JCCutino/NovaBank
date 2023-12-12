@@ -1,6 +1,6 @@
 <?php
 include 'funcionalidades/obtenerDatos.php';
-
+include 'funcionalidades/tablaTransacciones.php'
 ?>
 
 <!doctype html>
@@ -89,6 +89,34 @@ include 'funcionalidades/obtenerDatos.php';
       
         <div class="col-lg-6 col-md-12 main-content order-2"  id="container-responsive">
         
+        <div class="container mt-4">
+        <?php if (!empty($transacciones)): ?>
+            <div class="table-responsive bg-white">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID Transacción</th>
+                            <th>Tipo Transacción</th>
+                            <th>Cantidad</th>
+                            <th>Fecha y Hora</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($transacciones as $transaccion): ?>
+                            <tr>
+                                <td><?php echo $transaccion['ID_Transaccion']; ?></td>
+                                <td><?php echo $transaccion['Tipo_Transaccion']; ?></td>
+                                <td><?php echo $transaccion['Cantidad']; ?></td>
+                                <td><?php echo $transaccion['Fecha_Hora']; ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        <?php else: ?>
+            <p class="alert alert-info">No hay transacciones disponibles.</p>
+        <?php endif; ?>
+    </div>
         
 
         </div>
