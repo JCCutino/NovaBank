@@ -16,15 +16,15 @@ function procesarFormularioFoto($conn) {
 
                 subirRutaFotoABaseDeDatos($nombre_archivo_db, $conn);
 
-                return "La foto se ha subido y registrado en la base de datos.";
+                return "exitoFoto";
             } else {
-                return "Error al subir la foto.";
+                return "errorFoto";
             }
         } else {
-            return "No se ha seleccionado ningún archivo.";
+            return "errorFoto";
         }
     } else {
-        return "Acceso no autorizado.";
+        return "errorFoto";
     }
 }
 
@@ -43,8 +43,9 @@ function subirRutaFotoABaseDeDatos( $nombre_archivo_db, $conn) {
 
 
 
-$resultado = procesarFormularioFoto($conn);
-echo $resultado;
+$resultadoFoto = procesarFormularioFoto($conn);
+$_SESSION['resultadoFoto'] = $resultadoFoto;
+header("location: " . $_SERVER['HTTP_REFERER']);
 
 
 
