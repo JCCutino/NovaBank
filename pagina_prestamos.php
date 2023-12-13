@@ -1,5 +1,6 @@
 <?php
 include 'funcionalidades/obtenerDatos.php';
+include 'funcionalidades/mostrarPrestamosCliente.php';
 $resultadoPrestamo = json_encode(isset($_SESSION['resultadoPrestamo']) && $_SESSION['resultadoPrestamo']);
     
 ?>
@@ -80,6 +81,8 @@ $resultadoPrestamo = json_encode(isset($_SESSION['resultadoPrestamo']) && $_SESS
           <a href="pagina_datos.php">Datos</a>
           <a href="pagina_ajustes.php">Ajustes</a>
 
+          <a href="funcionalidades/cerrarSesion.php" class="cerrar-sesion">Cerrar Sesión</a>
+
         </div>
       </div>
     </div>
@@ -106,6 +109,12 @@ $resultadoPrestamo = json_encode(isset($_SESSION['resultadoPrestamo']) && $_SESS
 
     <button type="submit" class="btn btn-primary">Enviar Solicitud</button>
 </form>
+
+        <h1 class="mt-5">Prestamos Pendientes</h1>
+        <?php mostrarPrestamosPendientes($conn); ?>
+        
+        <h1 class="mt-3">Prestamos Aceptados</h1>
+        <?php mostrarPrestamosAceptados($conn)  ?>
 
         </div>
 

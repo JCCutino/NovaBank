@@ -77,7 +77,10 @@ include 'funcionalidades/obtenerDatos.php';
           <a href="pagina_datos.php">Datos</a>
           <a href="pagina_ajustes.php" class="morado">Ajustes</a>
 
+          <a href="funcionalidades/cerrarSesion.php" class="cerrar-sesion">Cerrar Sesión</a>
+
         </div>
+
       </div>
     </div>
 
