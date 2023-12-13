@@ -1,6 +1,27 @@
 <?php
 session_start(); 
 include 'conexion.php';
+
+function obtenerRutaFoto($conn) {
+    $correoElectronico = $_SESSION['correoElectronico'];
+    
+    if (isset($_SESSION['correoElectronico'])) {
+        $consultaRutaFoto = "SELECT Url_Foto FROM Persona WHERE Correo_Electronico = '$correoElectronico'";
+        $resultado = $conn->query($consultaRutaFoto);
+
+        if ($resultado->num_rows > 0) {
+            $row = $resultado->fetch_assoc();
+            $rutaFoto = $row['Url_Foto'];
+            return $rutaFoto;
+        } else {
+            return "foto_perfil.webp";
+        }
+    } else {
+        return "foto_perfil.webp"; 
+    }
+}
+
+
 function obtenerNombreCompleto($conn) {
     $correoElectronico = $_SESSION['correoElectronico'];
     if (isset($_SESSION['correoElectronico'])) {
@@ -108,6 +129,7 @@ $saldo = obtenerSaldo($conn);
 $IBAN = obtenerIBAN($conn);
 $nombreSimple = obtenerNombreSimple($conn);
 $fecha = obtenerFecha();
+$ruta = obtenerRutaFoto($conn);
 $conn->close();
 
 ?>

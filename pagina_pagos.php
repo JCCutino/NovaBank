@@ -118,7 +118,7 @@ $errorEnvioDinero = json_encode(isset($_SESSION['errorEnvioDinero']) && $_SESSIO
           <div class="container-fluid mt-3">
             <div class="row justify-content-center">
               <div class="col-2">
-                <img src="img/fp/foto_perfil.webp" alt="Imagen de perfil" class="rounded-circle img-fluid border imagen-perfil">
+                <img src="img/fp/<?php echo $ruta ?>" alt="Imagen de perfil" class="rounded-circle img-fluid border imagen-perfil">
               </div>
               <div class="col-8 d-flex align-items-center">
                 <h4 class="nombre-usuario"><?php echo $nombreCompleto; ?></h4>
