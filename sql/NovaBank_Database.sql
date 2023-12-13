@@ -49,6 +49,7 @@ CREATE TABLE Prestamo (
     Fecha_Solicitud DATE,
     Fecha_Aprobacion DATE,
     Fecha_Pago DATE,
+    Deuda DECIMAL (15, 2),
     ID_Persona INT,
     IBAN VARCHAR(255),
     FOREIGN KEY (ID_Persona) REFERENCES Persona(ID_Persona),
@@ -61,3 +62,4 @@ VALUES ('admin', 'admin@admin.com', 'admin2023');
 
 INSERT INTO Cuenta (IBAN, Saldo, Fecha_Apertura, ID_Persona) 
 VALUES ('1111111111111111', 0.00, CURDATE(), 1);
+

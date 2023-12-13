@@ -43,9 +43,12 @@ function aceptarPrestamo($idPrestamo, $tasaInteres, $plazoPagar, $iban, $cantida
     $conn->begin_transaction();
 
     try {
-        $sqlUpdatePrestamo = "UPDATE Prestamo SET Estado_Prestamo = 'Aceptado', Tasa_Interes = ?, Plazo_Prestamo = ?, Fecha_Aprobacion = ?, Fecha_Pago = ? WHERE ID_Prestamo = ?";
+        $deuda = $cantidad + ($cantidad * $tasaInteres);
+
+
+        $sqlUpdatePrestamo = "UPDATE Prestamo SET Estado_Prestamo = 'Aceptado', Tasa_Interes = ?, Plazo_Prestamo = ?, Fecha_Aprobacion = ?, Fecha_Pago = ?, Deuda = ? WHERE ID_Prestamo = ?";
         $stmtUpdatePrestamo = $conn->prepare($sqlUpdatePrestamo);
-        $stmtUpdatePrestamo->bind_param("dissi", $tasaInteres, $plazoPagar, $fechaActual, $fechaPago, $idPrestamo);
+        $stmtUpdatePrestamo->bind_param("dissdi", $tasaInteres, $plazoPagar, $fechaActual, $fechaPago, $deuda, $idPrestamo);
 
         if (!$stmtUpdatePrestamo->execute()) {
             throw new Exception("Error al actualizar el préstamo.");
