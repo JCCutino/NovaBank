@@ -16,33 +16,70 @@ function rechazarPrestamo($idPrestamo) {
     }
 }
 
-function aceptarPrestamo($idPrestamo, $tasaInteres, $plazoPagar, $fechaAprobacion, $fechaPago) {
+function aceptarPrestamo($idPrestamo, $tasaInteres, $plazoPagar, $iban, $cantidad) {
     global $conn;
+  
+    $fechaActual = date("Y-m-d");
 
-    $sql = "UPDATE Prestamo SET Estado_Prestamo = 'Aceptado', Tasa_Interes = ?, Plazo_Prestamo = ?, Fecha_Aprobacion = ?, Fecha_Pago = ? WHERE ID_Prestamo = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("diisi", $tasaInteres, $plazoPagar, $fechaAprobacion, $fechaPago, $idPrestamo);
+    $fechaPago = date("Y-m-d", strtotime("+" . $plazoPagar . " years", strtotime($fechaActual)));
 
-    if ($stmt->execute()) {
-        return true;
-    } else {
-        return false; 
+    $conn->begin_transaction();
+
+    try {
+        $sqlUpdatePrestamo = "UPDATE Prestamo SET Estado_Prestamo = 'Aceptado', Tasa_Interes = ?, Plazo_Prestamo = ?, Fecha_Aprobacion = ?, Fecha_Pago = ? WHERE ID_Prestamo = ?";
+        $stmtUpdatePrestamo = $conn->prepare($sqlUpdatePrestamo);
+        $stmtUpdatePrestamo->bind_param("dissi", $tasaInteres, $plazoPagar, $fechaActual, $fechaPago, $idPrestamo);
+
+        if (!$stmtUpdatePrestamo->execute()) {
+            throw new Exception("Error al actualizar el préstamo.");
+        }
+
+        $sqlSaldoActual = "SELECT Saldo FROM Cuenta WHERE IBAN = ?";
+        $stmtSaldoActual = $conn->prepare($sqlSaldoActual);
+        $stmtSaldoActual->bind_param("s", $iban);
+        $stmtSaldoActual->execute();
+        $resultSaldo = $stmtSaldoActual->get_result();
+
+        if ($resultSaldo->num_rows > 0) {
+            $filaSaldo = $resultSaldo->fetch_assoc();
+            $saldoActual = $filaSaldo['Saldo'];
+
+            $nuevoSaldo = $saldoActual + $cantidad;
+
+            $sqlUpdateSaldo = "UPDATE Cuenta SET Saldo = ? WHERE IBAN = ?";
+            $stmtUpdateSaldo = $conn->prepare($sqlUpdateSaldo);
+            $stmtUpdateSaldo->bind_param("ds", $nuevoSaldo, $iban);
+
+            if (!$stmtUpdateSaldo->execute()) {
+                throw new Exception("Error al actualizar el saldo de la cuenta.");
+            }
+
+            $conn->commit();
+            return true;
+        } else {
+            throw new Exception("No se encontró la cuenta asociada al IBAN proporcionado.");
+        }
+    } catch (Exception $e) {
+        $conn->rollback();
+        return false;
     }
 }
 
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST["idPrestamo"]) && isset($_POST["tipoInteres"]) && isset($_POST["plazoPagar"]) && isset($_POST["decision"])) {
+    if (isset($_POST["idPrestamo"]) && isset($_POST["tipoInteres"]) && isset($_POST["plazoPagar"]) && isset($_POST["decision"]) && isset($_POST["iban"]) && isset($_POST["cantidad"])) {
         $idPrestamo = $_POST["idPrestamo"];
         $tipoInteres = $_POST["tipoInteres"];
         $plazoPagar = $_POST["plazoPagar"];
         $decision = $_POST["decision"];
+        $iban = $_POST["iban"];
+        $cantidad = $_POST["cantidad"];
 
         if ($decision === "aceptar") {
-           
-            $fechaAprobacion = date("Y-m-d"); 
-            $fechaPago = date("Y-m-d"); 
+       
+            
 
-            if (aceptarPrestamo($idPrestamo, $tipoInteres, $plazoPagar, $fechaAprobacion, $fechaPago)) {
+            if (aceptarPrestamo($idPrestamo, $tipoInteres, $plazoPagar, $iban, $cantidad)) {
                 echo "Préstamo aceptado con éxito.";
             } else {
                 echo "Error al aceptar el préstamo.";
@@ -56,6 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 }
+
 
 // Cerrar la conexión después de usarla
 $conn->close();

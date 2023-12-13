@@ -193,17 +193,18 @@ include '../funcionalidades/mostrarPrestamosAdmin.php';
     <div class="mb-3">
         <label for="plazoPagar" class="form-label">Plazo a Pagar</label>
         <select class="form-select" id="plazoPagar" name="plazoPagar">
-            <option value="12">1 año</option>
-            <option value="24">2 años</option>
-            <option value="36">3 años</option>
-            <option value="48">4 años</option>
-            <option value="60">5 años</option>
+            <option value="1">1 año</option>
+            <option value="2">2 años</option>
+            <option value="3">3 años</option>
+            <option value="4">4 años</option>
+            <option value="5">5 años</option>
         </select>
     </div>
 
-    <!-- Agrega un campo oculto para el idPrestamo -->
+    <!-- Agrega un campo oculto para el idPrestamo, IBAN y cantidad-->
     <input type="hidden" id="idPrestamoInput" name="idPrestamo" value="${idPrestamo}">
-
+    <input type="hidden" id="ibanInput" name="iban" value="${iban}">
+    <input type="hidden" id="cantidadInput" name="cantidad" value="${cantidad}">
     <!-- Agrega radio buttons para aceptar o rechazar -->
     <div class="mb-3">
         <label class="form-check-label">Decisión:</label>
