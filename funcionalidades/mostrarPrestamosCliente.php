@@ -23,7 +23,6 @@ function mostrarPrestamosPendientes($conn){
         echo '<th>Fecha Solicitud</th>';
         echo '<th>ID Persona</th>';
         echo '<th>IBAN</th>';
-        echo '<th>Acciones</th>';
         echo '</tr>';
         echo '</thead>';
         echo '<tbody>';
@@ -36,7 +35,6 @@ function mostrarPrestamosPendientes($conn){
             echo '<td>' . $row['Fecha_Solicitud'] . '</td>';
             echo '<td>' . $row['ID_Persona'] . '</td>';
             echo '<td>' . $row['IBAN'] . '</td>';
-            echo '<td><button class="btn btn-primary" onclick="mostrarDetalles(' . $row['ID_Prestamo'] . ')" data-bs-toggle="modal" data-bs-target="#detalleModal" data-id="' . $row['ID_Prestamo'] . '" data-cantidad="' . $row['Cantidad'] . '" data-concepto="' . $row['Concepto'] . '" data-fecha="' . $row['Fecha_Solicitud'] . '" data-idpersona="' . $row['ID_Persona'] . '" data-iban="' . $row['IBAN'] . '">Mostrar Detalles</button></td>';
             echo '</tr>';
         }
 
@@ -78,7 +76,7 @@ function mostrarPrestamosAceptados($conn){
         echo '<th>Estado</th>';
         echo '<th>Fecha Solicitud</th>';
         echo '<th>Fecha Aprobación</th>';
-        echo '<th>Fecha Pago</th>';
+        echo '<th>Fecha Máxima Pago</th>';
         echo '<th>Deuda</th>';
         echo '</tr>';
         echo '</thead>';
@@ -95,6 +93,7 @@ function mostrarPrestamosAceptados($conn){
             echo '<td>' . $row['Fecha_Aprobacion'] . '</td>';
             echo '<td>' . $row['Fecha_Pago'] . '</td>';
             echo '<td>' . $row['Deuda'] . '</td>';
+            echo '<td><button class="btn btn-primary" onclick="mostrarDetalles(' . $row['ID_Prestamo'] . ')" data-bs-toggle="modal" data-bs-target="#detalleModal" data-id="' . $row['ID_Prestamo'] . '" data-deuda="' . $row['Deuda'] . '">Pagar Deuda</button></td>';
             echo '</tr>';
         }
 

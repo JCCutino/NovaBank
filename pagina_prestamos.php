@@ -32,6 +32,25 @@ $resultadoPrestamo = json_encode(isset($_SESSION['resultadoPrestamo']) && $_SESS
 
   <?php include 'componentes/modales_errores_prestamos.php';?>
 
+   <!-- Modal Prestamo -->
+<div class="modal fade" id="detalleModal" tabindex="-1" aria-labelledby="detalleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="detalleModalLabel">Detalles del Préstamo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="detalleModalBody">
+
+                
+            </div>
+            <div class="modal-footer">
+               
+              </div>
+        </div>
+    </div>
+</div>
+
   <div class="modal fade" id="modalIngreso" tabindex="-1" aria-labelledby="tituloModal" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -166,6 +185,33 @@ $resultadoPrestamo = json_encode(isset($_SESSION['resultadoPrestamo']) && $_SESS
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
   </script>
   <script src="scripts/scripts_plantilla.js"></script>
+
+  <script>
+function mostrarDetalles(idPrestamo) {
+    var deuda = document.querySelector('[data-id="' + idPrestamo + '"]').getAttribute('data-deuda');
+   
+    document.getElementById('detalleModalLabel').innerHTML = 'Detalles del Préstamo ID: ' + idPrestamo;
+    document.getElementById('detalleModalBody').innerHTML = `
+        <form id="detalleForm"  method="post" action="funcionalidades/pagarPrestamo.php">
+            <input type="hidden" id="idPrestamoInput" name="idPrestamo" value="${idPrestamo}">
+            <input type="hidden" id="deudaInput" name="deuda" value="${deuda}">
+            <p><strong>Deuda:</strong> ${deuda}</p>
+            
+
+            <div class="mb-3">
+                <label for="cantidadPago" class="form-label">Cantidad a Pagar</label>
+                <input type="number" class="form-control" id="cantidadPago" name="cantidadPago" required>
+            </div>
+
+          
+
+            <!-- Agrega un botón de submit para enviar el formulario -->
+            <button type="submit" class="btn btn-primary">Realizar Pago</button>
+        </form>
+    `;
+}
+
+  </script>
 
   <script>
 document.addEventListener('DOMContentLoaded', function () {
