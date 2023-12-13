@@ -22,8 +22,23 @@ function pagarPrestamo($conn, $idPrestamo, $cantidadPago) {
     $deuda = $filaPrestamo['Deuda'];
 
     if ($deuda < $cantidadPago) {
-
         return 'deudaInsuficiente';
+    }
+    
+    $consultaSaldo = $conn->prepare("SELECT Saldo FROM Cuenta WHERE IBAN = ?");
+    $consultaSaldo->bind_param("s", $IBAN);
+    $consultaSaldo->execute();
+    $resultadoSaldo = $consultaSaldo->get_result();
+
+    if ($resultadoSaldo->num_rows <= 0) {
+        return 'ibanNoEncontrado';
+    }
+
+    $filaSaldo = $resultadoSaldo->fetch_assoc();
+    $saldo = $filaSaldo['Saldo'];
+
+    if ($saldo < $cantidadPago) {
+        return 'saldoInsuficiente';
     }
 
     $nuevaDeuda = $deuda - $cantidadPago;
@@ -31,35 +46,23 @@ function pagarPrestamo($conn, $idPrestamo, $cantidadPago) {
     $consultaActualizarDeuda->bind_param("di", $nuevaDeuda, $idPrestamo);
     $resultadoActualizarDeuda = $consultaActualizarDeuda->execute();
 
-    if ($resultadoActualizarDeuda) {
-
-        $consultaSaldo = $conn->prepare("SELECT Saldo FROM Cuenta WHERE IBAN = ?");
-        $consultaSaldo->bind_param("s", $IBAN);
-        $consultaSaldo->execute();
-        $resultadoSaldo = $consultaSaldo->get_result();
-
-        if ($resultadoSaldo->num_rows <= 0) {
-            return 'ibanNoEncontrado';
-        }
-
-        $filaSaldo = $resultadoSaldo->fetch_assoc();
-        $saldo = $filaSaldo['Saldo'];
-
-        $nuevoSaldo = $saldo - $cantidadPago;
-        $consultaActualizarSaldo = $conn->prepare("UPDATE Cuenta SET Saldo = ? WHERE IBAN = ?");
-        $consultaActualizarSaldo->bind_param("ds", $nuevoSaldo, $IBAN);
-        $resultadoActualizarSaldo = $consultaActualizarSaldo->execute();
-
-        if (!$resultadoActualizarSaldo) {
-            return 'errorBaseDatos';
-        }
-    } else {
+    if (!$resultadoActualizarDeuda) {
         return 'errorBaseDatosPrestamo';
     }
-    realizarTransaccionCompleta($conn, $cantidadPago, $IBAN);
+
+
+    $nuevoSaldo = $saldo - $cantidadPago;
+    $consultaActualizarSaldo = $conn->prepare("UPDATE Cuenta SET Saldo = ? WHERE IBAN = ?");
+    $consultaActualizarSaldo->bind_param("ds", $nuevoSaldo, $IBAN);
+    $resultadoActualizarSaldo = $consultaActualizarSaldo->execute();
+
+    if (!$resultadoActualizarSaldo) {
+        return 'errorBaseDatos';
+    }
+
+
     return 'exito';
 }
-
 
 function realizarTransaccionCompleta($conn, $cantidadPago, $IBAN) {
    
@@ -82,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $cantidadPago = isset($_POST['cantidadPago']) ? $_POST['cantidadPago'] : null;
 
  
-    if ($idPrestamo === null || $deuda === null || $cantidadPago === null || !is_numeric($idPrestamo) || !is_numeric($deuda) || !is_numeric($cantidadPago) || $cantidadPago <= 0) {
+    if ($idPrestamo === null || $deuda === null || $cantidadPago === null || !is_numeric($idPrestamo) || !is_numeric($deuda) || !is_numeric($cantidadPago)) {
         echo 'Datos no válidos.';
         exit;
     }
