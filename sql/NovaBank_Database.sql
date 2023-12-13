@@ -58,6 +58,6 @@ CREATE TABLE Prestamo (
 INSERT INTO Persona (Nombre, Correo_Electronico, Contrasena) 
 VALUES ('admin', 'admin@admin.com', 'admin2023');
 
--- Insertar la cuenta asociada al nuevo usuario
+
 INSERT INTO Cuenta (IBAN, Saldo, Fecha_Apertura, ID_Persona) 
 VALUES ('1111111111111111', 0.00, CURDATE(), 1);

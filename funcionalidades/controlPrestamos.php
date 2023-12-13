@@ -1,6 +1,7 @@
 <?php
 
 include 'conexion.php';
+session_start(); 
 
 function rechazarPrestamo($idPrestamo) {
     global $conn;
@@ -70,7 +71,7 @@ function aceptarPrestamo($idPrestamo, $tasaInteres, $plazoPagar, $iban, $cantida
                 throw new Exception("Error al actualizar el saldo de la cuenta.");
             }
             realizarTransaccion($cantidad, $iban);
-            
+
             $conn->commit();
             return true;
         } else {
@@ -95,25 +96,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $cantidad = $_POST["cantidad"];
 
         if ($decision === "aceptar") {
-       
-            
-
             if (aceptarPrestamo($idPrestamo, $tipoInteres, $plazoPagar, $iban, $cantidad)) {
-                echo "Préstamo aceptado con éxito.";
+                $_SESSION['resultadoPrestamoAdmin'] = "aceptarExito";
+                header("location: " . $_SERVER['HTTP_REFERER']);
             } else {
-                echo "Error al aceptar el préstamo.";
+                $_SESSION['resultadoPrestamoAdmin'] = "aceptarFallo";
+                header("location: " . $_SERVER['HTTP_REFERER']);
             }
         } elseif ($decision === "rechazar") {
             if (rechazarPrestamo($idPrestamo)) {
-                echo "Préstamo rechazado con éxito.";
+                $_SESSION['resultadoPrestamoAdmin'] = "rechazarExito";
+                header("location: " . $_SERVER['HTTP_REFERER']);
             } else {
-                echo "Error al rechazar el préstamo.";
+                $_SESSION['resultadoPrestamoAdmin'] = "rechazarFallo";
+                header("location: " . $_SERVER['HTTP_REFERER']);
             }
         }
     }
 }
 
 
-// Cerrar la conexión después de usarla
-$conn->close();
+ $conn->close();
 ?>

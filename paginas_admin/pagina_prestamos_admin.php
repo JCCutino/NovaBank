@@ -2,7 +2,8 @@
 include '../funcionalidades/obtenerDatos.php';
 include '../funcionalidades/seguridadSesion.php';
 include '../funcionalidades/mostrarPrestamosAdmin.php';
-
+$resultadoPrestamoAdmin = json_encode(isset($_SESSION['resultadoPrestamoAdmin']) && $_SESSION['resultadoPrestamoAdmin']);
+ 
 ?>
 
 <!doctype html>
@@ -29,6 +30,8 @@ include '../funcionalidades/mostrarPrestamosAdmin.php';
     <!-- place navbar here -->
   </header>
   <main>
+
+  <?php include '../componentes/modales_admin_prestamos.php';?>
 
   <!-- Modal Prestamo -->
 <div class="modal fade" id="detalleModal" tabindex="-1" aria-labelledby="detalleModalLabel" aria-hidden="true">
@@ -161,7 +164,6 @@ include '../funcionalidades/mostrarPrestamosAdmin.php';
   </script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="../scripts/script_plantilla_admin.js"></script>
-  <script src="../scripts/script_grafica.js"></script>
   <script>
     function mostrarDetalles(idPrestamo) {
         var cantidad = document.querySelector('[data-id="' + idPrestamo + '"]').getAttribute('data-cantidad');
@@ -226,8 +228,41 @@ include '../funcionalidades/mostrarPrestamosAdmin.php';
 
     }
 
-   
 </script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    <?php
+    $resultadoPrestamoAdmin = isset($_SESSION['resultadoPrestamoAdmin']) ? $_SESSION['resultadoPrestamoAdmin'] : '';
+    ?>
+
+    var resultadoPrestamoAdmin = "<?php echo $resultadoPrestamoAdmin; ?>";
+    console.log(resultadoPrestamoAdmin);
+   switch (resultadoPrestamoAdmin) {
+    case 'aceptarExito':
+        mostrarModal('aceptarExitoModal');
+        break;
+    case 'aceptarFallo':
+        mostrarModal('aceptarFalloModal');
+        break;
+    case 'rechazarExito':
+        mostrarModal('rechazarExitoModal');
+        break;
+    case 'rechazarFallo':
+        mostrarModal('rechazarFalloModal');
+        break;
+}
+});
+
+
+function mostrarModal(modalId) {
+    var modal = new bootstrap.Modal(document.getElementById(modalId));
+    modal.show();
+    <?php $_SESSION['resultadoPrestamoAdmin'] = null; ?>
+   
+}
+
+ </script>
 </body>
 
 </html>
