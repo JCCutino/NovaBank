@@ -1,15 +1,13 @@
 <?php
 include 'conexion.php';
-function mostrarPrestamosPendientes($conn)
-{
+function mostrarPrestamosPendientes($conn){
     $query = "SELECT * FROM Prestamo WHERE Estado_Prestamo = 'Pendiente'";
-
 
     $result = $conn->query($query);
 
-   
     if ($result) {
-        echo '<table class="table table-responsive bg-white">';
+        echo '<div class="table-responsive">';
+        echo '<table class="table bg-white">';
         echo '<thead>';
         echo '<tr>';
         echo '<th>ID</th>';
@@ -18,7 +16,7 @@ function mostrarPrestamosPendientes($conn)
         echo '<th>Fecha Solicitud</th>';
         echo '<th>ID Persona</th>';
         echo '<th>IBAN</th>';
-        echo '<th>Acciones</th>'; 
+        echo '<th>Acciones</th>';
         echo '</tr>';
         echo '</thead>';
         echo '<tbody>';
@@ -37,6 +35,7 @@ function mostrarPrestamosPendientes($conn)
 
         echo '</tbody>';
         echo '</table>';
+        echo '</div>';
 
         if ($result->num_rows == 0) {
             echo '<p class="text-center">No hay préstamos pendientes.</p>';
@@ -45,6 +44,7 @@ function mostrarPrestamosPendientes($conn)
         echo 'Error al ejecutar la consulta: ' . $conn->error;
     }
 }
+
 
 
 
