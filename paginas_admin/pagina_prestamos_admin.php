@@ -109,9 +109,11 @@ $resultadoPrestamoAdmin = json_encode(isset($_SESSION['resultadoPrestamoAdmin'])
       <div class="col-lg-3 col-md-12  order-2 container-invisible" ></div>
       
         <div class="col-lg-6 col-md-12 main-content order-2"  id="container-responsive">
+        <h1>Prestamos Pendientes</h1>
         <?php mostrarPrestamosPendientes($conn); ?>
         
-
+        <h1 class="mt-3">Prestamos Aceptados</h1>
+        <?php mostrarPrestamosAceptados($conn)  ?>
           
         </div>
 
