@@ -16,6 +16,22 @@ function rechazarPrestamo($idPrestamo) {
     }
 }
 
+
+function realizarTransaccion($cantidad, $iban) {
+    global $conn;
+
+    $fechaHora = date("Y-m-d H:i:s");
+    $tipoTransaccion = "Prestamo Aceptado";
+
+    $consultaInsertarTransaccion = $conn->prepare("INSERT INTO Transaccion (Tipo_Transaccion, Cantidad, Fecha_Hora, IBAN) 
+                                                   VALUES (?, ?, ?, ?)");
+    
+    $consultaInsertarTransaccion->bind_param("ssss", $tipoTransaccion, $cantidad, $fechaHora, $iban);
+
+    $resultadoInsertarTransaccion = $consultaInsertarTransaccion->execute();
+
+}
+
 function aceptarPrestamo($idPrestamo, $tasaInteres, $plazoPagar, $iban, $cantidad) {
     global $conn;
   
@@ -53,7 +69,8 @@ function aceptarPrestamo($idPrestamo, $tasaInteres, $plazoPagar, $iban, $cantida
             if (!$stmtUpdateSaldo->execute()) {
                 throw new Exception("Error al actualizar el saldo de la cuenta.");
             }
-
+            realizarTransaccion($cantidad, $iban);
+            
             $conn->commit();
             return true;
         } else {
@@ -64,6 +81,8 @@ function aceptarPrestamo($idPrestamo, $tasaInteres, $plazoPagar, $iban, $cantida
         return false;
     }
 }
+
+
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
