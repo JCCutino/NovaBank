@@ -2,7 +2,7 @@
 include 'funcionalidades/obtenerDatos.php';
 include 'funcionalidades/mostrarPrestamosCliente.php';
 $resultadoPrestamo = json_encode(isset($_SESSION['resultadoPrestamo']) && $_SESSION['resultadoPrestamo']);
-    
+$resultadoPagoDeuda = json_encode(isset($_SESSION['resultadoPagoDeuda']) && $_SESSION['resultadoPagoDeuda']);
 ?>
 
 <!doctype html>
@@ -31,6 +31,7 @@ $resultadoPrestamo = json_encode(isset($_SESSION['resultadoPrestamo']) && $_SESS
   <main>
 
   <?php include 'componentes/modales_errores_prestamos.php';?>
+  <?php include 'componentes/modales_pago_prestamos.php';?>
 
    <!-- Modal Prestamo -->
 <div class="modal fade" id="detalleModal" tabindex="-1" aria-labelledby="detalleModalLabel" aria-hidden="true">
@@ -254,6 +255,49 @@ function mostrarModal(modalId) {
     var modal = new bootstrap.Modal(document.getElementById(modalId));
     modal.show();
     <?php $_SESSION['resultadoPrestamo'] = null; ?>
+   
+}
+
+ </script>
+
+ 
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    <?php
+    $resultadoPagoDeuda = isset($_SESSION['resultadoPagoDeuda']) ? $_SESSION['resultadoPagoDeuda'] : '';
+    ?>
+
+    var resultadoPagoDeuda = "<?php echo $resultadoPagoDeuda; ?>";
+    switch (resultadoPagoDeuda) {
+    case 'cantidadInvalida':
+        mostrarModal('cantidadInvalida');
+        break;
+    case 'prestamoNoEncontrado':
+        mostrarModal('prestamoNoEncontradoModal');
+        break;
+    case 'deudaInsuficiente':
+        mostrarModal('deudaInsuficienteModal');
+        break;
+    case 'ibanNoEncontrado':
+        mostrarModal('ibanNoEncontradoModal');
+        break;
+    case 'saldoInsuficiente':
+        mostrarModal('saldoInsuficienteModal');
+        break;
+    case 'errorBaseDatosPrestamo':
+        mostrarModal('errorBaseDatosPrestamoModal');
+        break;
+    case 'exito':
+        mostrarModal('exitoModal');
+        break;
+}
+});
+
+
+function mostrarModal(modalId) {
+    var modal = new bootstrap.Modal(document.getElementById(modalId));
+    modal.show();
+    <?php $_SESSION['resultadoPagoDeuda'] = null; ?>
    
 }
 

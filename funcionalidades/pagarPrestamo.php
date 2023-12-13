@@ -57,10 +57,10 @@ function pagarPrestamo($conn, $idPrestamo, $cantidadPago) {
     $resultadoActualizarSaldo = $consultaActualizarSaldo->execute();
 
     if (!$resultadoActualizarSaldo) {
-        return 'errorBaseDatos';
+        return 'errorBaseDatosPrestamo';
     }
 
-
+    realizarTransaccionCompleta($conn, $cantidadPago, $IBAN);
     return 'exito';
 }
 
@@ -86,17 +86,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
  
     if ($idPrestamo === null || $deuda === null || $cantidadPago === null || !is_numeric($idPrestamo) || !is_numeric($deuda) || !is_numeric($cantidadPago)) {
-        echo 'Datos no válidos.';
+        $_SESSION['resultadoPagoDeuda'] = "falloDatos";
+        header("location: " . $_SERVER['HTTP_REFERER']);
         exit;
     }
 
    $mensajePagoPrestamo = pagarPrestamo($conn, $idPrestamo, $cantidadPago);
-    echo $mensajePagoPrestamo;
-
+   $_SESSION['resultadoPagoDeuda'] = $mensajePagoPrestamo;
+   header("location: " . $_SERVER['HTTP_REFERER']);
    
 } else {
   
-    echo 'Acceso no autorizado.';
+    header("location: " . $_SERVER['HTTP_REFERER']);
     exit;
 }
 
