@@ -1,6 +1,7 @@
 <?php
 include '../funcionalidades/obtenerDatos.php';
 include '../funcionalidades/seguridadSesion.php';
+include '../funcionalidades/mostrarPrestamosAdmin.php';
 ?>
 
 <!doctype html>
@@ -28,6 +29,25 @@ include '../funcionalidades/seguridadSesion.php';
   </header>
   <main>
 
+  <!-- Modal Prestamo -->
+<div class="modal fade" id="detalleModal" tabindex="-1" aria-labelledby="detalleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="detalleModalLabel">Detalles del Préstamo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="detalleModalBody">
+
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success"  data-bs-dismiss="modal">Aceptar</button>
+                <button type="button" class="btn btn-danger"   data-bs-dismiss="modal">Rechazar</button>
+            </div>
+        </div>
+    </div>
+</div>
     <div class="modal fade" id="modalIngreso" tabindex="-1" aria-labelledby="tituloModal" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -88,7 +108,7 @@ include '../funcionalidades/seguridadSesion.php';
       <div class="col-lg-3 col-md-12  order-2 container-invisible" ></div>
       
         <div class="col-lg-6 col-md-12 main-content order-2"  id="container-responsive">
-        <h1><?php echo "Hola ".$nombreSimple. ", hoy es ".$fecha ?></h1>
+        <?php mostrarPrestamosPendientes($conn); ?>
         
 
           
@@ -144,6 +164,47 @@ include '../funcionalidades/seguridadSesion.php';
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="../scripts/script_plantilla_admin.js"></script>
   <script src="../scripts/script_grafica.js"></script>
+  <script>
+    function mostrarDetalles(idPrestamo) {
+        var cantidad = document.querySelector('[data-id="' + idPrestamo + '"]').getAttribute('data-cantidad');
+        var concepto = document.querySelector('[data-id="' + idPrestamo + '"]').getAttribute('data-concepto');
+        var fecha = document.querySelector('[data-id="' + idPrestamo + '"]').getAttribute('data-fecha');
+        var idPersona = document.querySelector('[data-id="' + idPrestamo + '"]').getAttribute('data-idpersona');
+        var iban = document.querySelector('[data-id="' + idPrestamo + '"]').getAttribute('data-iban');
+
+        document.getElementById('detalleModalLabel').innerHTML = 'Detalles del Préstamo ID: ' + idPrestamo;
+        document.getElementById('detalleModalBody').innerHTML = `
+            <p><strong>Cantidad:</strong> ${cantidad}</p>
+            <p><strong>Concepto:</strong> ${concepto}</p>
+            <p><strong>Fecha Solicitud:</strong> ${fecha}</p>
+            <p><strong>ID Persona:</strong> ${idPersona}</p>
+            <p><strong>IBAN:</strong> ${iban}</p>
+            <div class="mb-3">
+                    <label for="tipoInteres" class="form-label">Tipo de Interés</label>
+                    <select class="form-select" id="tipoInteres">
+                        <option value="0.05">5%</option>
+                        <option value="0.1">10%</option>
+                        <option value="0.15">15%</option>
+                        <option value="0.2">20%</option>
+                        <option value="0.25">25%</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="plazoPagar" class="form-label">Plazo a Pagar</label>
+                    <select class="form-select" id="plazoPagar">
+                        <option value="12">1 año</option>
+                        <option value="24">2 años</option>
+                        <option value="36">3 años</option>
+                        <option value="48">4 años</option>
+                        <option value="60">5 años</option>
+                    </select>
+                </div>
+        `;
+    }
+
+    
+</script>
 </body>
 
 </html>
