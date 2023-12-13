@@ -142,7 +142,7 @@ $resultadoPagoDeuda = json_encode(isset($_SESSION['resultadoPagoDeuda']) && $_SE
           <div class="container-fluid mt-3">
             <div class="row justify-content-center">
               <div class="col-2">
-                <img src="img/foto_perfil.webp" alt="Imagen de perfil" class="rounded-circle img-fluid border imagen-perfil">
+                <img src="img/fp/foto_perfil.webp" alt="Imagen de perfil" class="rounded-circle img-fluid border imagen-perfil">
               </div>
               <div class="col-8 d-flex align-items-center">
                 <h4 class="nombre-usuario"><?php echo $nombreCompleto; ?></h4>

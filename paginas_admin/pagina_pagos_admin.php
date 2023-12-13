@@ -69,7 +69,7 @@ $errorEnvioDinero = json_encode(isset($_SESSION['errorEnvioDinero']) && $_SESSIO
 
     <div class="offcanvas offcanvas-start show" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
       <div class="offcanvas-header">
-        <img src="../img/Logo_NovaBank_Blanco.png" class="logo" alt="Logotipo">
+        <img src="../img/fp/Logo_NovaBank_Blanco.png" class="logo" alt="Logotipo">
         <button type="button" class="btn-close elemento-oculto flecha-cerrar" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">

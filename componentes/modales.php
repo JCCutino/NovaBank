@@ -201,24 +201,30 @@ $modales= '<div class="modal fade" id="nombreModal" tabindex="-1" aria-labelledb
 
 
 <div class="modal fade" id="urlFotoModal" tabindex="-1" aria-labelledby="urlFotoModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="urlFotoModalLabel">Editar URL de Foto</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <label for="urlFotoInput" class="form-label">Seleccionar Foto:</label>
-        <input type="file" class="form-control" id="urlFotoInput" accept="image/*">
-        <small class="text-muted">Selecciona un archivo de imagen (jpg, png, etc.)</small>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Guardar cambios</button>
-      </div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="urlFotoModalLabel">Editar URL de Foto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="funcionalidades/subirFoto.php" method="post" enctype="multipart/form-data">
+                    <label for="urlFotoInput" class="form-label">Seleccionar Foto:</label>
+                    <input type="file" class="form-control" name="foto" id="urlFotoInput" accept="image/*">
+                    <small class="text-muted">Selecciona un archivo de imagen (jpg, png, etc.)</small>
+
+                    <!-- Puedes agregar otros campos del formulario aquí si es necesario -->
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
+
 
 ';
 
