@@ -2,6 +2,7 @@
 include '../funcionalidades/obtenerDatos.php';
 include '../funcionalidades/seguridadSesion.php';
 include '../funcionalidades/mostrarPrestamosAdmin.php';
+
 ?>
 
 <!doctype html>
@@ -42,9 +43,8 @@ include '../funcionalidades/mostrarPrestamosAdmin.php';
                 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success"  data-bs-dismiss="modal">Aceptar</button>
-                <button type="button" class="btn btn-danger"   data-bs-dismiss="modal">Rechazar</button>
-            </div>
+               
+              </div>
         </div>
     </div>
 </div>
@@ -63,8 +63,6 @@ include '../funcionalidades/mostrarPrestamosAdmin.php';
                 <small id="cantidadHelp" class="form-text text-muted">Ingrese un número con hasta dos decimales.</small>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn btn-primary">Aceptar</button>
               </div>
             </form>
           </div>
@@ -174,36 +172,60 @@ include '../funcionalidades/mostrarPrestamosAdmin.php';
 
         document.getElementById('detalleModalLabel').innerHTML = 'Detalles del Préstamo ID: ' + idPrestamo;
         document.getElementById('detalleModalBody').innerHTML = `
-            <p><strong>Cantidad:</strong> ${cantidad}</p>
-            <p><strong>Concepto:</strong> ${concepto}</p>
-            <p><strong>Fecha Solicitud:</strong> ${fecha}</p>
-            <p><strong>ID Persona:</strong> ${idPersona}</p>
-            <p><strong>IBAN:</strong> ${iban}</p>
-            <div class="mb-3">
-                    <label for="tipoInteres" class="form-label">Tipo de Interés</label>
-                    <select class="form-select" id="tipoInteres">
-                        <option value="0.05">5%</option>
-                        <option value="0.1">10%</option>
-                        <option value="0.15">15%</option>
-                        <option value="0.2">20%</option>
-                        <option value="0.25">25%</option>
-                    </select>
-                </div>
+        <form id="detalleForm" method="post" action="../funcionalidades/controlPrestamos.php">
+    <input type="hidden" id="idPrestamoInput" name="idPrestamo" value="${idPrestamo}">
+    <p><strong>Cantidad:</strong> ${cantidad}</p>
+    <p><strong>Concepto:</strong> ${concepto}</p>
+    <p><strong>Fecha Solicitud:</strong> ${fecha}</p>
+    <p><strong>ID Persona:</strong> ${idPersona}</p>
+    <p><strong>IBAN:</strong> ${iban}</p>
+    <div class="mb-3">
+        <label for="tipoInteres" class="form-label">Tipo de Interés</label>
+        <select class="form-select" id="tipoInteres" name="tipoInteres">
+            <option value="0.05">5%</option>
+            <option value="0.1">10%</option>
+            <option value="0.15">15%</option>
+            <option value="0.2">20%</option>
+            <option value="0.25">25%</option>
+        </select>
+    </div>
 
-                <div class="mb-3">
-                    <label for="plazoPagar" class="form-label">Plazo a Pagar</label>
-                    <select class="form-select" id="plazoPagar">
-                        <option value="12">1 año</option>
-                        <option value="24">2 años</option>
-                        <option value="36">3 años</option>
-                        <option value="48">4 años</option>
-                        <option value="60">5 años</option>
-                    </select>
-                </div>
+    <div class="mb-3">
+        <label for="plazoPagar" class="form-label">Plazo a Pagar</label>
+        <select class="form-select" id="plazoPagar" name="plazoPagar">
+            <option value="12">1 año</option>
+            <option value="24">2 años</option>
+            <option value="36">3 años</option>
+            <option value="48">4 años</option>
+            <option value="60">5 años</option>
+        </select>
+    </div>
+
+    <!-- Agrega un campo oculto para el idPrestamo -->
+    <input type="hidden" id="idPrestamoInput" name="idPrestamo" value="${idPrestamo}">
+
+    <!-- Agrega radio buttons para aceptar o rechazar -->
+    <div class="mb-3">
+        <label class="form-check-label">Decisión:</label>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="decision" id="aceptarRadio" value="aceptar" checked>
+            <label class="form-check-label" for="aceptarRadio">Aceptar</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="decision" id="rechazarRadio" value="rechazar">
+            <label class="form-check-label" for="rechazarRadio">Rechazar</label>
+        </div>
+    </div>
+
+    <!-- Agrega un botón de submit para enviar el formulario -->
+    <button type="submit" class="btn btn-primary">Enviar</button>
+</form>
+
         `;
+
     }
 
-    
+   
 </script>
 </body>
 
