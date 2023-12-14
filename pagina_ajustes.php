@@ -95,6 +95,7 @@ include 'funcionalidades/obtenerDatos.php';
         <?php 
         if (isset($_SESSION['IdChat']) && $_SESSION['IdChat'] !== null) {
         echo "<h2>Chat con el usuario ID " . $_SESSION['IdChat'] . "</h2>";
+        include 'funcionalidades/mostrarChat.php';
     
         echo "<form method='post' action='funcionalidades/borrarSesionChat.php'>";
         echo "<button type='submit' class='btn btn-danger'>Volver</button>";

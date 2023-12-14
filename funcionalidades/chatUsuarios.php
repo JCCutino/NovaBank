@@ -20,8 +20,8 @@ if ($result->num_rows > 0) {
     echo "<form method='post' action='funcionalidades/chatUsuarios.php'>";
     echo "<div id='containerUsuarios' class='p-3 border rounded d-flex flex-column'>";
     while ($row = $result->fetch_assoc()) {
-        $nombreCompleto = $row['Nombre'] . ' ' . $row['Apellidos'];
-        echo "<button type='submit' class='btn btn-success m-1 usuarioButton' name='seleccionarUsuario' value='" . $row['ID_Persona'] . "'>" . $nombreCompleto . "</button>";
+        $nombreChat = $row['Nombre'] . ' ' . $row['Apellidos'];
+        echo "<button type='submit' class='btn btn-success m-1 usuarioButton' name='seleccionarUsuario' value='" . $row['ID_Persona'] . "'>" . $nombreChat . "</button>";
     }
     echo "</div>";
     echo "</form>";
