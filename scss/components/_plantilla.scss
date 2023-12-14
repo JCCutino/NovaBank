@@ -246,7 +246,7 @@ $margin-base: 10px;
           box-shadow: 0 0 20px 10px rgba(147, 65, 228, 0.8);
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1600px) {
   .sidebar {
     position: static;
     width: 100%;
@@ -258,12 +258,12 @@ $margin-base: 10px;
   }
   
 }
-@media (min-width: 1180px) {
+@media (min-width: 1600px) {
   .elemento-oculto {
     display: none;
   }
 }
-@media (min-width: 1200px) {
+@media (min-width: 1600px) {
   .elemento-oculto {
     display: none;
   }

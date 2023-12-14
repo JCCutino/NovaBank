@@ -1,4 +1,4 @@
-let anchoLimite = 1200; 
+let anchoLimite = 1600; 
 let accionSuperiorEjecutada = false; 
 let accionInferiorEjecutada = false; 
 
