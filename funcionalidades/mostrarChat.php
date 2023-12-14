@@ -22,6 +22,7 @@ if (isset($_SESSION['IdChat']) && $_SESSION['IdChat'] !== null) {
             echo "<div class='mensaje'>$emisor: " . $row['mensaje'] . "</div>";
         }
         echo "</div>";
+        
     } else {
         echo "<p>No hay mensajes aún.</p>";
     }
@@ -29,5 +30,13 @@ if (isset($_SESSION['IdChat']) && $_SESSION['IdChat'] !== null) {
     echo "<p class='mt-3'>No se ha seleccionado ningún usuario para chatear.</p>";
 }
 
+   // Formulario para enviar mensajes
+   echo "<form method='post' action='funcionalidades/enviarMensaje.php'>";
+   echo "<div class='mb-3'>";
+   echo "<label for='mensaje' class='form-label'>Introducir mensaje:</label>";
+   echo "<input type='text' class='form-control' name='mensaje' id='mensaje' placeholder='Introducir mensaje' required>";
+   echo "</div>";
+   echo "<button type='submit' class='btn btn-primary'>Enviar mensaje</button>";
+   echo "</form>";
 $conn->close();
 ?>
