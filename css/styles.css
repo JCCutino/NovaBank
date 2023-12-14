@@ -105,7 +105,7 @@
 }
 
 .imagen-perfil {
-  border: 5px solid #fff;
+  border: 5px solid #ffffff;
   min-width: 60px;
   width: 30%;
   max-width: 200px;
@@ -288,4 +288,30 @@
 
 .container-invisible {
   width: 415px;
+}
+
+button[type=submit].buscar-persona {
+  background-color: #6f2cb2;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 15px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+button.btn.btn-primary {
+  background-color: #6f2cb2;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 16px;
+}
+button.btn.btn-primary:hover {
+  background-color: #562289;
+}
+button.btn.btn-primary:active {
+  background-color: #491d75;
 }

@@ -97,12 +97,12 @@ $margin-base: 10px;
 .main-content {
   margin-top: 50px;
   min-height: 400px;
-  color: #ffffff;
+  color: $blanco;
 }
 
 .sidebar {
   background-color: #373737;
-  color: #ffffff;
+  color: $blanco;
   padding: 20px;
   position: fixed;
   top: 0;
@@ -113,7 +113,7 @@ $margin-base: 10px;
 }
 
 .imagen-perfil {
-  border: 5px solid #fff;
+  border: 5px solid $blanco;
   min-width: 60px;
   width: 30%;
   max-width: 200px;

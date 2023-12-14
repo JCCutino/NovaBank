@@ -1,0 +1,46 @@
+
+$color-morado: #6f2cb2;
+
+
+@mixin boton-morado {
+    background-color: $color-morado;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px + 5px;
+    cursor: pointer;
+    margin-top: 15px; 
+
+    
+}
+
+// Aplicación del mixin al botón
+button[type="submit"].buscar-persona {
+    @include boton-morado;
+}
+
+$color-hover: darken($color-morado, 10%);
+$color-active: darken($color-morado, 15%); // Agregamos porcentajes para hacer más oscuro el color usando una funcion
+
+@mixin boton-primario($color) {
+  background-color: $color;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 16px;
+
+  &:hover {
+    background-color: $color-hover; // Cambia el color al hacer hover
+  }
+
+  &:active {
+    background-color: $color-active; // Cambia el color al hacer clic
+  }
+}
+
+// Aplicación del mixin al botón con la clase "btn btn-primary"
+button.btn.btn-primary {
+  @include boton-primario($color-morado); 
+}

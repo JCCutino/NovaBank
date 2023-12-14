@@ -98,7 +98,7 @@ include '../funcionalidades/comprobarDatosAdmin.php';
         <label for="idPersona">ID de Persona:</label>
         <input type="number" id="idPersona" name="idPersona" required>
         <br>
-        <button type="submit">Buscar Persona</button>
+        <button type="submit" class="buscar-persona">Buscar Persona</button>
     </form>
 
     
