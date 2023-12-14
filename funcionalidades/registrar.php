@@ -19,7 +19,7 @@ if ($resultadoCorreo->num_rows > 0) {
     $_SESSION['correoExistente'] = true;
     header("location: ../index.php");
 } else {
-    $insertUsuario = $conn->prepare("INSERT INTO Persona (Nombre, Apellidos, DNI, Pais, Correo_Electronico, Contrasena, Url_Foto) VALUES (?, ?, ?, ?, ?, ?, '')");
+    $insertUsuario = $conn->prepare("INSERT INTO Persona (Nombre, Apellidos, DNI, Pais, Correo_Electronico, Contrasena, Url_Foto) VALUES (?, ?, ?, ?, ?, ?, 'foto_perfil.webp')");
 $insertUsuario->bind_param("ssssss", $nombre, $apellidos, $dni, $pais, $correoElectronico, $contrasena);
 
     if ($insertUsuario->execute()) {
