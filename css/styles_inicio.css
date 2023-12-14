@@ -1,5 +1,7 @@
 .body_inicio {
     font-family: Arial, sans-serif;
+    background: url('../img/fondo/fondo.jpg') center/cover no-repeat; 
+
     background-color: #f4f4f4;
     margin: 0;
     display: flex;
