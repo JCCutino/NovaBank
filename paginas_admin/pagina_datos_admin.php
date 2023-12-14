@@ -1,5 +1,6 @@
 <?php
 include '../funcionalidades/obtenerDatos.php';
+include '../funcionalidades/comprobarDatosAdmin.php';
  include '../funcionalidades/seguridadSesion.php';
 
 ?>
@@ -89,9 +90,76 @@ include '../funcionalidades/obtenerDatos.php';
       <div class="col-lg-3 col-md-12  order-2 container-invisible" ></div>
       
         <div class="col-lg-6 col-md-12 main-content order-2"  id="container-responsive">
-        <h1><?php echo "Hola ".$nombreSimple. ", hoy es ".$fecha ?></h1>
-        
 
+           <h2>Introduce la ID de la Persona</h2>
+
+    <form action="../funcionalidades/obtenerDatosCompletosAdmin.php" method="post">
+        <label for="idPersona">ID de Persona:</label>
+        <input type="number" id="idPersona" name="idPersona" required>
+        <br>
+        <button type="submit">Buscar Persona</button>
+    </form>
+
+    
+<div class="container">
+    <h2>Información de la Persona</h2>
+    <?php if (isset($datosPersona)) : ?>
+        <div class="table-responsive bg-white">
+            <table class="table">
+                <tr>
+                    <td>Nombre:</td>
+                    <td><?php echo $nombre; ?></td>
+                </tr>
+                <tr>
+                    <td>Apellidos:</td>
+                    <td><?php echo $apellidos; ?></td>
+                </tr>
+                <tr>
+                    <td>DNI:</td>
+                    <td><?php echo $dni; ?></td>
+                </tr>
+                <tr>
+                    <td>Fecha de Nacimiento:</td>
+                    <td><?php echo $fechaNacimiento; ?></td>
+                </tr>
+                <tr>
+                    <td>Dirección:</td>
+                    <td><?php echo $direccion; ?></td>
+                </tr>
+                <tr>
+                    <td>Código Postal:</td>
+                    <td><?php echo $codigoPostal; ?></td>
+                </tr>
+                <tr>
+                    <td>Ciudad:</td>
+                    <td><?php echo $ciudad; ?></td>
+                </tr>
+                <tr>
+                    <td>Provincia:</td>
+                    <td><?php echo $provincia; ?></td>
+                </tr>
+                <tr>
+                    <td>País:</td>
+                    <td><?php echo $pais; ?></td>
+                </tr>
+                <tr>
+                    <td>Correo Electrónico:</td>
+                    <td><?php echo $correoElectronico; ?></td>
+                </tr>
+                <tr>
+                    <td>Contraseña:</td>
+                    <td><?php echo $contrasena; ?></td>
+                </tr>
+                <tr>
+                    <td>URL de Foto:</td>
+                    <td><?php echo $urlFoto; ?></td>
+                </tr>
+            </table>
+        </div>
+    <?php else : ?>
+        <p>Persona no encontrada</p>
+    <?php endif; ?>
+</div>
           
         </div>
 
