@@ -9,14 +9,14 @@
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   height: 100%;
 }
 
@@ -56,7 +56,7 @@
   margin-left: -10px;
   background: transparent url("../img/svg/flecha_cerrar.svg") center/1em auto no-repeat;
   -webkit-box-sizing: content-box;
-          box-sizing: content-box;
+  box-sizing: content-box;
   width: 1em;
   height: 1em;
   padding: 0.25em 0.25em;
@@ -65,7 +65,7 @@
   border-radius: 0.375rem;
   opacity: 0.5;
   -webkit-transform: rotate(180deg);
-          transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 
 .boton-fijo {
@@ -143,10 +143,10 @@
   max-width: 300px;
   max-height: 150px;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-shadow: 10px 5px 5px rgb(26, 25, 25);
-          box-shadow: 10px 5px 5px rgb(26, 25, 25);
+  box-shadow: 10px 5px 5px rgb(26, 25, 25);
 }
 
 .saldo_cuenta_card > *:nth-child(1) {
@@ -186,30 +186,29 @@
 @-webkit-keyframes neon-border {
   0% {
     -webkit-box-shadow: 0 0 10px 0px rgba(147, 65, 228, 0.8);
-            box-shadow: 0 0 10px 0px rgba(147, 65, 228, 0.8);
+    box-shadow: 0 0 10px 0px rgba(147, 65, 228, 0.8);
   }
   50% {
     -webkit-box-shadow: 0 0 20px 10px rgba(147, 65, 228, 0.8);
-            box-shadow: 0 0 20px 10px rgba(147, 65, 228, 0.8);
+    box-shadow: 0 0 20px 10px rgba(147, 65, 228, 0.8);
   }
   100% {
     -webkit-box-shadow: 0 0 10px 0px rgba(147, 65, 228, 0.8);
-            box-shadow: 0 0 10px 0px rgba(147, 65, 228, 0.8);
+    box-shadow: 0 0 10px 0px rgba(147, 65, 228, 0.8);
   }
 }
-
 @keyframes neon-border {
   0% {
     -webkit-box-shadow: 0 0 10px 0px rgba(147, 65, 228, 0.8);
-            box-shadow: 0 0 10px 0px rgba(147, 65, 228, 0.8);
+    box-shadow: 0 0 10px 0px rgba(147, 65, 228, 0.8);
   }
   50% {
     -webkit-box-shadow: 0 0 20px 10px rgba(147, 65, 228, 0.8);
-            box-shadow: 0 0 20px 10px rgba(147, 65, 228, 0.8);
+    box-shadow: 0 0 20px 10px rgba(147, 65, 228, 0.8);
   }
   100% {
     -webkit-box-shadow: 0 0 10px 0px rgba(147, 65, 228, 0.8);
-            box-shadow: 0 0 10px 0px rgba(147, 65, 228, 0.8);
+    box-shadow: 0 0 10px 0px rgba(147, 65, 228, 0.8);
   }
 }
 .boton-recargar {
@@ -225,14 +224,14 @@
   cursor: pointer;
   font-weight: bold;
   -webkit-animation: none;
-          animation: none;
+  animation: none;
 }
 
 .boton-recargar:hover {
   -webkit-animation: neon-border 1.5s infinite;
-          animation: neon-border 1.5s infinite;
+  animation: neon-border 1.5s infinite;
   -webkit-box-shadow: 0 0 20px 10px rgba(147, 65, 228, 0.8);
-          box-shadow: 0 0 20px 10px rgba(147, 65, 228, 0.8);
+  box-shadow: 0 0 20px 10px rgba(147, 65, 228, 0.8);
 }
 
 @media (max-width: 1200px) {
@@ -245,7 +244,6 @@
     top: 0;
     overflow-y: auto;
   }
-  
 }
 @media (min-width: 1180px) {
   .elemento-oculto {
@@ -256,15 +254,14 @@
   .elemento-oculto {
     display: none;
   }
-  
 }
 .rotating-card {
   margin-top: 40px;
   -webkit-perspective: 1000px;
-          perspective: 1000px;
+  perspective: 1000px;
   max-width: 450px;
   -webkit-transform-style: preserve-3d;
-          transform-style: preserve-3d;
+  transform-style: preserve-3d;
   -webkit-transition: -webkit-transform 0.5s;
   transition: -webkit-transform 0.5s;
   transition: transform 0.5s;
@@ -280,7 +277,7 @@
 
 .rotating-card.is-flipped {
   -webkit-transform: rotateY(360deg);
-          transform: rotateY(360deg);
+  transform: rotateY(360deg);
 }
 
 #saldoChart {
@@ -289,6 +286,6 @@
   display: unset !important;
 }
 
-.container-invisible{
+.container-invisible {
   width: 415px;
 }
