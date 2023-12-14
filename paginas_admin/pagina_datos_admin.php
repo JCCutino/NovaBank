@@ -167,7 +167,7 @@ include '../funcionalidades/comprobarDatosAdmin.php';
             </tr>
             <tr>
                 <td>Saldo:</td>
-                <td class="text-start"><?php echo $saldo; ?></td>
+                <td class="text-start"><?php echo $saldoDatos; ?></td>
             </tr>
             <tr>
                 <td>Fecha de Apertura:</td>

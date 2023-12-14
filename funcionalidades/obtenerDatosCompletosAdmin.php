@@ -4,11 +4,11 @@ include 'conexion.php';
 
 session_start();
 
-function obtenerDatosPersona($idPersona, $conn) {
+function obtenerDatosPersona($idPersonaDatos, $conn) {
     $consultaPersona = "SELECT Nombre, Apellidos, DNI, Fecha_nacimiento, Direccion, CP, Ciudad, Provincia, Pais, Correo_Electronico, Contrasena, Url_Foto FROM Persona WHERE ID_Persona = ?";
 
     $statement = $conn->prepare($consultaPersona);
-    $statement->bind_param('i', $idPersona); 
+    $statement->bind_param('i', $idPersonaDatos); 
     $statement->execute();
 
     $resultado = $statement->get_result();
@@ -38,11 +38,11 @@ function obtenerDatosPersona($idPersona, $conn) {
     $statement->close();
 }
 
-function obtenerDatosCuenta($idPersona, $conn) {
+function obtenerDatosCuenta($idPersonaDatos, $conn) {
     $consultaCuenta = "SELECT IBAN, Saldo, Fecha_Apertura, ID_Persona FROM Cuenta WHERE ID_Persona = ?";
 
     $statement = $conn->prepare($consultaCuenta);
-    $statement->bind_param('i', $idPersona); 
+    $statement->bind_param('i', $idPersonaDatos); 
     $statement->execute();
 
     $resultado = $statement->get_result();
@@ -73,10 +73,10 @@ function obtenerValor($valor) {
 }
 
 if (isset($_POST['idPersona'])) {
-    $idPersona = $_POST['idPersona'];
+    $idPersonaDatos = $_POST['idPersona'];
     
-    $datosPersona = obtenerDatosPersona($idPersona, $conn);
-    $datosCuenta = obtenerDatosCuenta($idPersona, $conn);
+    $datosPersona = obtenerDatosPersona($idPersonaDatos, $conn);
+    $datosCuenta = obtenerDatosCuenta($idPersonaDatos, $conn);
 
     if ($datosPersona && $datosCuenta) {
         $_SESSION['datosPersona'] = $datosPersona;

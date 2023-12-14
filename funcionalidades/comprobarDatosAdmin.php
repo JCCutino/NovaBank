@@ -17,7 +17,7 @@ if (isset($_SESSION['datosPersona']) && isset($_SESSION['datosCuenta'])) {
     $urlFoto = $datosPersona['Url_Foto'];
 
     $iban = $datosCuenta['IBAN'];
-    $saldo = $datosCuenta['Saldo'];
+    $saldoDatos = $datosCuenta['Saldo'];
     $fechaApertura = $datosCuenta['Fecha_Apertura'];
     $idPersonaCuenta = $datosCuenta['ID_Persona'];
 } 
