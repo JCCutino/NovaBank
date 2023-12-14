@@ -127,7 +127,7 @@ $resultadoPagoDeuda = json_encode(isset($_SESSION['resultadoPagoDeuda']) && $_SE
         <input type="number" class="form-control" id="cantidadSolicitada" name="cantidadSolicitada" placeholder="Introduce la cantidad solicitada" required>
     </div>
 
-    <button type="submit" class="btn btn-primary">Enviar Solicitud</button>
+    <button type="submit" class="btn btn-primary mt-3">Enviar Solicitud</button>
 </form>
 
         <h1 class="mt-5">Prestamos Pendientes</h1>

@@ -110,7 +110,7 @@ $errorEnvioDinero = json_encode(isset($_SESSION['errorEnvioDinero']) && $_SESSIO
             <input type="number" class="form-control" id="cantidadTransferencia" name="cantidadTransferencia" placeholder="Introduce la cantidad" required>
         </div>
 
-        <button type="submit" class="btn btn-primary">Enviar</button>
+        <button type="submit" class="btn btn-primary mt-3">Enviar</button>
     </form>
 </div>
 

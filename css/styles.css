@@ -40,12 +40,12 @@
   height: auto;
 }
 
-.enlaces {
-  margin-top: -100px;
-}
-
 .offcanvas {
   background-color: #373737;
+}
+
+.offcanvas-body {
+  height: auto;
 }
 
 .enlaces .morado {

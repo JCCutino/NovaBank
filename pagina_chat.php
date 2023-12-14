@@ -98,7 +98,7 @@ include 'funcionalidades/obtenerDatos.php';
         include 'funcionalidades/mostrarChat.php';
     
         echo "<form method='post' action='funcionalidades/borrarSesionChat.php'>";
-        echo "<button type='submit' class='btn btn-danger'>Volver</button>";
+        echo "<button type='submit' class='btn btn-danger mt-3'>Volver</button>";
         echo "</form>";
         } else {
           include 'funcionalidades/chatUsuarios.php';
