@@ -4,19 +4,12 @@ include 'conexion.php';
 
 session_start();
 
-
 function obtenerDatosPersona($idPersona, $conn) {
-   
-
     $consultaPersona = "SELECT Nombre, Apellidos, DNI, Fecha_nacimiento, Direccion, CP, Ciudad, Provincia, Pais, Correo_Electronico, Contrasena, Url_Foto FROM Persona WHERE ID_Persona = ?";
 
     $statement = $conn->prepare($consultaPersona);
-
     $statement->bind_param('i', $idPersona); 
-
     $statement->execute();
-
-    
 
     $resultado = $statement->get_result();
 
@@ -45,32 +38,60 @@ function obtenerDatosPersona($idPersona, $conn) {
     $statement->close();
 }
 
+function obtenerDatosCuenta($idPersona, $conn) {
+    $consultaCuenta = "SELECT IBAN, Saldo, Fecha_Apertura, ID_Persona FROM Cuenta WHERE ID_Persona = ?";
+
+    $statement = $conn->prepare($consultaCuenta);
+    $statement->bind_param('i', $idPersona); 
+    $statement->execute();
+
+    $resultado = $statement->get_result();
+
+    if ($resultado) {
+        if ($resultado->num_rows > 0) {
+            $row = $resultado->fetch_assoc();
+            $datosCuenta = array(
+                'IBAN' => obtenerValor($row['IBAN']),
+                'Saldo' => obtenerValor($row['Saldo']),
+                'Fecha_Apertura' => obtenerValor($row['Fecha_Apertura']),
+                'ID_Persona' => obtenerValor($row['ID_Persona']),
+            );
+
+            return $datosCuenta;
+        } else {
+            return false; 
+        }
+    } else {
+        die('Error en la consulta SQL: ' . $conn->error);
+    }
+
+    $statement->close();
+}
+
 function obtenerValor($valor) {
     return $valor !== null ? $valor : 'Dato inexistente';
 }
 
-
 if (isset($_POST['idPersona'])) {
-
     $idPersona = $_POST['idPersona'];
     
     $datosPersona = obtenerDatosPersona($idPersona, $conn);
+    $datosCuenta = obtenerDatosCuenta($idPersona, $conn);
 
-    if ($datosPersona) {
-
+    if ($datosPersona && $datosCuenta) {
         $_SESSION['datosPersona'] = $datosPersona;
+        $_SESSION['datosCuenta'] = $datosCuenta;
         header("location: " . $_SERVER['HTTP_REFERER']);
-      
     } else {
         $_SESSION['datosPersona'] = null;
+        $_SESSION['datosCuenta'] = null;
         header("location: " . $_SERVER['HTTP_REFERER']);
     }
 } else {
     $_SESSION['datosPersona'] = null;
+    $_SESSION['datosCuenta'] = null;
     header("location: " . $_SERVER['HTTP_REFERER']);
 }
 
 $conn->close();
-
-
 ?>

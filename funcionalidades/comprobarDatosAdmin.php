@@ -1,9 +1,7 @@
 <?php
-
-
-if (isset($_SESSION['datosPersona'])) {
-
+if (isset($_SESSION['datosPersona']) && isset($_SESSION['datosCuenta'])) {
     $datosPersona = $_SESSION['datosPersona'];
+    $datosCuenta = $_SESSION['datosCuenta'];
 
     $nombre = $datosPersona['Nombre'];
     $apellidos = $datosPersona['Apellidos'];
@@ -17,5 +15,12 @@ if (isset($_SESSION['datosPersona'])) {
     $correoElectronico = $datosPersona['Correo_Electronico'];
     $contrasena = $datosPersona['Contrasena'];
     $urlFoto = $datosPersona['Url_Foto'];
+
+    $iban = $datosCuenta['IBAN'];
+    $saldo = $datosCuenta['Saldo'];
+    $fechaApertura = $datosCuenta['Fecha_Apertura'];
+    $idPersonaCuenta = $datosCuenta['ID_Persona'];
 } 
+?>
+
 ?>

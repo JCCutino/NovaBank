@@ -101,7 +101,7 @@ include '../funcionalidades/comprobarDatosAdmin.php';
     </form>
 
     
-<div class="container">
+    <div class="container">
     <h2>Información de la Persona</h2>
     <?php if (isset($datosPersona)) : ?>
         <div class="table-responsive bg-white">
@@ -147,10 +147,6 @@ include '../funcionalidades/comprobarDatosAdmin.php';
                     <td><?php echo $correoElectronico; ?></td>
                 </tr>
                 <tr>
-                    <td>Contraseña:</td>
-                    <td><?php echo $contrasena; ?></td>
-                </tr>
-                <tr>
                     <td>URL de Foto:</td>
                     <td><?php echo $urlFoto; ?></td>
                 </tr>
@@ -159,7 +155,35 @@ include '../funcionalidades/comprobarDatosAdmin.php';
     <?php else : ?>
         <p>Persona no encontrada</p>
     <?php endif; ?>
+
+    <h2>Información de la Cuenta</h2>
+<?php if (isset($datosCuenta)) : ?>
+    <div class="table-responsive bg-white mt-3">
+        <table class="table">
+            <tr>
+                <td>IBAN:</td>
+                <td class="text-start"><?php echo $iban; ?></td>
+            </tr>
+            <tr>
+                <td>Saldo:</td>
+                <td class="text-start"><?php echo $saldo; ?></td>
+            </tr>
+            <tr>
+                <td>Fecha de Apertura:</td>
+                <td class="text-start"><?php echo $fechaApertura; ?></td>
+            </tr>
+            <tr>
+                <td>ID de Persona (Cuenta):</td>
+                <td class="text-start"><?php echo $idPersonaCuenta; ?></td>
+            </tr>
+        </table>
+    </div>
+<?php else : ?>
+    <p>Cuenta no encontrada</p>
+<?php endif; ?>
 </div>
+
+
           
         </div>
 

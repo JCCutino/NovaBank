@@ -163,13 +163,6 @@ include 'componentes/modales.php';
       <span><?php echo $correoElectronico; ?></span>
     </li>
     <li class="list-group-item">
-      <span>Contraseña:</span>
-      <span>***********</span>
-      <button type="button" class="btn btn-secondary edit-button" data-field="contrasena" data-bs-toggle="modal" data-bs-target="#contrasenaModal">
-        <i class="bi bi-pencil edit-icon"></i>
-      </button>
-    </li>
-    <li class="list-group-item">
       <span>URL de Foto:</span>
       <span><?php echo $urlFoto; ?></span>
       <button type="button" class="btn btn-secondary edit-button" data-field="urlFoto" data-bs-toggle="modal" data-bs-target="#urlFotoModal">
