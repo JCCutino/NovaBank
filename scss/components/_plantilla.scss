@@ -1,5 +1,13 @@
+// Variables
+$color-morado: #6f2cb2;
+$morado-oscuro: #5808a8;
+$color-hover: #b5b5b5;
+$blanco : #ffffff;
+$color-fondo: #484848;
+$margin-base: 10px;
+
 .body_plantilla {
-  background-color: #484848;
+  background-color: $color-fondo;
   width: 100%;
 }
 
@@ -23,7 +31,7 @@
 .enlaces a {
   text-align: center;
   text-decoration: none;
-  color: #ffffff;
+  color: $blanco;
   width: 100%;
   margin-bottom: 30px;
   font-size: 30px;
@@ -31,7 +39,7 @@
 
 .enlaces a:hover {
   color: #b5b5b5;
-  background-color: #5808a8;
+  background-color: $morado-oscuro;
 }
 
 .logo {
