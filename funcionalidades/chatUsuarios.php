@@ -5,10 +5,10 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
+$idUsuarioActual = isset($_SESSION['Id_Persona']) ? $_SESSION['Id_Persona'] : null;
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['seleccionarUsuario'])) {
-
     $_SESSION['IdChat'] = $_POST['seleccionarUsuario'];
-
     header("location: " . $_SERVER['HTTP_REFERER']);
     exit();
 }
@@ -21,7 +21,10 @@ if ($result->num_rows > 0) {
     echo "<div id='containerUsuarios' class='p-3 border rounded d-flex flex-column'>";
     while ($row = $result->fetch_assoc()) {
         $nombreChat = $row['Nombre'] . ' ' . $row['Apellidos'];
-        echo "<button type='submit' class='btn btn-success m-1 usuarioButton' name='seleccionarUsuario' value='" . $row['ID_Persona'] . "'>" . $nombreChat . "</button>";
+
+        if ($row['ID_Persona'] != $idUsuarioActual) {
+            echo "<button type='submit' class='btn btn-success m-1 usuarioButton' name='seleccionarUsuario' value='" . $row['ID_Persona'] . "'>" . $nombreChat . "</button>";
+        }
     }
     echo "</div>";
     echo "</form>";
