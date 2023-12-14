@@ -76,7 +76,8 @@ include '../funcionalidades/comprobarDatosAdmin.php';
           <a href="pagina_pagos_admin.php">Pagos</a>
           <a href="pagina_prestamos_admin.php">Préstamos</a>
           <a href="pagina_datos_admin.php"  class="morado">Datos</a>
-          
+          <a href="pagina_chat_admin.php">Chat</a>
+
           <a href="../funcionalidades/cerrarSesion.php" class="cerrar-sesion">Cerrar Sesión</a>
 
         </div>

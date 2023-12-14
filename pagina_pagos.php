@@ -82,7 +82,7 @@ $errorEnvioDinero = json_encode(isset($_SESSION['errorEnvioDinero']) && $_SESSIO
           <a href="pagina_transacciones.php">Transacciones</a>
           <a href="pagina_prestamos.php">Préstamos</a>
           <a href="pagina_datos.php">Datos</a>
-          <a href="pagina_ajustes.php">Ajustes</a>
+          <a href="pagina_chat.php">Chat</a>
 
           <a href="funcionalidades/cerrarSesion.php" class="cerrar-sesion">Cerrar Sesión</a>
 

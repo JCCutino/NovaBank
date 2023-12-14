@@ -75,7 +75,7 @@ include 'funcionalidades/obtenerDatos.php';
           <a href="pagina_transacciones.php">Transacciones</a>
           <a href="pagina_prestamos.php">Préstamos</a>
           <a href="pagina_datos.php">Datos</a>
-          <a href="pagina_ajustes.php" class="morado">Ajustes</a>
+          <a href="pagina_chat.php" class="morado">Chat</a>
 
           <a href="funcionalidades/cerrarSesion.php" class="cerrar-sesion">Cerrar Sesión</a>
 
