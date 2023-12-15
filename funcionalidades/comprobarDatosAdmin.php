@@ -22,5 +22,3 @@ if (isset($_SESSION['datosPersona']) && isset($_SESSION['datosCuenta'])) {
     $idPersonaCuenta = $datosCuenta['ID_Persona'];
 } 
 ?>
-
-?>

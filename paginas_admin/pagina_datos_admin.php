@@ -1,7 +1,7 @@
 <?php
 include '../funcionalidades/obtenerDatos.php';
 include '../funcionalidades/comprobarDatosAdmin.php';
- include '../funcionalidades/seguridadSesion.php';
+include '../funcionalidades/seguridadSesion.php';
 
 ?>
 
