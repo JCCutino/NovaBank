@@ -66,6 +66,8 @@ $resultadoPrestamoAdmin = json_encode(isset($_SESSION['resultadoPrestamoAdmin'])
                 <small id="cantidadHelp" class="form-text text-muted">Ingrese un número con hasta dos decimales.</small>
               </div>
               <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-primary">Aceptar</button>
               </div>
             </form>
           </div>
