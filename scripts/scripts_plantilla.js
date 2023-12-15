@@ -4,7 +4,15 @@ let accionInferiorEjecutada = false;
 
 let offcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasScrolling'));
 
+function ocultarBotonFijo(ocultar) {
+  let botonFijo = document.querySelector('.boton-fijo');
 
+  if (ocultar) {
+    botonFijo.style.display = 'none';
+  } else {
+    botonFijo.style.display = 'block';
+  }
+}
 
 function abrirOffcanvas() {
     offcanvas.show();
@@ -58,11 +66,15 @@ function ajustarVentana() {
       cerrarOffcanvas();
       accionSuperiorEjecutada = true;
       accionInferiorEjecutada = false;
+      ocultarBotonFijo(false);
+
   } else if (anchoVentana > anchoLimite && !accionInferiorEjecutada) {
       añadirClase();
       abrirOffcanvas();
       accionInferiorEjecutada = true;
       accionSuperiorEjecutada = false;
+      ocultarBotonFijo(true);
+
   }
 }
 
