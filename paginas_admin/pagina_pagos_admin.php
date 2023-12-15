@@ -94,7 +94,8 @@ $errorEnvioDinero = json_encode(isset($_SESSION['errorEnvioDinero']) && $_SESSIO
       <div class="col-lg-3 col-md-12  order-2 container-invisible" ></div>
       
         <div class="col-lg-6 col-md-12 main-content order-2"  id="container-responsive">
-         <h1 class="mt-3">Enviar dinero</h1>
+        <div class="max-width-pagos">
+    <h1 class="mt-3">Enviar dinero</h1>
 
     <form action="../funcionalidades/envioTransferencia.php" method="post" class="text-center">
         <div class="form-group">
@@ -109,7 +110,8 @@ $errorEnvioDinero = json_encode(isset($_SESSION['errorEnvioDinero']) && $_SESSIO
 
         <button type="submit" class="btn btn-primary">Enviar</button>
     </form>
-        
+</div>
+
 
         </div>
 

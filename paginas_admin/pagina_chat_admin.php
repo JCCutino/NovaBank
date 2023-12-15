@@ -93,6 +93,7 @@ include '../funcionalidades/seguridadSesion.php';
       <div class="col-lg-3 col-md-12  order-2 container-invisible" ></div>
       
         <div class="col-lg-6 col-md-12 main-content order-2"  id="container-responsive">
+        <div class="contenedor-chat">
         <?php 
         if (isset($_SESSION['IdChat']) && $_SESSION['IdChat'] !== null) {
         echo "<h2>Chat con el usuario ID " . $_SESSION['IdChat'] . "</h2>";
@@ -105,7 +106,7 @@ include '../funcionalidades/seguridadSesion.php';
           include '../funcionalidades/chatAdmin.php';
         }?>
 
-        
+</div>
 
         </div>
 

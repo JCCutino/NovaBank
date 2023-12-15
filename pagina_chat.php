@@ -92,17 +92,20 @@ include 'funcionalidades/obtenerDatos.php';
       
         <div class="col-lg-6 col-md-12 main-content order-2"  id="container-responsive">
          
-        <?php 
-        if (isset($_SESSION['IdChat']) && $_SESSION['IdChat'] !== null) {
+        <div class="contenedor-chat">
+    <?php
+    if (isset($_SESSION['IdChat']) && $_SESSION['IdChat'] !== null) {
         echo "<h2>Chat con el usuario ID " . $_SESSION['IdChat'] . "</h2>";
         include 'funcionalidades/mostrarChat.php';
-    
+
         echo "<form method='post' action='funcionalidades/borrarSesionChat.php'>";
         echo "<button type='submit' class='btn btn-danger mt-3'>Volver</button>";
         echo "</form>";
-        } else {
-          include 'funcionalidades/chatUsuarios.php';
-        }?>
+    } else {
+        include 'funcionalidades/chatUsuarios.php';
+    }
+    ?>
+</div>
 
           
         </div>

@@ -114,21 +114,24 @@ $resultadoPagoDeuda = json_encode(isset($_SESSION['resultadoPagoDeuda']) && $_SE
       <div class="col-lg-3 col-md-12  order-2 container-invisible"></div>
       
         <div class="col-lg-6 col-md-12 main-content order-2"  id="container-responsive">
-        <h1 class="mt-3">Solicitud de Préstamo</h1>
+        <div class="max-width-pagos">
+    <h1 class="mt-3">Solicitud de Préstamo</h1>
 
-<form action="funcionalidades/solicitudPrestamo.php" method="post" class="text-center">
-    <div class="form-group">
-        <label for="concepto">Concepto del Préstamo:</label>
-        <input type="text" class="form-control" id="conceptoPrestamo" name="conceptoPrestamo" placeholder="Introduce el concepto del préstamo" required>
-    </div>
+    <form action="funcionalidades/solicitudPrestamo.php" method="post" class="text-center">
+        <div class="form-group">
+            <label for="concepto">Concepto del Préstamo:</label>
+            <input type="text" class="form-control" id="conceptoPrestamo" name="conceptoPrestamo" placeholder="Introduce el concepto del préstamo" required>
+        </div>
 
-    <div class="form-group">
-        <label for="cantidad">Cantidad Solicitada:</label>
-        <input type="number" class="form-control" id="cantidadSolicitada" name="cantidadSolicitada" placeholder="Introduce la cantidad solicitada" required>
-    </div>
+        <div class="form-group">
+            <label for="cantidad">Cantidad Solicitada:</label>
+            <input type="number" class="form-control" id="cantidadSolicitada" name="cantidadSolicitada" placeholder="Introduce la cantidad solicitada" required>
+        </div>
 
-    <button type="submit" class="btn btn-primary mt-3">Enviar Solicitud</button>
-</form>
+        <button type="submit" class="btn btn-primary mt-3">Enviar Solicitud</button>
+    </form>
+</div>
+
 
         <h1 class="mt-5">Prestamos Pendientes</h1>
         <?php mostrarPrestamosPendientes($conn); ?>

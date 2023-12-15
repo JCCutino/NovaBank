@@ -318,3 +318,24 @@ button.btn.btn-primary:hover {
 button.btn.btn-primary:active {
   background-color: #491d75;
 }
+
+.max-width-pagos {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.contenedor-chat {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #333;
+  border: 1px solid #555;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.chat-header {
+  margin-bottom: 15px;
+}
