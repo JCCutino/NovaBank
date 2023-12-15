@@ -90,7 +90,7 @@ include 'funcionalidades/tablaTransacciones.php'
       <div class="col-lg-3 col-md-12  order-2 container-invisible"></div>
       
         <div class="col-lg-6 col-md-12 main-content order-2"  id="container-responsive">
-        
+        <h1>Historial de transacciones</h1>
         <div class="container mt-4">
         <?php if (!empty($transacciones)): ?>
             <div class="table-responsive bg-white">
