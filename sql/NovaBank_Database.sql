@@ -20,6 +20,12 @@ CREATE TABLE Persona (
     Url_Foto VARCHAR(255)
 );
 
+CREATE TABLE Mensajes (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    mensaje TEXT,
+    idEmisor INT,
+    idReceptor INT
+);
 
 CREATE TABLE Cuenta (
     IBAN VARCHAR(255) PRIMARY KEY,
